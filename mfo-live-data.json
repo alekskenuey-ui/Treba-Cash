@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-04T13:37:51.738225+00:00",
-  "count": 43,
+  "generatedAt": "2026-11-05T13:22:58.883018+00:00",
+  "count": 42,
   "offers": [
     {
       "id": 1147,
@@ -609,25 +609,6 @@
       "address": "01001, м. Київ, вул. Ірининська, 5/24, оф. 97а",
       "phone": "0 800 400004",
       "email": "info@turbogroshi.com.ua"
-    },
-    {
-      "id": 3370,
-      "name": "Freestyle Credit",
-      "logo": "https://pdl-profit.com/uploads/2025-09-25/file_68d559e173223.png",
-      "ref": "https://tds.pdl-profit.com?offerid=3370&affid=62311",
-      "sum": 27000,
-      "term": 65,
-      "rateMin": 182.5,
-      "rateMax": 547.5,
-      "badge": "Вигідні умови для нових клієнтів",
-      "badgeColor": "green",
-      "hasZeroBadge": true,
-      "goldBadgeText": "Перша позика під 0.5%*",
-      "legal": "ТОВ «МАНІВЕО ШВИДКА ФІНАНСОВА ДОПОМОГА»",
-      "edrpou": null,
-      "address": "01015, м. Київ, вул. Лейпцизька, 15Б, 1-й пов.",
-      "phone": "0 800 21 5300",
-      "email": "support@freecredit.com.ua"
     },
     {
       "id": 3384,
