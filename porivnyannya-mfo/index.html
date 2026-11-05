@@ -424,6 +424,43 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
   .tgw-icon .ping,.tgw-live .d{animation:none;}
   #tg-widget,#tg-widget .tgw-card,#tg-widget .tgw-overlay{transition:opacity .3s ease !important;}
 }
+
+/* ===== Постійна CTA-кнопка Telegram на мобільному (на десктопі є бічний віджет) =====
+   Розкрита «таблетка» з текстом — на початку сторінки й при гортанні вгору;
+   згортається в круглу іконку при гортанні вниз, щоб не перекривати оффери. */
+.tg-fab{display:none;}
+@media (max-width:900px){
+  .tg-fab{
+    position:fixed;z-index:820;right:12px;
+    bottom:calc(14px + env(safe-area-inset-bottom,0px));
+    display:flex;align-items:center;height:52px;padding:8px;border-radius:26px;
+    background:linear-gradient(135deg,#2AABEE,var(--tg-dark,#1b7fb3));
+    color:#fff;text-decoration:none;
+    box-shadow:0 10px 26px rgba(34,158,217,.45),0 2px 6px rgba(13,21,18,.18);
+    transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s ease;
+    animation:tg-fab-glow 4s ease-in-out infinite;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .tg-fab.is-hidden{transform:translateY(150%);opacity:0;pointer-events:none;}
+  .tg-fab-icon{position:relative;flex:0 0 36px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
+  .tg-fab-icon svg{width:20px;height:20px;}
+  .tg-fab-icon::after{content:'';position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#ffb020;border:2px solid #1b7fb3;animation:tg-fab-dot 2s infinite;}
+  .tg-fab.is-expanded .tg-fab-icon::after{display:none;}
+  .tg-fab-text{display:flex;flex-direction:column;max-width:0;opacity:0;overflow:hidden;white-space:nowrap;margin:0;transition:max-width .4s ease,opacity .25s ease,margin .4s ease;}
+  .tg-fab.is-expanded .tg-fab-text{max-width:210px;opacity:1;margin:0 10px 0 10px;}
+  .tg-fab-title{font:800 14px/1.15 'Manrope',sans-serif;}
+  .tg-fab-sub{font:600 10.5px/1.2 'Manrope',sans-serif;opacity:.88;margin-top:2px;}
+}
+@keyframes tg-fab-glow{
+  0%,100%{box-shadow:0 10px 26px rgba(34,158,217,.45),0 2px 6px rgba(13,21,18,.18);}
+  50%{box-shadow:0 12px 34px rgba(34,158,217,.7),0 2px 6px rgba(13,21,18,.18);}
+}
+@keyframes tg-fab-dot{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+@media (prefers-reduced-motion: reduce){
+  .tg-fab{animation:none;transition:opacity .2s ease !important;}
+  .tg-fab-text{transition:none !important;}
+  .tg-fab-icon::after{animation:none;}
+}
 </style>
 </head>
 <body>
@@ -1121,6 +1158,7 @@ const MFO_SENIORITY = {
   "Amigo": 39,
   "Lehko": 38,
   "Minibank": 37,
+  "Finstep.Space": 36.5, /* одразу після Minibank (дробовий ранг, щоб не зсувати решту) */
   "Aerocash": 36,
   "FinClick": 35,
   "Funnymoney": 34,
@@ -1640,6 +1678,17 @@ if (requisitesGrid) {
 
 
 <!-- ===== TELEGRAM-ВІДЖЕТ: десктоп — бічна картка, мобільний — центрована модалка через 10с ===== -->
+<!-- ===== Постійна CTA-кнопка Telegram (лише мобільний, ≤900px) ===== -->
+<a id="tg-fab" class="tg-fab is-expanded is-hidden" href="#" target="_blank" rel="noopener" aria-label="Підібрати МФО в Telegram">
+  <span class="tg-fab-icon">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.75 10.9c-1.2.47-1.19 1.13-.22 1.42l4.8 1.5 1.85 5.7c.22.62.37.87.76.87.34 0 .5-.16.7-.36l1.94-1.9 4.03 2.97c.74.41 1.28.2 1.47-.68l2.66-12.55c.28-1.08-.4-1.57-1.24-1.24z" fill="#fff"/></svg>
+  </span>
+  <span class="tg-fab-text">
+    <span class="tg-fab-title">Підібрати МФО під вас</span>
+    <span class="tg-fab-sub">Telegram · безкоштовно · ~1 хв</span>
+  </span>
+</a>
+
 <div id="tg-widget">
   <div class="tgw-overlay" id="tgw-overlay"></div>
   <div class="tgw-tab" id="tgw-tab"><span>Нові МФО</span></div>
@@ -1823,6 +1872,40 @@ if (requisitesGrid) {
   document.addEventListener('mouseout', (e) => {
     if (!isMobileMode() && !e.relatedTarget && e.clientY < 10) reveal();
   });
+
+  /* ====== МОБІЛЬНИЙ: постійна CTA-кнопка Telegram ======
+     Завжди розкрита (з текстом). Ховається лише коли відкрита модалка,
+     попап топ-3 з квізу, мобільне меню, клавіатура або футер. */
+  const fab = document.getElementById('tg-fab');
+  if (fab) {
+    fab.href = BOT_URL;
+    fab.addEventListener('click', () => {
+      try { (window.dataLayer = window.dataLayer || []).push({ event: 'tg_click', tg_source: 'mobile_fab' }); } catch (e) {}
+    });
+
+    const mobileNav = document.getElementById('mobile-nav');
+    function fabShouldHide() {
+      if (!isMobileMode()) return true;
+      if (widget.classList.contains('is-visible')) return true;
+      if (isTop3PopupOpen()) return true;
+      if (mobileNav && mobileNav.classList.contains('open')) return true;
+      const a = document.activeElement;
+      if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.type !== 'range' && a.type !== 'checkbox') return true;
+      return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 160;
+    }
+    function updateFab() { fab.classList.toggle('is-hidden', fabShouldHide()); }
+
+    window.addEventListener('scroll', updateFab, { passive: true });
+    window.addEventListener('resize', updateFab);
+    document.addEventListener('focusin', updateFab);
+    document.addEventListener('focusout', () => setTimeout(updateFab, 50));
+    const mo = new MutationObserver(updateFab);
+    [widget, document.getElementById('top3-overlay'), mobileNav].forEach(el => {
+      if (el) mo.observe(el, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    updateFab();
+  }
 })();
 </script>
 
