@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-05T14:08:40.811100+00:00",
-  "count": 14,
+  "generatedAt": "2026-11-06T13:51:04.997161+00:00",
+  "count": 15,
   "offers": [
     {
       "id": 1159,
@@ -22,8 +22,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Ставка от 0.01%",
-      "epc": 5.14,
-      "cr": 2.05
+      "epc": 4.85,
+      "cr": 1.93
     },
     {
       "id": 1456,
@@ -45,8 +45,8 @@
       "phone": null,
       "email": "support@kviku.kz",
       "apiTitle": "Мгновенный микрокредит на карту",
-      "epc": 47.16,
-      "cr": 2.92
+      "epc": 53.98,
+      "cr": 3.33
     },
     {
       "id": 1723,
@@ -68,8 +68,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Ставка от 0.01%!",
-      "epc": 4.03,
-      "cr": 2.5
+      "epc": 6.2,
+      "cr": 3.85
     },
     {
       "id": 1834,
@@ -91,8 +91,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Ставка от 0.01%!",
-      "epc": 8.71,
-      "cr": 1.08
+      "epc": 8.65,
+      "cr": 1.07
     },
     {
       "id": 1916,
@@ -114,8 +114,31 @@
       "phone": "+7 (778) 096 96 96",
       "email": "help@tengeda.kz",
       "apiTitle": "Деньги под рукой!",
-      "epc": 0.27,
+      "epc": 0.28,
       "cr": 0.11
+    },
+    {
+      "id": 2351,
+      "name": "ACredit",
+      "logo": "https://pdl-profit.com/uploads/2024-06-19/file_6672f9655208d.png",
+      "ref": "https://tds.pdl-profit.com?offerid=2351&affid=62311",
+      "sum": 300000,
+      "term": 25,
+      "rateMin": 3.6,
+      "rateMax": 730.0,
+      "badge": "До 300 000 ₸ на карту",
+      "badgeColor": "blue",
+      "hasZeroBadge": true,
+      "goldBadgeText": "Первый займ под 0.01%*",
+      "legal": "ТОО «МФО \"AUTO SIYLIQ FINANCE\"»",
+      "bin": null,
+      "license": "№ 02.22.0008.М от 11.08.2022 г.",
+      "address": "A10M8X3, Республика Казахстан, г. Алматы, Ауэзовский район, ул. Кабдолова, дом № 16",
+      "phone": "+7 700 888 55 88",
+      "email": "info@acredit.kz",
+      "apiTitle": "Первый кредит 0,01%",
+      "epc": 38.62,
+      "cr": 7.32
     },
     {
       "id": 2454,
@@ -137,8 +160,8 @@
       "phone": "+7 (771) 933 33 33",
       "email": "info@creditbar.kz",
       "apiTitle": "Новый сервис!",
-      "epc": 2.14,
-      "cr": 1.33
+      "epc": 2.0,
+      "cr": 1.24
     },
     {
       "id": 2552,
@@ -160,8 +183,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Новый сервис!",
-      "epc": 10.39,
-      "cr": 1.29
+      "epc": 13.54,
+      "cr": 1.68
     },
     {
       "id": 2600,
@@ -183,8 +206,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Быстрое одобрение",
-      "epc": 15.73,
-      "cr": 1.89
+      "epc": 13.8,
+      "cr": 1.68
     },
     {
       "id": 3380,
@@ -229,7 +252,7 @@
       "phone": "8 (800) 004-01-34",
       "email": "info@limecredit.kz",
       "apiTitle": "Промокод LIME70",
-      "epc": 11.42,
+      "epc": 11.39,
       "cr": 1.14
     },
     {
@@ -252,8 +275,8 @@
       "phone": "8 (800) 004-08-49",
       "email": "info@megazaim.com",
       "apiTitle": "Без документов и поручителей",
-      "epc": 7.69,
-      "cr": 0.76
+      "epc": 6.85,
+      "cr": 0.68
     },
     {
       "id": 3979,
@@ -298,8 +321,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Работает 24/7",
-      "epc": 23.6,
-      "cr": 16.74
+      "epc": 20.79,
+      "cr": 14.98
     },
     {
       "id": 3995,
@@ -321,8 +344,8 @@
       "phone": null,
       "email": null,
       "apiTitle": "Решение за 5 минут!",
-      "epc": 25.87,
-      "cr": 1.51
+      "epc": 25.06,
+      "cr": 1.45
     }
   ]
 }
