@@ -632,62 +632,6 @@
   </url>
 
   <url>
-    <loc>https://trebacash.site/propozytsiyi/7-oznak-nadiynoi-mfo/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/chomu-bank-prohraye-onlayn-kredytu/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/chy-mozhna-doviryaty-0-vidsotkiv/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/kalendar-znyzhok-mfo/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/kredyt-na-20000-grn/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/kredyt-na-30000-grn/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://trebacash.site/propozytsiyi/pomylky-novachkiv-pry-kredytuvanni/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
- <url>
-    <loc>https://trebacash.site/yak-ekonomyty-na-vidsotkah/</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
-  <url>
     <loc>https://trebacash.site/blog/</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -881,6 +825,41 @@
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://trebacash.site/blog/finansova-gramotnist/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://trebacash.site/blog/porivnyannya/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://trebacash.site/blog/prava-pozychalnyka/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://trebacash.site/blog/vartist-kredytu/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://trebacash.site/blog/vybir-mfo/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
