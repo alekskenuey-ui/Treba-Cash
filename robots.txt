@@ -4,10 +4,6 @@
 User-agent: *
 Allow: /
 
-# Technical pages
-Disallow: /404
-Disallow: /500
-
 # Sitemap
 Sitemap: https://trebacash.site/sitemap.xml
 

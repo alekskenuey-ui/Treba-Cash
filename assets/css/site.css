@@ -1,0 +1,52 @@
+/* TREBA CASH — спільний шар сайту: палітра, хедер, меню, футер.
+ * Підключається ПІСЛЯ вбудованих стилів сторінки, тому уніфікує вигляд
+ * без зміни сторінкових компонентів (картки, герої, таблиці). */
+:root{
+  --green:#27ae60;--green-light:#2ecc71;--green-dark:#1e8449;
+  --bg:#f4f9f6;--white:#fff;--text:#1a2421;--text-muted:#5a6b64;--dark:#0d1512;
+}
+/* ===== HEADER / NAV ===== */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(39,174,96,0.12);padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.header.scrolled{box-shadow:0 8px 30px rgba(13,21,18,0.08);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-icon img{width:100%;height:100%;object-fit:contain;}
+.logo-text{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:900;color:var(--text);}
+.logo-text span{color:var(--green);}
+.nav{display:flex;gap:4px;align-items:center;}
+.nav a{font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:none;padding:6px 11px;border-radius:8px;transition:.2s;white-space:nowrap;}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--green);background:rgba(39,174,96,0.08);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:12px 10px;min-width:44px;min-height:44px;align-items:center;justify-content:center;background:none;border:0;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:#fff;padding:16px 24px;border-bottom:1px solid rgba(39,174,96,0.12);flex-direction:column;gap:4px;z-index:999;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:15px;font-weight:600;color:var(--text);text-decoration:none;padding:10px 0;border-bottom:1px solid #f0f0f0;}
+.mobile-nav a[aria-current="page"]{color:var(--green);}
+@media(max-width:980px){.nav{display:none;}.hamburger{display:flex;}}
+@media(min-width:981px){.mobile-nav{display:none!important;}}
+.skip-link{position:absolute;left:-999px;top:8px;z-index:2000;background:var(--green);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;}
+.skip-link:focus{left:12px;}
+/* ===== FOOTER ===== */
+.footer{background:var(--dark);padding:48px 0;color:rgba(255,255,255,0.45);font-size:11px;line-height:1.7;}
+.footer .container{max-width:1280px;margin:0 auto;padding:0 24px;}
+.footer-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;}
+.footer-logo-text{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:900;color:rgba(255,255,255,0.8);margin-bottom:8px;}
+.footer-logo-text span{color:var(--green);}
+.footer-contact{margin-top:14px;}
+.footer-contact a{color:rgba(255,255,255,0.5);text-decoration:none;}
+.footer-contact a:hover{color:var(--green);}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.07);margin:28px 0;}
+.footer-bottom{text-align:center;color:rgba(255,255,255,0.3);font-size:11px;}
+.footer-bottom a{color:rgba(255,255,255,0.4);text-decoration:none;}
+.footer-bottom a:hover{color:var(--green);}
+.footer a{display:inline-block;padding:8px 4px;}
+.footer-contact a{padding:6px 0;}
+.footer-partners{margin-top:10px;}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr;gap:24px;}}
+/* Розкриття партнерства: .disclosure-line перебивав бічні відступи .container */
+.disclosure-line.container{padding-left:24px;padding-right:24px;flex-wrap:wrap;}
+/* Мобільний: колонка 1fr розтягувалась під найширший вміст і давала горизонтальний скрол */
+@media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr);}}
+.layout>*,.article{min-width:0;}
+@media(max-width:768px){main table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
+main p,main li,main a{overflow-wrap:anywhere;}
