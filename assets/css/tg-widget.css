@@ -43,3 +43,4 @@
 }
 @keyframes tgx-glow{0%,100%{box-shadow:0 10px 26px rgba(34,158,217,.45),0 2px 6px rgba(13,21,18,.18);}50%{box-shadow:0 12px 34px rgba(34,158,217,.7),0 2px 6px rgba(13,21,18,.18);}}
 @media(prefers-reduced-motion:reduce){#tgx-widget .tgx-card,#tgx-fab,.tgx-icon .ping,.tgx-live .d{animation:none;}#tgx-widget{transition:opacity .3s ease !important;}}
+.tgx-close::before{content:"";position:absolute;inset:-9px;}
