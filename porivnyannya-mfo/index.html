@@ -296,6 +296,18 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
   color:#5c3d00;font-size:13px;font-weight:900;
 }
 
+
+/* ===== SMARTLINK FEATURED CARD ===== */
+.smartlink-card{grid-column:1/-1;display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center;background:linear-gradient(135deg,#ffffff 0%,#eefbf2 100%);border:2px solid rgba(39,174,96,.35);border-radius:22px;padding:22px 26px;box-shadow:0 10px 32px rgba(39,174,96,.12);position:relative;}
+.smartlink-tag{position:absolute;top:-12px;left:22px;background:var(--green,#27ae60);color:#fff;font-size:11px;font-weight:800;letter-spacing:.02em;padding:5px 12px;border-radius:999px;}
+.smartlink-logo{width:100%;height:auto;display:block;}
+.smartlink-title{font-family:'Unbounded',sans-serif;font-size:clamp(17px,2.2vw,22px);font-weight:900;color:var(--text);line-height:1.25;margin:0 0 8px;}
+.smartlink-lead{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin:0 0 10px;}
+.smartlink-points{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;font-weight:700;color:var(--text);}
+.smartlink-points li::before{content:"✓ ";color:var(--green,#27ae60);}
+.smartlink-note{font-size:11.5px;color:var(--text-muted);margin:0;line-height:1.5;}
+.smartlink-cta{display:inline-block;margin-top:14px;white-space:nowrap;padding:15px 26px;flex:none;}
+@media(max-width:900px){.smartlink-card{grid-template-columns:1fr;gap:14px;padding:26px 18px 20px;text-align:left}.smartlink-logo{max-width:230px}.smartlink-cta{width:100%;white-space:normal}}
 /* ===== MFO CARDS GRID ===== */
 .mfo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;padding-bottom:20px;}
 .mfo-card{
@@ -1677,6 +1689,22 @@ function cardHTML(m, idx) {
   </div>`;
 }
 
+const SMARTLINK_URL = 'https://track-pdlp.com/ml?affid=62311';
+function smartlinkHTML() {
+  return `
+  <div class="smartlink-card" id="smartlink-card">
+    <span class="smartlink-tag">Партнерська добірка на основі даних та ШІ</span>
+    <img class="smartlink-logo" src="/assets/smartlink-logo.webp" alt="TREBA CASH SmartLink" width="640" height="360" loading="lazy">
+    <div>
+      <h3 class="smartlink-title">SmartLink: пропозиція, підібрана саме для вас</h3>
+      <p class="smartlink-lead">Не хочете перебирати весь список? SmartLink автоматично визначає ваш регіон і показує пропозицію, яка зараз найкраще відповідає актуальним показникам партнера.</p>
+      <ul class="smartlink-points"><li>Підбір за регіоном і свіжими даними</li><li>Один перехід замість довгого пошуку</li><li>Для вас безкоштовно</li></ul>
+      <p class="smartlink-note">Реклама. Рішення про видачу позики приймає фінансова установа; умови та вартість перевіряйте на сайті партнера перед оформленням.</p>
+      <a class="btn-primary smartlink-cta" href="${SMARTLINK_URL}" target="_blank" rel="sponsored nofollow noopener noreferrer" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'smartlink_card'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'comparison_top'});}catch(e){}">Підібрати пропозицію →</a>
+    </div>
+  </div>`;
+}
+
 function renderGrid() {
   let data = calcFilterActive
     ? MFO_DATA.filter(m => m.sum >= state.sum && m.term >= state.term)
@@ -1693,7 +1721,7 @@ function renderGrid() {
   resetFilterBtn.style.display = calcFilterActive ? 'inline-flex' : 'none';
 
   const toShow = data.slice(0, state.visible);
-  grid.innerHTML = toShow.map((m, i) => cardHTML(m, i)).join('');
+  grid.innerHTML = smartlinkHTML() + toShow.map((m, i) => cardHTML(m, i)).join('');
 
   // Bind RRPS toggles
   grid.querySelectorAll('.rrps-toggle').forEach(btn => {

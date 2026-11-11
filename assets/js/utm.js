@@ -5,7 +5,7 @@
 (function () {
   'use strict';
   var KEY = 'tc_attr';
-  var PARTNER = /(^|\.)pdl-profit\.com$/i;
+  var PARTNER = /(^|\.)(pdl-profit\.com|track-pdlp\.com)$/i;
   var CLICK_IDS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid'];
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   var SEARCH = { 'google': 'google', 'bing': 'bing', 'yahoo': 'yahoo', 'duckduckgo': 'duckduckgo', 'yandex': 'yandex', 'ukr.net': 'ukr_net', 'ecosia': 'ecosia' };
