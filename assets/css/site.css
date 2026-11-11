@@ -50,3 +50,6 @@
 .layout>*,.article{min-width:0;}
 @media(max-width:768px){main table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
 main p,main li,main a{overflow-wrap:anywhere;}
+
+.disclosure-line{flex-wrap:wrap;}
+.disclosure-line .tag{white-space:nowrap;}
