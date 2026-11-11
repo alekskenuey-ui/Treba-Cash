@@ -22,7 +22,7 @@
 <body>
   <script>
     const JSON_URL = '/mfo-live-data.json';
-    const FALLBACK_URL = 'https://tds.pdl-profit.com?offerid=1147&affid=62311';
+    const FALLBACK_URL = 'https://tds.pdl-profit.com?offerid=1147&affid=62311&utm_source=tg&utm_medium=social&utm_creative=btn_new_service';
 
     /*
      * РОТАЦІЯ ЛИШЕ ОФЕРІВ З БЕЙДЖЕМ "🆕 Новий сервіс!"
@@ -116,7 +116,7 @@
         const finalUrl =
           target.ref +
           separator +
-          'utm_source=tg&utm_creative=btn_new_service';
+          'utm_source=tg&utm_medium=social&utm_creative=btn_new_service';
 
         window.location.replace(finalUrl);
 

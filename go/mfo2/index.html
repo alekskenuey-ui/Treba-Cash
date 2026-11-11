@@ -24,7 +24,7 @@
 <body>
   <script>
     const JSON_URL = '/mfo-live-data.json';
-    const FALLBACK_URL = 'https://tds.pdl-profit.com?offerid=1147&affid=62311';
+    const FALLBACK_URL = 'https://tds.pdl-profit.com?offerid=1147&affid=62311&utm_source=tg&utm_medium=social&utm_creative=btn_new_service';
 
     async function redirectUser() {
       try {
@@ -86,7 +86,7 @@
         const finalUrl =
           target.ref +
           separator +
-          'utm_source=tg&utm_creative=btn_promo';
+          'utm_source=tg&utm_medium=social&utm_creative=btn_promo';
 
         window.location.replace(finalUrl);
 
