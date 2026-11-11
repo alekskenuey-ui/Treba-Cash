@@ -11,3 +11,4 @@
 .slb-btn{display:inline-block;margin-top:14px;text-align:center;background:linear-gradient(135deg,#ff7a1a,#ff9a4d);color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:15px 28px;border-radius:12px;box-shadow:0 6px 18px rgba(255,122,26,.3);transition:transform .2s;}
 .slb-btn:hover{transform:translateY(-2px);}
 @media(max-width:900px){.slb{grid-template-columns:1fr;gap:14px;padding:28px 18px 20px}.slb-logo{max-width:230px}.slb-btn{display:block;width:100%}}
+.slb-wrap.slb-inner{margin:14px 0 22px;padding:0;max-width:none;}
