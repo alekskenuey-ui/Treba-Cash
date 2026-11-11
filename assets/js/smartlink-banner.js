@@ -1,5 +1,5 @@
 /* TREBA CASH — SmartLink: рекламний банер угорі сторінок блогу, пропозицій і рейтингів.
- * Вставляється одразу після hero-блоку; посилання дописується мітками utm.js. */
+ * Вставляється одразу після hero-блоку (у статтях «Пропозицій» — перед списком МФО); посилання дописується мітками utm.js. */
 (function () {
   'use strict';
   var URL_ = 'https://track-pdlp.com/ml?affid=62311';
@@ -27,8 +27,14 @@
           '<a class="slb-btn" href="' + URL_ + '" target="_blank" rel="sponsored nofollow noopener noreferrer">Подати заявку →</a>' +
         '</div>' +
       '</div>';
+    // Статті «Пропозицій»: банер — безпосередньо перед списком МФО
+    var offers = (type === 'propozytsiyi' && !/^\/propozytsiyi\/?$/.test(path)) ? main.querySelector('.offers-section') : null;
     var hero = main.querySelector(':scope > header.hero, :scope > .hero') || main.querySelector('header.hero');
-    if (hero && hero.parentNode === main) hero.insertAdjacentElement('afterend', wrap);
+    if (offers) {
+      var host = offers.parentNode && offers.parentNode.classList && offers.parentNode.classList.contains('container') ? offers.parentNode : offers;
+      host.insertAdjacentElement('beforebegin', wrap);
+    }
+    else if (hero && hero.parentNode === main) hero.insertAdjacentElement('afterend', wrap);
     else main.insertAdjacentElement('afterbegin', wrap);
     wrap.querySelector('.slb-btn').addEventListener('click', function () {
       try {
