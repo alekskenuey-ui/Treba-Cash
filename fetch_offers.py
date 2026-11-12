@@ -104,6 +104,10 @@ def determine_badge(sum_val, term_val):
     return ("Вигідні умови для нових клієнтів", "green")
 
 
+# Ручні золоті бейджі (назва -> текст), щоб щоденне оновлення їх не скидало
+FORCED_GOLD_BADGE = {"FreshCash": "Перша позика під 0.1%*"}
+
+
 def transform_offer(offer, requisites):
     """Конвертує один офер з формату API у формат нашого сайту."""
     name = clean_name(offer.get("name", ""))
@@ -125,6 +129,10 @@ def transform_offer(offer, requisites):
 
     req = requisites.get(name, {})
 
+    forced_gold = FORCED_GOLD_BADGE.get(name)
+    if forced_gold:
+        has_zero_badge = True
+
     return {
         "id": offer.get("id"),
         "name": name,
@@ -137,7 +145,7 @@ def transform_offer(offer, requisites):
         "badge": badge_text,
         "badgeColor": badge_color,
         "hasZeroBadge": has_zero_badge,
-        "goldBadgeText": (
+        "goldBadgeText": forced_gold or (
             f"Перша позика під {first_pct}%*" if has_zero_badge and first_pct is not None
             else "Перша позика під 0,01%*" if has_zero_badge else None
         ),
