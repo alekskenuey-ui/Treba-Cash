@@ -876,7 +876,7 @@ fetch('/mfo-live-data.json',{cache:'no-store'}).then(function(r){return r.json()
 
     window.addEventListener('load', function() {
       setTimeout(function() {
-        const target = document.getElementById('offers-grid');
+        const target = document.querySelector('.offers-title') || document.getElementById('offers-grid'); // старт від заголовка «Усі актуальні пропозиції»
         const header = document.getElementById('main-header');
         if (!target) return;
         const headerOffset = header ? header.offsetHeight : 68;

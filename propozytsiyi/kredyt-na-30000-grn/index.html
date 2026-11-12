@@ -879,7 +879,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     window.addEventListener('load', function() {
       setTimeout(function() {
-        const target = document.getElementById('offers-grid');
+        const target = document.querySelector('.offers-title') || document.getElementById('offers-grid'); // старт від заголовка «Усі актуальні пропозиції»
         const header = document.getElementById('main-header');
         if (!target) return;
         const headerOffset = header ? header.offsetHeight : 68;
