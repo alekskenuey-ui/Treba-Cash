@@ -359,6 +359,39 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 .mfo-card-cta{display:flex;gap:10px;padding:14px 22px 22px;}
 .btn-primary{flex:1;text-align:center;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:13px 16px;border-radius:12px;box-shadow:0 8px 20px rgba(255,122,26,.35);transition:transform .2s;}
 .btn-primary:hover{transform:translateY(-2px);}
+/* ===== ВІЗУАЛЬНЕ ОНОВЛЕННЯ КАРТОК (лише стилі, розмітка та логіка без змін) ===== */
+.mfo-card{border-radius:24px;border:1px solid rgba(39,174,96,.16);background:linear-gradient(180deg,#fff 0%,#f6fbf8 100%);box-shadow:0 10px 30px rgba(13,21,18,.07),0 2px 6px rgba(39,174,96,.06);}
+.mfo-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,#27ae60,#1abc9c 55%,#3498db);z-index:1;}
+.mfo-card:hover{transform:translateY(-8px);box-shadow:0 26px 54px rgba(13,21,18,.13),0 10px 26px rgba(39,174,96,.2);border-color:rgba(39,174,96,.4);}
+.mfo-card--new{border:2px solid rgba(46,204,113,.55);}
+.mfo-card-top{padding:24px 20px 14px;border-bottom:none;}
+.mfo-logo-wrap{height:84px;background:#f3faf6;border:none;border-radius:16px;}
+.mfo-card-name{font-size:15px;color:var(--text);}
+.mfo-card-badge{background:#e6f6ed;color:#1e8449;font-size:10px;padding:3px 10px;}
+.mfo-card-body{padding:12px 20px 4px;}
+.mfo-stat-row{background:#f1f9f4;border:1px solid rgba(39,174,96,.12);border-radius:12px;padding:10px 14px;margin-bottom:8px;align-items:center;}
+.mfo-stat-row:last-child{border-bottom:1px solid rgba(39,174,96,.12);}
+.mfo-stat-row .k{font-size:12px;}
+.mfo-stat-row .v{font-size:15px;color:#1e8449;font-family:'Unbounded',sans-serif;font-weight:800;}
+.rrps-toggle{border-top:1px dashed rgba(39,174,96,.25);margin-top:4px;}
+.mfo-card-cta{padding:12px 20px 22px;}
+.mfo-card .btn-primary{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:6px;font-size:15px;font-weight:900;letter-spacing:.01em;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,#ff6a00 0%,#ff8f1f 55%,#ffb347 100%);box-shadow:0 10px 24px rgba(255,106,0,.38),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .2s,box-shadow .2s;}
+.mfo-card .btn-primary::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:btnShine 4.5s ease-in-out infinite;}
+@keyframes btnShine{0%,70%{left:-60%;}100%{left:130%;}}
+.mfo-card .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(255,106,0,.45),inset 0 1px 0 rgba(255,255,255,.4);}
+@media(prefers-reduced-motion:reduce){.mfo-card .btn-primary::after{animation:none;display:none;}}
+@media(max-width:480px){.mfo-card .btn-primary{font-size:13.5px;padding:14px 8px;white-space:nowrap;}.mfo-card-cta{padding:10px 14px 18px;}.mfo-stat-row{padding:8px 10px;}.mfo-stat-row .v{font-size:13.5px;}.mfo-card-body{padding:10px 14px 4px;}}
+
+/* ===== SmartLink-плашка над кнопкою Telegram (лише мобільний) ===== */
+.sl-fab{display:none;}
+@media (max-width:900px){
+  .sl-fab{position:fixed;z-index:819;right:12px;bottom:calc(14px + 52px + 10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:8px;height:44px;padding:5px 14px 5px 6px;border-radius:22px;background:linear-gradient(135deg,#ff6a00,#ff9d2f);color:#fff;text-decoration:none;box-shadow:0 10px 24px rgba(255,106,0,.42),0 2px 6px rgba(13,21,18,.18);transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s ease;-webkit-tap-highlight-color:transparent;}
+  .sl-fab img{width:46px;height:auto;border-radius:12px;background:#fff;padding:2px;display:block;}
+  .sl-fab-t{display:flex;flex-direction:column;font:800 13.5px/1.1 'Manrope',sans-serif;}
+  .sl-fab-t small{font:600 9.5px/1.2 'Manrope',sans-serif;opacity:.9;margin-top:2px;}
+  .tg-fab.is-hidden + .sl-fab{transform:translateY(220%);opacity:0;pointer-events:none;}
+}
+
 
 .load-more-wrap{text-align:center;padding:20px 0 60px;}
 .load-more-btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:2px solid rgba(39,174,96,.3);color:var(--green-dark);font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;padding:14px 32px;border-radius:999px;cursor:pointer;transition:.2s;}
@@ -1818,6 +1851,11 @@ if (requisitesGrid) {
     <span class="tg-fab-title">Підібрати МФО під вас</span>
     <span class="tg-fab-sub">Telegram · безкоштовно · ~1 хв</span>
   </span>
+</a>
+
+<a id="sl-fab" class="sl-fab" href="https://track-pdlp.com/ml?affid=62311" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="SmartLink — подати заявку (реклама)" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'mobile_pill'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'mobile_pill_comparison'});}catch(e){}">
+  <img src="/assets/smartlink-logo.webp" alt="" width="640" height="360" loading="lazy">
+  <span class="sl-fab-t">Подати заявку →<small>SmartLink · реклама</small></span>
 </a>
 
 <div id="tg-widget">
