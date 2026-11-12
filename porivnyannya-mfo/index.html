@@ -555,6 +555,30 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 .tgw-tab span{writing-mode:vertical-rl;color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.03em;}
 .tgw-overlay{display:none;}
 
+/* ===== компактний десктопний віджет ===== */
+#tg-widget{width:252px;right:16px;}
+#tg-widget .tgw-card{border-radius:18px;padding:14px 14px 12px;}
+#tg-widget .tgw-close{top:8px;right:8px;width:22px;height:22px;font-size:11px;}
+#tg-widget .tgw-icon-row{margin-bottom:8px;padding-right:22px;gap:8px;}
+#tg-widget .tgw-icon{width:30px;height:30px;flex:0 0 30px;border-radius:9px;}
+#tg-widget .tgw-icon svg{width:16px;height:16px;}
+#tg-widget .tgw-live{font-size:10.5px;padding:4px 8px;}
+.tgw-live-t{white-space:nowrap;}
+.tgw-live .d{flex:0 0 6px;}
+#tg-widget .tgw-headline{font-size:15px;line-height:1.25;margin:0 0 4px;}
+#tg-widget .tgw-sub{font-size:12px;line-height:1.4;margin:0 0 10px;}
+#tg-widget .tgw-cta{padding:10px 12px;font-size:13px;border-radius:11px;box-shadow:0 6px 16px rgba(34,158,217,.35);}
+#tg-widget .tgw-cta svg{width:15px;height:15px;flex-basis:15px;}
+#tg-widget .tgw-fineprint{font-size:10.5px;margin:6px 0 0;}
+#tg-widget .tgw-smart{margin-top:10px;padding:8px;gap:8px;border-radius:12px;align-items:flex-start;}
+#tg-widget .tgw-smart img{width:44px;}
+#tg-widget .tgw-smart-txt{font-size:10.5px;line-height:1.35;}
+#tg-widget .tgw-smart-txt b{font-size:11.5px;}
+#tg-widget .tgw-smart-btn{font-size:11.5px;padding:6px 8px;margin-top:5px;}
+#tg-widget .tgw-smart-ad{font-size:9px;}
+#tg-widget.is-collapsed{transform:translateY(-50%) translateX(220px);}
+.tgw-tab{width:40px;height:104px;left:-40px;}
+
 /* ---- Мобільний (≤900px): центрована модалка (поява через 10с) ---- */
 @media (max-width:900px){
   /* FIX: десктопні правила #tg-widget.is-visible / .is-collapsed (translateY(-50%)) мають вищу специфічність і зсували контейнер вгору на 50% — скидаємо їх на мобільному */
@@ -1314,8 +1338,9 @@ let MFO_DATA = MFO_DATA_FALLBACK;
    Можете вільно редагувати/дописувати список у будь-який момент —
    ніяких інших змін в коді для цього не потрібно. */
 const MFO_SENIORITY = {
-  "Minibank": 46, /* закріплено першим у «Новіші спочатку» */
-  "Finstep.Space": 45, /* другим */
+  "Minibank": 48, /* закріплено першим у «Новіші спочатку» */
+  "Finstep.Space": 47, /* другим */
+  "FreshCash": 46, /* третім */
   "Ranok": 44,
   "Pango": 43,
   "Ariba": 42,
@@ -1868,22 +1893,22 @@ if (requisitesGrid) {
         <span class="ping"></span>
         <svg viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.75 10.9c-1.2.47-1.19 1.13-.22 1.42l4.8 1.5 1.85 5.7c.22.62.37.87.76.87.34 0 .5-.16.7-.36l1.94-1.9 4.03 2.97c.74.41 1.28.2 1.47-.68l2.66-12.55c.28-1.08-.4-1.57-1.24-1.24z" fill="#fff"/></svg>
       </div>
-      <div class="tgw-live"><span class="d"></span> Оновлюється щодня</div>
+      <div class="tgw-live"><span class="d"></span><span class="tgw-live-t">+<span class="tgw-count" id="tgw-count">0</span> нових МФО за тиждень</span></div>
     </div>
     <div class="tgw-body">
-      <p class="tgw-headline">Ще <span class="tgw-count" id="tgw-count">0</span> нових МФО зʼявилось цього тижня</p>
-      <p class="tgw-sub">Дайте відповідь на кілька коротких запитань у Telegram — і ми підберемо <b>МФО персонально під вашу ситуацію</b>.</p>
+      <p class="tgw-headline">Підберемо МФО за 1&nbsp;хвилину</p>
+      <p class="tgw-sub">3 запитання в Telegram — і бот покаже <b>пропозиції, що підходять саме вам</b>.</p>
       <a href="#" class="tgw-cta" id="tgw-cta" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.75 10.9c-1.2.47-1.19 1.13-.22 1.42l4.8 1.5 1.85 5.7c.22.62.37.87.76.87.34 0 .5-.16.7-.36l1.94-1.9 4.03 2.97c.74.41 1.28.2 1.47-.68l2.66-12.55c.28-1.08-.4-1.57-1.24-1.24z" fill="#fff"/></svg>
-        Почати персональний підбір
+        Підібрати в Telegram
       </a>
-      <p class="tgw-fineprint">Займе близько хвилини. Повністю безкоштовно.</p>
+      <p class="tgw-fineprint">Безкоштовно · без реєстрації</p>
 
       <div class="tgw-smart">
         <img src="/assets/smartlink-logo.webp" alt="SmartLink" width="640" height="360" loading="lazy">
         <div class="tgw-smart-txt">
-          <b>Швидше: SmartLink</b>
-          Пропозиція під ваш регіон та на основі ваших параметрів користувача
+          <b>SmartLink · ШІ-підбір</b>
+          Посилання на МФО, підібране штучним інтелектом на основі Ваших актуальних показників ефективності та параметрів користувача.
           <a class="tgw-smart-btn" href="https://track-pdlp.com/ml?affid=62311" target="_blank" rel="sponsored nofollow noopener noreferrer" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'tg_widget'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'tg_widget_comparison'});}catch(e){}">Подати заявку →</a>
           <div class="tgw-smart-ad">Реклама · рішення приймає фінансова установа</div>
         </div>
