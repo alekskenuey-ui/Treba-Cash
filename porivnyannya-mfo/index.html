@@ -297,12 +297,6 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 }
 
 
-/* ===== SMARTLINK CARD (звичайна картка в сітці) ===== */
-.mfo-card--smart{border:2px solid rgba(39,174,96,.4);box-shadow:0 10px 30px rgba(39,174,96,.14);}
-.mfo-card--smart .mfo-logo-wrap{height:96px;}
-.mfo-card--smart .mfo-logo-wrap img{max-height:90px;}
-.smartlink-note{font-size:11px;color:var(--text-muted);line-height:1.5;margin:8px 0 0;}
-
 /* ===== MFO CARDS GRID ===== */
 .mfo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;padding-bottom:20px;}
 .mfo-card{
@@ -1684,33 +1678,6 @@ function cardHTML(m, idx) {
   </div>`;
 }
 
-const SMARTLINK_URL = 'https://track-pdlp.com/ml?affid=62311';
-function smartlinkHTML() {
-  return `
-  <div class="mfo-card mfo-card--smart" id="smartlink-card">
-    <div class="mfo-card-top">
-      <div class="mfo-logo-wrap">
-        <img src="/assets/smartlink-logo.webp" alt="TREBA CASH SmartLink" width="640" height="360" loading="lazy">
-      </div>
-      <div class="mfo-card-name">SmartLink</div>
-      <span class="mfo-card-badge">Партнерська добірка</span>
-    </div>
-    <div class="mfo-badges-row">
-      <span class="mfo-badge color-blue">🤖 На основі даних та ШІ</span>
-      <span class="mfo-badge color-green">🎯 Підбір під ваш регіон, та на основі ваших параметрів користувача</span>
-    </div>
-    <div class="mfo-card-body">
-      <div class="mfo-stat-row"><span class="k">Пропозиція</span><span class="v">автопідбір</span></div>
-      <div class="mfo-stat-row"><span class="k">Дані</span><span class="v">актуальні показники</span></div>
-      <div class="mfo-stat-row"><span class="k">Для вас</span><span class="v">безкоштовно</span></div>
-      <p class="smartlink-note">Реклама. SmartLink покаже пропозицію, що зараз найкраще підходить вашому регіону. Рішення про позику приймає фінансова установа.</p>
-    </div>
-    <div class="mfo-card-cta">
-      <a class="btn-primary" href="${SMARTLINK_URL}" target="_blank" rel="sponsored nofollow noopener noreferrer" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'smartlink_card'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'comparison_top'});}catch(e){}">Подати заявку →</a>
-    </div>
-  </div>`;
-}
-
 function renderGrid() {
   let data = calcFilterActive
     ? MFO_DATA.filter(m => m.sum >= state.sum && m.term >= state.term)
@@ -1727,7 +1694,7 @@ function renderGrid() {
   resetFilterBtn.style.display = calcFilterActive ? 'inline-flex' : 'none';
 
   const toShow = data.slice(0, state.visible);
-  grid.innerHTML = smartlinkHTML() + toShow.map((m, i) => cardHTML(m, i)).join('');
+  grid.innerHTML = toShow.map((m, i) => cardHTML(m, i)).join('');
 
   // Bind RRPS toggles
   grid.querySelectorAll('.rrps-toggle').forEach(btn => {
