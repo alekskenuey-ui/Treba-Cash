@@ -506,6 +506,12 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 
 /* ---- Десктоп: докована бічна картка ---- */
 #tg-widget{position:fixed;z-index:850;right:22px;top:50%;width:300px;transform:translateY(-50%) translateX(350px);opacity:0;transition:transform .65s cubic-bezier(.16,1.32,.4,1), opacity .5s ease;}
+#tg-widget .tgw-smart{margin-top:12px;padding:10px;border:1.5px dashed rgba(39,174,96,.45);border-radius:14px;background:rgba(255,255,255,.7);display:flex;align-items:center;gap:10px;}
+#tg-widget .tgw-smart img{width:64px;height:auto;flex:none;display:block;}
+#tg-widget .tgw-smart-txt{flex:1;min-width:0;font-size:11.5px;line-height:1.35;color:#5a6b64;}
+#tg-widget .tgw-smart-txt b{display:block;font-size:12.5px;color:#1a2421;margin-bottom:2px;}
+#tg-widget .tgw-smart-btn{display:block;margin-top:6px;text-align:center;background:linear-gradient(135deg,#ff7a1a,#ff9a4d);color:#fff !important;text-decoration:none;font-weight:800;font-size:12.5px;padding:8px 10px;border-radius:9px;}
+#tg-widget .tgw-smart-ad{font-size:9.5px;color:#8a9a93;margin-top:4px;}
 #tg-widget.is-visible{transform:translateY(-50%) translateX(0);opacity:1;}
 #tg-widget.is-collapsed{transform:translateY(-50%) translateX(268px);}
 #tg-widget .tgw-card{animation:tgw-breathe 4.5s ease-in-out infinite;}
@@ -1834,6 +1840,16 @@ if (requisitesGrid) {
         Почати персональний підбір
       </a>
       <p class="tgw-fineprint">Займе близько хвилини. Повністю безкоштовно.</p>
+
+      <div class="tgw-smart">
+        <img src="/assets/smartlink-logo.webp" alt="SmartLink" width="640" height="360" loading="lazy">
+        <div class="tgw-smart-txt">
+          <b>Швидше: SmartLink</b>
+          Пропозиція під ваш регіон та на основі ваших параметрів користувача
+          <a class="tgw-smart-btn" href="https://track-pdlp.com/ml?affid=62311" target="_blank" rel="sponsored nofollow noopener noreferrer" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'tg_widget'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'tg_widget_comparison'});}catch(e){}">Подати заявку →</a>
+          <div class="tgw-smart-ad">Реклама · рішення приймає фінансова установа</div>
+        </div>
+      </div>
 
       <div class="tgw-top3">
         <div class="tgw-top3-head"><span class="tgw-top3-title">Сьогоднішній ТОП МФО</span></div>
