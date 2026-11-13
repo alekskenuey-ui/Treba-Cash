@@ -383,14 +383,6 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 @media(max-width:480px){.mfo-card .btn-primary{font-size:13.5px;padding:14px 8px;white-space:nowrap;}.mfo-card-cta{padding:10px 14px 18px;}.mfo-stat-row{padding:8px 10px;}.mfo-stat-row .v{font-size:13.5px;}.mfo-card-body{padding:10px 14px 4px;}}
 
 /* ===== SmartLink-плашка над кнопкою Telegram (лише мобільний) ===== */
-.sl-fab{display:none;}
-@media (max-width:900px){
-  .sl-fab{position:fixed;z-index:819;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:8px;height:44px;padding:5px 14px 5px 6px;border-radius:22px;background:linear-gradient(135deg,#ff6a00,#ff9d2f);color:#fff;text-decoration:none;box-shadow:0 10px 24px rgba(255,106,0,.42),0 2px 6px rgba(13,21,18,.18);transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s ease;-webkit-tap-highlight-color:transparent;}
-  .sl-fab img{width:46px;height:auto;border-radius:12px;background:#fff;padding:2px;display:block;}
-  .sl-fab-t{display:flex;flex-direction:column;font:800 13.5px/1.1 'Manrope',sans-serif;}
-  .sl-fab-t small{font:600 9.5px/1.2 'Manrope',sans-serif;opacity:.9;margin-top:2px;}
-  .sl-fab.is-hidden{transform:translateY(220%);opacity:0;pointer-events:none;}
-}
 
 
 .load-more-wrap{text-align:center;padding:20px 0 60px;}
@@ -1877,10 +1869,6 @@ if (requisitesGrid) {
 
 <!-- ===== TELEGRAM-ВІДЖЕТ: десктоп — бічна картка, мобільний — центрована модалка через 10с ===== -->
 
-<a id="sl-fab" class="sl-fab" href="https://track-pdlp.com/ml?affid=62311" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="SmartLink — подати заявку (реклама)" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'mobile_pill'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'mobile_pill_comparison'});}catch(e){}">
-  <img src="/assets/smartlink-logo.webp" alt="" width="640" height="360" loading="lazy">
-  <span class="sl-fab-t">Подати заявку →<small>SmartLink · реклама</small></span>
-</a>
 
 <div id="tg-widget">
   <div class="tgw-overlay" id="tgw-overlay"></div>
@@ -2072,33 +2060,6 @@ if (requisitesGrid) {
     if (!isMobileMode() && !e.relatedTarget && e.clientY < 10) reveal();
   });
 
-  /* ====== МОБІЛЬНИЙ: плашка SmartLink ======
-     Telegram на мобільному вимкнено. Плашка SmartLink ховається, коли відкритий
-     попап топ-3 з квізу, мобільне меню, клавіатура або видно футер. */
-  const slFab = document.getElementById('sl-fab');
-  if (slFab) {
-    const mobileNav = document.getElementById('mobile-nav');
-    function slShouldHide() {
-      if (!isMobileMode()) return true;
-      if (isTop3PopupOpen()) return true;
-      if (mobileNav && mobileNav.classList.contains('open')) return true;
-      const a = document.activeElement;
-      if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.type !== 'range' && a.type !== 'checkbox') return true;
-      return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 160;
-    }
-    function updateSlFab() { slFab.classList.toggle('is-hidden', slShouldHide()); }
-
-    window.addEventListener('scroll', updateSlFab, { passive: true });
-    window.addEventListener('resize', updateSlFab);
-    document.addEventListener('focusin', updateSlFab);
-    document.addEventListener('focusout', () => setTimeout(updateSlFab, 50));
-    const mo = new MutationObserver(updateSlFab);
-    [document.getElementById('top3-overlay'), mobileNav].forEach(el => {
-      if (el) mo.observe(el, { attributes: true, attributeFilter: ['class'] });
-    });
-
-    updateSlFab();
-  }
 })();
 </script>
 
