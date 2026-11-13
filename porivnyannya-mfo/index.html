@@ -383,14 +383,6 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 @media(max-width:480px){.mfo-card .btn-primary{font-size:13.5px;padding:14px 8px;white-space:nowrap;}.mfo-card-cta{padding:10px 14px 18px;}.mfo-stat-row{padding:8px 10px;}.mfo-stat-row .v{font-size:13.5px;}.mfo-card-body{padding:10px 14px 4px;}}
 
 /* ===== SmartLink-плашка над кнопкою Telegram (лише мобільний) ===== */
-.sl-fab{display:none;}
-@media (max-width:900px){
-  .sl-fab{position:fixed;z-index:819;right:12px;bottom:calc(14px + 52px + 10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:8px;height:44px;padding:5px 14px 5px 6px;border-radius:22px;background:linear-gradient(135deg,#ff6a00,#ff9d2f);color:#fff;text-decoration:none;box-shadow:0 10px 24px rgba(255,106,0,.42),0 2px 6px rgba(13,21,18,.18);transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s ease;-webkit-tap-highlight-color:transparent;}
-  .sl-fab img{width:46px;height:auto;border-radius:12px;background:#fff;padding:2px;display:block;}
-  .sl-fab-t{display:flex;flex-direction:column;font:800 13.5px/1.1 'Manrope',sans-serif;}
-  .sl-fab-t small{font:600 9.5px/1.2 'Manrope',sans-serif;opacity:.9;margin-top:2px;}
-  .tg-fab.is-hidden + .sl-fab{transform:translateY(220%);opacity:0;pointer-events:none;}
-}
 
 
 .load-more-wrap{text-align:center;padding:20px 0 60px;}
@@ -1393,84 +1385,93 @@ const MFO_SENIORITY = {
    CR — % кліків, що конвертувались у виплату по CPS.
    Це внутрішні метрики вигідності оффера ДЛЯ ВАС,
    не рейтинг довіри чи відгуки клієнтів.
-   Бренди без даних (нові офери) в сортуванні йдуть в кінець. */
+   Бренди без даних (нові офери) в сортуванні йдуть в кінець.
+   Дані оновлено: 13.11.2026 (рейтинги EPC/CR з PDL Profit). */
 const MFO_CR = {
-  "ТвояПозика": 3.6,
-  "E-groshi": 3.68,
-  "MILOAN": 4.81,
-  "Starfin": 3.73,
-  "ШвидкоГроші": 4.9,
-  "Ariba": 4.6,
-  "Tengo": 3.77,
-  "SlonCredit": 3.19,
-  "SelfieCredit": 3.35,
-  "CreditKasa": 3.46,
-  "Credit7": 2.95,
-  "MyCredit": 4.81,
-  "Pango": 4.77,
-  "Creditplus": 3.54,
-  "Suncredit": 6.69,
-  "Aerocash": 4.4,
-  "Lehko": 3.03,
-  "LimonCredit": 4.89,
-  "Rocketmoney": 1.93,
-  "Нові кредити": 3.36,
-  "Funnymoney": 1.99,
+  "Ranok": 6.42,
+  "Creditplus": 4.09,
+  "Turbogroshi": 3.87,
+  "Bizpozyka": 3.85,
+  "Lehko": 3.76,
+  "Rocketmoney": 3.69,
+  "Pango": 3.65,
+  "MyCredit": 3.64,
+  "Нові кредити": 3.61,
+  "MILOAN": 3.38,
+  "ШвидкоГроші": 3.36,
+  "CreditKasa": 3.35,
+  "Treba": 3.19,
+  "Clickcredit": 2.97,
+  "Ariba": 2.93,
+  "LimonCredit": 2.86,
+  "Moneyveo": 2.83,
+  "Credit7": 2.74,
+  "ТвояПозика": 2.56,
+  "E-groshi": 2.54,
+  "Minibank": 2.44,
+  "Tengo": 2.39,
   "FinClick": 2.26,
-  "LoviLave": 1.57,
-  "Turbogroshi": 5.63,
-  "Mybiz": 2.64,
-  "Ewacash": 2.14,
-  "Aviracredit": 1.8,
-  "Ranok": 6.09,
-  "Finmarket": 1.79,
-  "Finbert": 1.37,
-  "Cashpoint": 1.14,
-  "Cly": 0.88,
-  "Amigo": 0.99,
-  "Freestyle Credit": 2.93,
-  "Treba": 0.7,
-  "Microcash": 1.03,
-  "Prostocredit": 0.74,
+  "Ewacash": 2.16,
+  "SlonCredit": 2.09,
+  "Cashpoint": 1.93,
+  "AlexCredit": 1.92,
+  "Finmarket": 1.76,
+  "Suncredit": 1.66,
+  "Aerocash": 1.65,
+  "Funnymoney": 1.54,
+  "LoviLave": 1.38,
+  "Aviracredit": 1.2,
+  "Credos": 1.09,
+  "Starfin": 0.99,
+  "Finstep.Space": 0.9,
+  "Cly": 0.74,
+  "TOP1": 0.53,
+  "SelfieCredit": 0.51,
+  "Prostocredit": 0.51,
+  "Amigo": 0.47,
 };
 const MFO_EPC = {
-  "ТвояПозика": 88.84,
-  "E-groshi": 87.74,
-  "MILOAN": 83.63,
-  "Starfin": 82.96,
-  "ШвидкоГроші": 75.73,
-  "Ariba": 73.63,
-  "Tengo": 73.28,
-  "SlonCredit": 69.56,
-  "SelfieCredit": 68.07,
-  "CreditKasa": 64.8,
-  "Credit7": 58.25,
-  "MyCredit": 55.07,
-  "Pango": 51.05,
-  "Creditplus": 46.19,
-  "Suncredit": 45.75,
-  "Aerocash": 39.26,
-  "Lehko": 30.37,
-  "LimonCredit": 30.16,
-  "Rocketmoney": 22.86,
-  "Нові кредити": 22.78,
-  "Funnymoney": 20.95,
-  "FinClick": 20.35,
-  "LoviLave": 19.86,
-  "Turbogroshi": 17.73,
-  "Mybiz": 17.22,
-  "Ewacash": 16.43,
-  "Aviracredit": 15.83,
-  "Ranok": 14.32,
-  "Finmarket": 14.11,
-  "Finbert": 13.41,
-  "Cashpoint": 10.91,
-  "Cly": 8.41,
-  "Amigo": 8.27,
-  "Freestyle Credit": 7.89,
-  "Treba": 7.53,
-  "Microcash": 6.35,
-  "Prostocredit": 6.11,
+  "Bizpozyka": 75.96,
+  "ТвояПозика": 66.15,
+  "CreditKasa": 59.18,
+  "Pango": 56.06,
+  "E-groshi": 52.61,
+  "Clickcredit": 50.44,
+  "MILOAN": 50.29,
+  "ШвидкоГроші": 50.04,
+  "MyCredit": 49.59,
+  "Creditplus": 47.46,
+  "Ariba": 47.31,
+  "Credit7": 45.82,
+  "SlonCredit": 43.45,
+  "Rocketmoney": 40.04,
+  "Moneyveo": 39.55,
+  "Minibank": 38.6,
+  "Lehko": 33.31,
+  "Treba": 32.79,
+  "FinClick": 28.75,
+  "Tengo": 28.47,
+  "Нові кредити": 28.26,
+  "AlexCredit": 27.35,
+  "LoviLave": 23.11,
+  "Aerocash": 22.98,
+  "Starfin": 20.01,
+  "Cashpoint": 19.31,
+  "Funnymoney": 17.91,
+  "Ewacash": 16.21,
+  "Ranok": 16.04,
+  "Finstep.Space": 12.35,
+  "Turbogroshi": 12.2,
+  "Suncredit": 11.3,
+  "SelfieCredit": 11.22,
+  "Aviracredit": 11.22,
+  "Finmarket": 11.15,
+  "LimonCredit": 10.75,
+  "Credos": 9.33,
+  "Cly": 7.55,
+  "Prostocredit": 4.23,
+  "Amigo": 4.02,
+  "TOP1": 3.79,
 };
 
 /* ====== ІНІЦІАЛІЗАЦІЯ СТОРІНКИ (запускається після завантаження даних) ====== */
@@ -1867,21 +1868,7 @@ if (requisitesGrid) {
 
 
 <!-- ===== TELEGRAM-ВІДЖЕТ: десктоп — бічна картка, мобільний — центрована модалка через 10с ===== -->
-<!-- ===== Постійна CTA-кнопка Telegram (лише мобільний, ≤900px) ===== -->
-<a id="tg-fab" class="tg-fab is-expanded is-hidden" href="#" target="_blank" rel="noopener" aria-label="Підібрати МФО в Telegram">
-  <span class="tg-fab-icon">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.75 10.9c-1.2.47-1.19 1.13-.22 1.42l4.8 1.5 1.85 5.7c.22.62.37.87.76.87.34 0 .5-.16.7-.36l1.94-1.9 4.03 2.97c.74.41 1.28.2 1.47-.68l2.66-12.55c.28-1.08-.4-1.57-1.24-1.24z" fill="#fff"/></svg>
-  </span>
-  <span class="tg-fab-text">
-    <span class="tg-fab-title">Підібрати МФО під вас</span>
-    <span class="tg-fab-sub">Telegram · безкоштовно · ~1 хв</span>
-  </span>
-</a>
 
-<a id="sl-fab" class="sl-fab" href="https://track-pdlp.com/ml?affid=62311" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="SmartLink — подати заявку (реклама)" onclick="try{if(typeof fbq==='function'){fbq('trackCustom','go_to_offer',{mfo:'SmartLink',source:'mobile_pill'});}(window.dataLayer=window.dataLayer||[]).push({event:'smartlink_click',placement:'mobile_pill_comparison'});}catch(e){}">
-  <img src="/assets/smartlink-logo.webp" alt="" width="640" height="360" loading="lazy">
-  <span class="sl-fab-t">Подати заявку →<small>SmartLink · реклама</small></span>
-</a>
 
 <div id="tg-widget">
   <div class="tgw-overlay" id="tgw-overlay"></div>
@@ -2029,6 +2016,7 @@ if (requisitesGrid) {
   }
 
   function reveal() {
+    if (isMobileMode()) return; // на мобільному Telegram-віджет вимкнено
     if (sessionStorage.getItem('tgSideWidgetClosed')) return;
     if (sessionStorage.getItem('tgExitPopupClosed')) return;
     if (alreadyClickedOffer()) return;
@@ -2067,49 +2055,11 @@ if (requisitesGrid) {
   window.addEventListener('scroll', tryRevealDesktop, { passive: true });
   setTimeout(() => { if (!isMobileMode()) tryRevealDesktop(); }, 4000);
 
-  /* ====== МОБІЛЬНИЙ: проста поява через 10 секунд після завантаження ====== */
-  if (isMobileMode()) {
-    setTimeout(reveal, 10000);
-  }
-
   /* ====== ДЕСКТОП (бонус): класичний mouseleave до верху вікна ====== */
   document.addEventListener('mouseout', (e) => {
     if (!isMobileMode() && !e.relatedTarget && e.clientY < 10) reveal();
   });
 
-  /* ====== МОБІЛЬНИЙ: постійна CTA-кнопка Telegram ======
-     Завжди розкрита (з текстом). Ховається лише коли відкрита модалка,
-     попап топ-3 з квізу, мобільне меню, клавіатура або футер. */
-  const fab = document.getElementById('tg-fab');
-  if (fab) {
-    fab.href = BOT_URL;
-    fab.addEventListener('click', () => {
-      try { (window.dataLayer = window.dataLayer || []).push({ event: 'tg_click', tg_source: 'mobile_fab' }); } catch (e) {}
-    });
-
-    const mobileNav = document.getElementById('mobile-nav');
-    function fabShouldHide() {
-      if (!isMobileMode()) return true;
-      if (widget.classList.contains('is-visible')) return true;
-      if (isTop3PopupOpen()) return true;
-      if (mobileNav && mobileNav.classList.contains('open')) return true;
-      const a = document.activeElement;
-      if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.type !== 'range' && a.type !== 'checkbox') return true;
-      return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 160;
-    }
-    function updateFab() { fab.classList.toggle('is-hidden', fabShouldHide()); }
-
-    window.addEventListener('scroll', updateFab, { passive: true });
-    window.addEventListener('resize', updateFab);
-    document.addEventListener('focusin', updateFab);
-    document.addEventListener('focusout', () => setTimeout(updateFab, 50));
-    const mo = new MutationObserver(updateFab);
-    [widget, document.getElementById('top3-overlay'), mobileNav].forEach(el => {
-      if (el) mo.observe(el, { attributes: true, attributeFilter: ['class'] });
-    });
-
-    updateFab();
-  }
 })();
 </script>
 
