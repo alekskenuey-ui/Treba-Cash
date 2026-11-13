@@ -1,4 +1,4 @@
-/* TREBA CASH — Telegram-віджет: бічна картка (лише десктоп; на мобільному вимкнено).
+/* TREBA CASH — Telegram-віджет: бічна картка (десктоп) і кнопка-плашка (мобільний).
  * Розмітка вставляється звідси, тож текст CTA змінюється в одному місці.
  * Дані «оновлено / N МФО» — реальні, з /mfo-live-data.json. Жодних вигаданих лічильників. */
 (function () {
@@ -15,6 +15,9 @@
 
   var root = document.createElement('div');
   root.innerHTML =
+    '<a id="tgx-fab" class="is-hidden" href="' + BOT_URL + '" target="_blank" rel="noopener" aria-label="Підібрати МФО в Telegram">' +
+      '<span class="tgx-fab-icon">' + ICON + '</span>' +
+      '<span class="tgx-fab-text"><span class="tgx-fab-title">Підібрати МФО під вас</span><span class="tgx-fab-sub">Telegram · безкоштовно · ~1 хв</span></span></a>' +
     '<aside id="tgx-widget" aria-label="Підбір МФО в Telegram">' +
       '<button type="button" class="tgx-tab" id="tgx-tab" aria-label="Відкрити підбір МФО"><span>Підбір МФО</span></button>' +
       '<div class="tgx-card">' +
@@ -28,7 +31,8 @@
       '</div></aside>';
   while (root.firstChild) document.body.appendChild(root.firstChild);
 
-  var widget = document.getElementById('tgx-widget');
+  var widget = document.getElementById('tgx-widget'), fab = document.getElementById('tgx-fab');
+  var mobileNav = document.getElementById('mobile-nav');
 
   // Клік по реальній партнерській пропозиції — більше не відволікаємо відвідувача
   document.addEventListener('click', function (e) {
@@ -47,6 +51,7 @@
 
   function click(src) { return function () { push({ event: 'tg_click', tg_source: src, page_path: p }); }; }
   document.getElementById('tgx-cta').addEventListener('click', click('desktop_widget'));
+  fab.addEventListener('click', click('mobile_fab'));
 
   function canShow() { return !ss('tgxClosed') && !ss('tgxOfferClicked') && !isMobile(); }
   function reveal() { if (!canShow() || widget.classList.contains('is-visible')) return; widget.classList.add('is-visible'); push({ event: 'tg_widget_view', page_path: p }); }
@@ -58,4 +63,19 @@
   document.getElementById('tgx-tab').addEventListener('click', function () { widget.classList.remove('is-collapsed'); ss('tgxClosed', null); });
   if (ss('tgxClosed')) { widget.classList.add('is-visible', 'is-collapsed'); }
 
+  // Мобільна плашка: ховається біля футера, при відкритому меню та вводі в поле
+  function fabHide() {
+    if (!isMobile() || ss('tgxOfferClicked')) return true;
+    if (mobileNav && mobileNav.classList.contains('open')) return true;
+    var a = document.activeElement;
+    if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return true;
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 160;
+  }
+  function updateFab() { fab.classList.toggle('is-hidden', fabHide()); }
+  window.addEventListener('scroll', updateFab, { passive: true });
+  window.addEventListener('resize', updateFab);
+  document.addEventListener('focusin', updateFab);
+  document.addEventListener('focusout', function () { setTimeout(updateFab, 50); });
+  if (mobileNav) new MutationObserver(updateFab).observe(mobileNav, { attributes: true, attributeFilter: ['class'] });
+  updateFab();
 })();
