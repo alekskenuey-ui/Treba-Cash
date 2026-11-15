@@ -7,7 +7,9 @@
 (function () {
   'use strict';
   var grid = document.getElementById('offers-grid');
-  if (!grid) return;
+  // Без вітрини (#offers-grid) працює лише нижня панель ТОП-3.
+  var hasGrid = !!grid;
+  if (!hasGrid) grid = document.createElement('div');
 
   var APPLY_KEY = 'tcAppliedMfo';
   var DOCK_KEY = 'tcTop3DockClosed';
@@ -48,7 +50,7 @@
       '<div class="ab-step" data-step="3"><span class="ab-n">3 заявки</span><b>Найвищий шанс</b></div>' +
     '</div>' +
     '<p class="ab-note">📌 Кожна МФО ухвалює рішення окремо. Подайте заявку одразу в 2–3 компанії — так більше шансів, що хоча б одна схвалить потрібну суму.</p>';
-  grid.parentNode.insertBefore(boost, grid);
+  if (hasGrid) grid.parentNode.insertBefore(boost, grid);
 
   /* ---------- Липка панель ---------- */
   var bar = document.createElement('div');
@@ -56,7 +58,7 @@
   bar.setAttribute('aria-live', 'polite');
   bar.innerHTML = '<div class="apply-bar-inner"><span class="apb-chance">📈 Шанс <b class="apb-c">0/3</b></span>' +
     '<span class="apb-text"></span><span class="apb-slots"></span></div>';
-  document.body.appendChild(bar);
+  if (hasGrid) document.body.appendChild(bar);
 
   /* ---------- Нижня панель ТОП-3 ---------- */
   var dock = document.createElement('div');
@@ -172,19 +174,22 @@
     .catch(function () {});
 
   /* ---------- Видимість панелей ---------- */
-  var section = grid.closest('.offers-section') || grid;
+  var section = hasGrid ? (grid.closest('.offers-section') || grid) : null;
   var header = document.getElementById('main-header');
   function sync() {
     var hb = header ? Math.max(0, header.getBoundingClientRect().bottom) : 68;
     bar.style.top = hb + 'px';
     var menuOpen = !!document.querySelector('#mobile-nav.open, .mobile-nav.open');
-    var r = section.getBoundingClientRect();
-    var inGrid = r.top < hb + 40 && r.bottom > window.innerHeight * 0.5;
-    bar.classList.toggle('is-visible', inGrid && !menuOpen);
+    if (section) {
+      var r = section.getBoundingClientRect();
+      var inGrid = r.top < hb + 40 && r.bottom > window.innerHeight * 0.5;
+      bar.classList.toggle('is-visible', inGrid && !menuOpen);
+    }
     var scrolled = window.scrollY > window.innerHeight * 0.8;
     var nearFooter = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 400;
     var showDock = !menuOpen && scrolled && !nearFooter && ss(DOCK_KEY) !== '1' && dockGrid.children.length > 0;
     dock.classList.toggle('is-visible', showDock);
+    document.body.classList.toggle('t3d-on', showDock); // ховає мобільну Telegram-плашку, поки видно панель
   }
   window.addEventListener('scroll', sync, { passive: true });
   window.addEventListener('resize', sync);

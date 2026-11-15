@@ -116,4 +116,5 @@
   .t3d-meta{font-size:10px;}
   .top3-dock a.offer-btn.t3d-cta{padding:9px 4px;font-size:12px;}
 }
+body.t3d-on #tgx-fab{opacity:0;pointer-events:none;}
 @media(prefers-reduced-motion:reduce){.apply-bar,.top3-dock,.offers-grid .offer-card .offer-btn{transition:none;}.apply-bar.bump .apb-chance{animation:none;}}
