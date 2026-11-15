@@ -626,6 +626,43 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
   50%{box-shadow:0 12px 34px rgba(34,158,217,.7),0 2px 6px rgba(13,21,18,.18);}
 }
 @keyframes tg-fab-dot{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+
+/* ===== Нижня панель «ТОП-3 пропозиції сьогодні» ===== */
+.top3-dock{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:980;width:min(720px,calc(100% - 20px));
+  background:#fff;border:2px solid #27ae60;border-radius:18px;box-shadow:0 14px 40px rgba(13,21,18,.18),0 2px 8px rgba(39,174,96,.15);
+  padding:12px 14px 14px;transform:translate(-50%,130%);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;}
+.top3-dock.is-visible{transform:translate(-50%,0);opacity:1;pointer-events:auto;}
+.t3d-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;}
+.t3d-title{font:900 14px/1.2 'Manrope',sans-serif;color:#1e8449;letter-spacing:.02em;text-transform:uppercase;}
+.t3d-close{flex:0 0 28px;width:28px;height:28px;border:none;border-radius:8px;background:#f1f5f2;color:#5b6b62;font-size:18px;line-height:1;cursor:pointer;}
+.t3d-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.t3d-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 8px 10px;border:1px solid #e2ebe5;border-radius:14px;background:#f9fcfa;text-align:center;}
+.t3d-item.is-first{background:#effaf3;border-color:#9fdcb7;}
+.t3d-item.is-applied{border-color:#27ae60;}
+.t3d-label{font:800 12px/1.2 'Manrope',sans-serif;color:#1e8449;}
+.t3d-logo{width:100%;height:40px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e8efe9;border-radius:10px;overflow:hidden;}
+.t3d-logo img{max-width:85%;max-height:30px;object-fit:contain;}
+.t3d-logo .mfo-logo-fallback{width:30px;height:30px;font-size:11px;border-radius:8px;}
+.t3d-meta{font:800 12px/1.25 'Manrope',sans-serif;color:var(--text);white-space:nowrap;}
+.t3d-meta span{color:#6b7c72;font-weight:700;}
+.top3-dock .btn-primary.t3d-cta{flex:none;width:100%;position:relative;display:flex;align-items:center;justify-content:center;gap:4px;
+  padding:10px 6px;font:900 13px/1 'Manrope',sans-serif;color:#fff;text-decoration:none;border-radius:10px;
+  background:linear-gradient(135deg,#ff7a1a 0%,#ff5e00 100%);box-shadow:0 3px 0 #c24600,0 6px 12px rgba(255,94,0,.25);transition:transform .12s,box-shadow .12s;}
+.top3-dock .btn-primary.t3d-cta:active{transform:translateY(2px);box-shadow:0 1px 0 #c24600,0 3px 8px rgba(255,94,0,.2);}
+.top3-dock .t3d-item.is-applied .btn-primary.t3d-cta{background:linear-gradient(135deg,#2ecc71 0%,#27ae60 100%);box-shadow:0 3px 0 #1b7a43,0 6px 12px rgba(39,174,96,.25);}
+@media(max-width:640px){
+  .top3-dock{padding:10px 10px 12px;border-radius:16px;}
+  .t3d-title{font-size:12.5px;}
+  .t3d-grid{gap:6px;}
+  .t3d-item{padding:7px 5px 8px;gap:5px;border-radius:12px;}
+  .t3d-label{font-size:10.5px;}
+  .t3d-logo{height:34px;}
+  .t3d-logo img{max-height:26px;}
+  .t3d-meta{font-size:10px;}
+  .top3-dock .btn-primary.t3d-cta{padding:9px 4px;font-size:12px;}
+}
+@media(prefers-reduced-motion:reduce){.top3-dock{transition:none;}}
+
 /* ===== КОМПАКТНІ КАРТКИ + 3D-КНОПКА + МЕХАНІКА «2–3 ЗАЯВКИ» ===== */
 .mfo-grid{grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;}
 .mfo-card{display:flex;flex-direction:column;padding:14px 14px 12px;border-radius:18px;border:1px solid #e2ebe5;background:#fff;box-shadow:0 4px 18px rgba(13,21,18,.05);}
@@ -1312,6 +1349,15 @@ div.top3-row-logo{background:var(--bg,#f4f9f6);}
     </div>
   </section>
 
+  <!-- ===== Нижня панель «ТОП-3 пропозиції сьогодні» ===== -->
+  <div class="top3-dock" id="top3-dock" aria-label="ТОП-3 пропозиції сьогодні">
+    <div class="t3d-head">
+      <span class="t3d-title">🔥 ТОП-3 пропозиції сьогодні</span>
+      <button class="t3d-close" id="t3d-close" type="button" aria-label="Закрити">×</button>
+    </div>
+    <div class="t3d-grid" id="t3d-grid"></div>
+  </div>
+
   <!-- ===== Липка панель прогресу «2–3 заявки» ===== -->
   <div class="apply-bar" id="apply-bar" aria-live="polite">
     <div class="apply-bar-inner">
@@ -1909,6 +1955,7 @@ function renderGrid() {
 
   noResultsEl.classList.toggle('visible', data.length === 0);
   loadMoreBtn.parentElement.style.display = data.length > state.visible ? 'block' : 'none';
+  if (typeof renderDock === 'function') { renderDock(); if (window.__syncTop3Dock) window.__syncTop3Dock(); }
 }
 
 function declOfNum(n) {
@@ -2004,6 +2051,71 @@ grid.addEventListener('click', (e) => {
   window.addEventListener('scroll', syncBar, { passive: true });
   window.addEventListener('resize', syncBar);
   syncBar();
+})();
+
+
+/* ====== НИЖНЯ ПАНЕЛЬ «ТОП-3 ПРОПОЗИЦІЇ СЬОГОДНІ» ======
+   Фіксований набір оферів. Дані (лого, сума, строк, посилання) беруться з MFO_DATA,
+   тож оновлюються разом з фідом. Панель з'являється після прокрутки першого екрана,
+   ховається біля футера, при відкритому меню / попапі топ-3 і після закриття (на сесію). */
+function renderDock() {
+  const DOCK_MFO = ['Minibank', 'FreshCash', 'Finstep.Space'];
+  const DOCK_LABELS = ['👑 #1 Лідер', '#2 Онлайн', '#3 Онлайн'];
+  const box = document.getElementById('t3d-grid');
+  if (!box) return;
+  const items = DOCK_MFO.map(n => MFO_DATA.find(m => m.name === n)).filter(Boolean);
+  if (!items.length) { box.innerHTML = ''; return; }
+  box.innerHTML = items.map((m, i) => {
+    const logo = m.logo && m.logo.startsWith('http') ? m.logo : '/mfo-logos/' + m.logo;
+    const fb = fallbackColor(m.name);
+    const safe = String(m.name).replace(/"/g, '&quot;');
+    return `<div class="t3d-item${i === 0 ? ' is-first' : ''}${isApplied(m.name) ? ' is-applied' : ''}" data-mfo="${safe}">
+      <span class="t3d-label">${DOCK_LABELS[i]}</span>
+      <span class="t3d-logo"><img src="${logo}" alt="${safe}" loading="lazy"
+        onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\\'mfo-logo-fallback\\' style=\\'background:${fb}\\'>${initials(m.name)}</div>';"></span>
+      <span class="t3d-meta">до ${fmt(m.sum)} ₴ <span>· ${m.term} дн.</span></span>
+      <a class="btn-primary t3d-cta" href="${m.ref}" target="_blank" rel="sponsored nofollow noopener noreferrer">Взяти ↗</a>
+    </div>`;
+  }).join('');
+}
+(function () {
+  const dock = document.getElementById('top3-dock');
+  if (!dock) return;
+  const CLOSED_KEY = 'tcTop3DockClosed';
+  function isClosed() { try { return sessionStorage.getItem(CLOSED_KEY) === '1'; } catch (e) { return false; } }
+  function syncDock() {
+    const ov = document.getElementById('top3-overlay');
+    const blocked = isClosed()
+      || !document.getElementById('t3d-grid').children.length
+      || (ov && ov.classList.contains('is-open'))
+      || document.getElementById('mobile-nav')?.classList.contains('open');
+    const scrolled = window.scrollY > window.innerHeight * 0.8;
+    const nearFooter = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 400;
+    dock.classList.toggle('is-visible', !blocked && scrolled && !nearFooter);
+  }
+  document.getElementById('t3d-close').addEventListener('click', () => {
+    try { sessionStorage.setItem(CLOSED_KEY, '1'); } catch (e) {}
+    syncDock();
+  });
+  dock.addEventListener('click', (e) => {
+    const btn = e.target.closest('.t3d-cta');
+    if (!btn) return;
+    const item = btn.closest('.t3d-item');
+    const name = item && item.dataset.mfo;
+    if (!name) return;
+    const before = getApplied().length;
+    const list = addApplied(name);
+    item.classList.add('is-applied');
+    grid.querySelectorAll('.mfo-card').forEach(c => { if (c.dataset.mfo === name) c.classList.add('is-applied'); });
+    if (list.length !== before) {
+      updateApplyUI(true);
+      try { (window.dataLayer = window.dataLayer || []).push({ event: 'multi_apply_add', mfo_name: name, apply_count: list.length, source: 'top3_dock' }); } catch (err) {}
+    }
+  });
+  window.addEventListener('scroll', syncDock, { passive: true });
+  window.addEventListener('resize', syncDock);
+  window.__syncTop3Dock = syncDock;
+  setTimeout(syncDock, 300);
 })();
 
 /* Initial render */
