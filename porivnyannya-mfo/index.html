@@ -675,7 +675,7 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 .mfo-rank{font:800 12px/1 'Unbounded',sans-serif;color:#4b5b52;background:#f1f5f2;border:1px solid #e3ebe6;border-radius:8px;padding:6px 8px;}
 .mfo-card .mfo-card-badge{margin:0;font-size:11px;font-weight:800;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:8px;padding:5px 9px;white-space:nowrap;}
 .mfo-card .mfo-card-badge::before{content:"●";margin-right:5px;font-size:8px;vertical-align:1px;color:#27ae60;}
-.mfo-card .mfo-badges-row{flex-direction:row;flex-wrap:wrap;gap:6px;padding:0;margin-bottom:10px;}
+.mfo-card .mfo-badges-row{flex-direction:row;flex-wrap:wrap;gap:6px;padding:0;margin:10px 0 0;}
 .mfo-card .mfo-badge{width:auto;flex:1 1 auto;font-size:12px;font-weight:800;padding:6px 10px;border-radius:9px;box-shadow:none;animation:none;transform:none;border:1px solid transparent;}
 .mfo-card .mfo-badge.color-green{background:#e9f7ef;color:#1e8449;border-color:#c4ead3;}
 .mfo-card .mfo-badge.color-blue{background:#eaf3fb;color:#21618c;border-color:#c6dcf0;}
@@ -747,7 +747,7 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
   .mfo-rank{font-size:9.5px;padding:4px 5px;border-radius:6px;}
   .mfo-card .mfo-card-badge{font-size:8.5px;padding:3px 5px;border-radius:6px;}
   .mfo-card .mfo-card-badge::before{margin-right:3px;font-size:6px;}
-  .mfo-card .mfo-badges-row{gap:4px;margin-bottom:7px;}
+  .mfo-card .mfo-badges-row{gap:4px;margin:7px 0 0;}
   .mfo-card .mfo-badge{font-size:9.5px;padding:4px 5px;border-radius:7px;line-height:1.2;}
   .mfo-card .mfo-logo-wrap{height:44px;border-radius:9px;}
   .mfo-card .mfo-logo-wrap img{max-height:32px;}
@@ -1900,7 +1900,6 @@ function cardHTML(m, idx) {
       <span class="mfo-rank">#${String(idx + 1).padStart(2, '0')}</span>
       <span class="mfo-card-badge">Ліцензія НБУ</span>
     </div>
-    <div class="mfo-badges-row">${badgesHTML}</div>
     <div class="mfo-card-top">
       <div class="mfo-logo-wrap">
         <img src="${m.logo && m.logo.startsWith('http') ? m.logo : '/mfo-logos/' + m.logo}" alt="${m.name}" loading="lazy"
@@ -1908,6 +1907,7 @@ function cardHTML(m, idx) {
       </div>
       <div class="mfo-card-name">${m.name}</div>
     </div>
+    <div class="mfo-badges-row">${badgesHTML}</div>
     <div class="mfo-card-body">
       <div class="mfo-stat-row"><span class="k">Максимальна сума</span><span class="v">до ${fmt(m.sum)} ₴</span></div>
       <div class="mfo-stat-row"><span class="k">Максимальний строк</span><span class="v">до ${m.term} дн.</span></div>
