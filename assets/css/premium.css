@@ -1,0 +1,174 @@
+/* TREBA CASH — преміум-шар оформлення SEO-сторінок.
+ * Підключається після інлайнових стилів сторінки, тому перекриває їх без !important там, де можливо.
+ * Футер і рекламні лендинги (/porivnyannya-mfo/, FB, KZ, MX) цей файл НЕ підключають і НЕ стилізують.
+ * Ідея: темно-зелений «грошовий» hero з лінійними іконками (монети, гаманець, картка, ₴),
+ * які повільно дрейфують; решта сторінки спокійна, з ледь помітним візерунком іконок на фоні. */
+:root {
+  --tc-forest: #0c3a24;
+  --tc-forest-2: #145a37;
+  --tc-green: #27ae60;
+  --tc-mint: #dff5e8;
+  --tc-gold: #e9b44c;
+  --tc-gold-2: #f6d58d;
+  --tc-ink: #13241b;
+  --tc-paper: #f3faf6;
+  --tc-shadow: 0 1px 2px rgba(12,58,36,.06), 0 14px 40px -12px rgba(12,58,36,.18);
+}
+
+/* ---------- фон сторінки: візерунок тематичних іконок ---------- */
+body {
+  background-color: var(--tc-paper);
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%20fill%3D%22none%22%20stroke%3D%22%231f8a4c%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%22.065%22%3E%3Cg%20transform%3D%22translate%2824%2030%29%20rotate%28-8%2015.0%2015.0%29%20scale%281.25%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22%2F%3E%3Cpath%20d%3D%22M9%2010h6M9%2013.2h6%22%2F%3E%3Cpath%20d%3D%22M14.6%208.2c-1.6-1.2-5-.7-5%201.5M9.4%2015.8c1.6%201.2%205%20.7%205-1.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28150%2018%29%20rotate%2810%2017.0%2017.0%29%20scale%281.4166666666666667%29%22%3E%3Crect%20x%3D%222.5%22%20y%3D%225.5%22%20width%3D%2219%22%20height%3D%2213%22%20rx%3D%222.2%22%2F%3E%3Cpath%20d%3D%22M2.5%209.5h19M6%2015h4%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28250%2086%29%20rotate%28-6%2016.0%2016.0%29%20scale%281.3333333333333333%29%22%3E%3Crect%20x%3D%223%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2213%22%20rx%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M3%209.5h15.5a2.5%202.5%200%200%201%202.5%202.5%22%2F%3E%3Cpath%20d%3D%22M16%2012.5h5v3.5h-5a1.75%201.75%200%200%201%200-3.5z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2870%20140%29%20rotate%284%2015.0%2015.0%29%20scale%281.25%29%22%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%226%22%20rx%3D%227%22%20ry%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M5%206v4c0%201.4%203.1%202.5%207%202.5s7-1.1%207-2.5V6M5%2010v4c0%201.4%203.1%202.5%207%202.5s7-1.1%207-2.5v-4M5%2014v4c0%201.4%203.1%202.5%207%202.5s7-1.1%207-2.5v-4%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28186%20168%29%20rotate%28-12%2018.0%2018.0%29%20scale%281.5%29%22%3E%3Crect%20x%3D%222%22%20y%3D%227%22%20width%3D%2220%22%20height%3D%2210%22%20rx%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.6%22%2F%3E%3Cpath%20d%3D%22M5.5%2010v4M18.5%2010v4%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2822%20238%29%20rotate%280%2012.0%2012.0%29%20scale%281.0%29%22%3E%3Cpath%20d%3D%22M18.5%205.5l-13%2013%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%222.3%22%2F%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%222.3%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28120%20250%29%20rotate%288%2014.0%2014.0%29%20scale%281.1666666666666667%29%22%3E%3Crect%20x%3D%225%22%20y%3D%223%22%20width%3D%2214%22%20height%3D%2218%22%20rx%3D%222.2%22%2F%3E%3Cpath%20d%3D%22M8%207h8M8.5%2011h.01M12%2011h.01M15.5%2011h.01M8.5%2014.5h.01M12%2014.5h.01M15.5%2014.5h.01M8.5%2018h.01M12%2018h.01M15.5%2018h.01%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28262%20236%29%20rotate%28-4%2014.0%2014.0%29%20scale%281.1666666666666667%29%22%3E%3Cpath%20d%3D%22M4%204v16h16%22%2F%3E%3Cpath%20d%3D%22M7.5%2015l4-4.5%203%203L20%207%22%2F%3E%3Cpath%20d%3D%22M16%207h4v4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-size: 320px 320px;
+}
+
+/* ---------- шапка: чиста біла «скляна» панель над темним hero ---------- */
+#main-header, .header { background: rgba(255,255,255,.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(1200px 520px at 88% -10%, rgba(233,180,76,.20), transparent 60%),
+    radial-gradient(900px 600px at 0% 120%, rgba(46,204,113,.22), transparent 60%),
+    linear-gradient(155deg, var(--tc-forest) 0%, var(--tc-forest-2) 100%);
+  border-bottom: 0;
+  color: #fff;
+}
+.hero::after, .hero::before { display: none; }
+.hero .container, .hero .hero-inner { position: relative; z-index: 2; }
+.hero h1, .hero .hero-title {
+  color: #fff;
+  font-family: 'Unbounded', 'Manrope', sans-serif;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.hero .accent { color: var(--tc-gold); }
+.hero p, .hero .sub, .hero .hero-sub, .hero p.sub { color: rgba(223,245,232,.86); }
+.hero .breadcrumbs, .hero .breadcrumbs a, .hero .breadcrumbs li { color: rgba(223,245,232,.72); }
+.hero .breadcrumbs a:hover { color: #fff; }
+.hero .label, .hero span.label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tc-gold-2);
+  background: rgba(233,180,76,.12);
+  border: 1px solid rgba(233,180,76,.35);
+}
+.hero .meta { background: none; border: 0; box-shadow: none; }
+.hero .meta span {
+  color: rgba(223,245,232,.8);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+/* головна */
+.hero .hero-badge, .hero .hero-badge * { background-color: rgba(255,255,255,.08); border-color: rgba(233,180,76,.4); color: var(--tc-gold-2); }
+.hero .hero-badge * { background-color: transparent; }
+/* картка калькулятора на головній лишається світлою */
+.hero .hero-right { color: var(--tc-ink); }
+.hero .hero-right p { color: #5a6b64; }
+.hero .hero-badge-dot { background: var(--tc-gold); box-shadow: 0 0 0 4px rgba(233,180,76,.2); }
+.hero .hero-stat-num { color: var(--tc-gold); }
+.hero .hero-stat-label { color: rgba(223,245,232,.75); }
+.hero .hero-right > * { box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); }
+
+/* поле іконок у hero (малює premium.js) */
+.tc-field { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.tc-ico {
+  position: absolute;
+  width: var(--s); height: var(--s);
+  left: var(--x); top: var(--y);
+  color: var(--c);
+  opacity: var(--o);
+  transform: translate3d(calc(var(--mx, 0) * var(--d) * 1px), calc(var(--my, 0) * var(--d) * 1px), 0) rotate(var(--r));
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.tc-ico svg {
+  width: 100%; height: 100%; display: block;
+  fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0;
+  animation: tc-rise 1.4s cubic-bezier(.2,.7,.2,1) var(--delay) forwards, tc-drift var(--t) ease-in-out calc(var(--delay) + 1.4s) infinite alternate;
+}
+@keyframes tc-rise { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+@keyframes tc-drift { from { opacity: 1; translate: 0 0; rotate: 0deg; } to { opacity: 1; translate: 0 -14px; rotate: 6deg; } }
+
+/* ---------- контентні блоки ---------- */
+.intro-wide, .article-wrap > .article, .article-wrap > article.article, .faq, .related-section, .eeat, .sources, .sidebar-card {
+  box-shadow: var(--tc-shadow);
+  border: 1px solid rgba(12,58,36,.06);
+}
+.intro-wide { border-radius: 26px; }
+.article h2, .article-wrap h2, .offers-title, .section-title {
+  font-family: 'Unbounded', 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tc-ink);
+  text-wrap: balance;
+}
+.article h2 { font-size: clamp(20px, 2.3vw, 26px); line-height: 1.25; }
+.article p, .article li { max-width: 72ch; }
+.article a:not(.offer-btn):not(.btn) { text-decoration-color: rgba(39,174,96,.45); text-underline-offset: 3px; }
+
+/* ---------- картки оферів ---------- */
+.offer-card {
+  position: relative;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(12,58,36,.08);
+  box-shadow: var(--tc-shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.offer-card::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--tc-a, 0deg), var(--tc-gold), transparent 30%, var(--tc-green) 55%, transparent 80%, var(--tc-gold));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .3s ease;
+  pointer-events: none;
+}
+.offer-card:hover, .offer-card:focus-within { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(12,58,36,.06), 0 24px 50px -16px rgba(12,58,36,.32); }
+.offer-card:hover::after, .offer-card:focus-within::after { opacity: 1; animation: tc-spin 3s linear infinite; }
+@property --tc-a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes tc-spin { to { --tc-a: 360deg; } }
+.offer-badge { border-radius: 10px; }
+
+/* ---------- таблиці, FAQ, факти ---------- */
+.mfo-table, .calc-table { border-radius: 16px; overflow: hidden; }
+.faq-item, .faq details { border-radius: 16px; transition: background .2s ease; }
+.faq-item[open], .faq details[open] { background: #fbfffd; }
+.faq-item summary, .faq summary { cursor: pointer; }
+.law-facts { position: relative; overflow: hidden; }
+.law-facts::before {
+  content: ''; position: absolute; right: -30px; top: -30px; width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(233,180,76,.25), transparent 70%);
+}
+
+/* ---------- прогрес читання ---------- */
+.tc-progress {
+  position: fixed; left: 0; top: 0; height: 3px; width: 100%;
+  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, var(--tc-green), var(--tc-gold));
+  z-index: 10001; pointer-events: none;
+}
+
+/* ---------- доступність і рух ---------- */
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--tc-gold); outline-offset: 2px; border-radius: 6px;
+}
+@media (max-width: 720px) {
+  .tc-ico:nth-child(n+7) { display: none; }
+  .tc-ico { opacity: calc(var(--o) * .5); }
+  body { background-size: 260px 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tc-ico svg { animation: none; opacity: 1; }
+  .tc-ico { transition: none; }
+  .offer-card, .offer-card::after { transition: none; animation: none !important; }
+  .offer-card:hover { transform: none; }
+}

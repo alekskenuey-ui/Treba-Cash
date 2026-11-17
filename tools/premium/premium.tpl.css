@@ -1,0 +1,174 @@
+/* TREBA CASH — преміум-шар оформлення SEO-сторінок.
+ * Підключається після інлайнових стилів сторінки, тому перекриває їх без !important там, де можливо.
+ * Футер і рекламні лендинги (/porivnyannya-mfo/, FB, KZ, MX) цей файл НЕ підключають і НЕ стилізують.
+ * Ідея: темно-зелений «грошовий» hero з лінійними іконками (монети, гаманець, картка, ₴),
+ * які повільно дрейфують; решта сторінки спокійна, з ледь помітним візерунком іконок на фоні. */
+:root {
+  --tc-forest: #0c3a24;
+  --tc-forest-2: #145a37;
+  --tc-green: #27ae60;
+  --tc-mint: #dff5e8;
+  --tc-gold: #e9b44c;
+  --tc-gold-2: #f6d58d;
+  --tc-ink: #13241b;
+  --tc-paper: #f3faf6;
+  --tc-shadow: 0 1px 2px rgba(12,58,36,.06), 0 14px 40px -12px rgba(12,58,36,.18);
+}
+
+/* ---------- фон сторінки: візерунок тематичних іконок ---------- */
+body {
+  background-color: var(--tc-paper);
+  background-image: url("__PATTERN__");
+  background-size: 320px 320px;
+}
+
+/* ---------- шапка: чиста біла «скляна» панель над темним hero ---------- */
+#main-header, .header { background: rgba(255,255,255,.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(1200px 520px at 88% -10%, rgba(233,180,76,.20), transparent 60%),
+    radial-gradient(900px 600px at 0% 120%, rgba(46,204,113,.22), transparent 60%),
+    linear-gradient(155deg, var(--tc-forest) 0%, var(--tc-forest-2) 100%);
+  border-bottom: 0;
+  color: #fff;
+}
+.hero::after, .hero::before { display: none; }
+.hero .container, .hero .hero-inner { position: relative; z-index: 2; }
+.hero h1, .hero .hero-title {
+  color: #fff;
+  font-family: 'Unbounded', 'Manrope', sans-serif;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.hero .accent { color: var(--tc-gold); }
+.hero p, .hero .sub, .hero .hero-sub, .hero p.sub { color: rgba(223,245,232,.86); }
+.hero .breadcrumbs, .hero .breadcrumbs a, .hero .breadcrumbs li { color: rgba(223,245,232,.72); }
+.hero .breadcrumbs a:hover { color: #fff; }
+.hero .label, .hero span.label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tc-gold-2);
+  background: rgba(233,180,76,.12);
+  border: 1px solid rgba(233,180,76,.35);
+}
+.hero .meta { background: none; border: 0; box-shadow: none; }
+.hero .meta span {
+  color: rgba(223,245,232,.8);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+/* головна */
+.hero .hero-badge, .hero .hero-badge * { background-color: rgba(255,255,255,.08); border-color: rgba(233,180,76,.4); color: var(--tc-gold-2); }
+.hero .hero-badge * { background-color: transparent; }
+/* картка калькулятора на головній лишається світлою */
+.hero .hero-right { color: var(--tc-ink); }
+.hero .hero-right p { color: #5a6b64; }
+.hero .hero-badge-dot { background: var(--tc-gold); box-shadow: 0 0 0 4px rgba(233,180,76,.2); }
+.hero .hero-stat-num { color: var(--tc-gold); }
+.hero .hero-stat-label { color: rgba(223,245,232,.75); }
+.hero .hero-right > * { box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); }
+
+/* поле іконок у hero (малює premium.js) */
+.tc-field { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.tc-ico {
+  position: absolute;
+  width: var(--s); height: var(--s);
+  left: var(--x); top: var(--y);
+  color: var(--c);
+  opacity: var(--o);
+  transform: translate3d(calc(var(--mx, 0) * var(--d) * 1px), calc(var(--my, 0) * var(--d) * 1px), 0) rotate(var(--r));
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.tc-ico svg {
+  width: 100%; height: 100%; display: block;
+  fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0;
+  animation: tc-rise 1.4s cubic-bezier(.2,.7,.2,1) var(--delay) forwards, tc-drift var(--t) ease-in-out calc(var(--delay) + 1.4s) infinite alternate;
+}
+@keyframes tc-rise { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+@keyframes tc-drift { from { opacity: 1; translate: 0 0; rotate: 0deg; } to { opacity: 1; translate: 0 -14px; rotate: 6deg; } }
+
+/* ---------- контентні блоки ---------- */
+.intro-wide, .article-wrap > .article, .article-wrap > article.article, .faq, .related-section, .eeat, .sources, .sidebar-card {
+  box-shadow: var(--tc-shadow);
+  border: 1px solid rgba(12,58,36,.06);
+}
+.intro-wide { border-radius: 26px; }
+.article h2, .article-wrap h2, .offers-title, .section-title {
+  font-family: 'Unbounded', 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tc-ink);
+  text-wrap: balance;
+}
+.article h2 { font-size: clamp(20px, 2.3vw, 26px); line-height: 1.25; }
+.article p, .article li { max-width: 72ch; }
+.article a:not(.offer-btn):not(.btn) { text-decoration-color: rgba(39,174,96,.45); text-underline-offset: 3px; }
+
+/* ---------- картки оферів ---------- */
+.offer-card {
+  position: relative;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(12,58,36,.08);
+  box-shadow: var(--tc-shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.offer-card::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--tc-a, 0deg), var(--tc-gold), transparent 30%, var(--tc-green) 55%, transparent 80%, var(--tc-gold));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .3s ease;
+  pointer-events: none;
+}
+.offer-card:hover, .offer-card:focus-within { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(12,58,36,.06), 0 24px 50px -16px rgba(12,58,36,.32); }
+.offer-card:hover::after, .offer-card:focus-within::after { opacity: 1; animation: tc-spin 3s linear infinite; }
+@property --tc-a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes tc-spin { to { --tc-a: 360deg; } }
+.offer-badge { border-radius: 10px; }
+
+/* ---------- таблиці, FAQ, факти ---------- */
+.mfo-table, .calc-table { border-radius: 16px; overflow: hidden; }
+.faq-item, .faq details { border-radius: 16px; transition: background .2s ease; }
+.faq-item[open], .faq details[open] { background: #fbfffd; }
+.faq-item summary, .faq summary { cursor: pointer; }
+.law-facts { position: relative; overflow: hidden; }
+.law-facts::before {
+  content: ''; position: absolute; right: -30px; top: -30px; width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(233,180,76,.25), transparent 70%);
+}
+
+/* ---------- прогрес читання ---------- */
+.tc-progress {
+  position: fixed; left: 0; top: 0; height: 3px; width: 100%;
+  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, var(--tc-green), var(--tc-gold));
+  z-index: 10001; pointer-events: none;
+}
+
+/* ---------- доступність і рух ---------- */
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--tc-gold); outline-offset: 2px; border-radius: 6px;
+}
+@media (max-width: 720px) {
+  .tc-ico:nth-child(n+7) { display: none; }
+  .tc-ico { opacity: calc(var(--o) * .5); }
+  body { background-size: 260px 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tc-ico svg { animation: none; opacity: 1; }
+  .tc-ico { transition: none; }
+  .offer-card, .offer-card::after { transition: none; animation: none !important; }
+  .offer-card:hover { transform: none; }
+}

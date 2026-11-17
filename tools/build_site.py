@@ -189,6 +189,18 @@ def ssr_page(path, s, offers):
     return s
 
 
+# ------------------------------------------------------------------ преміум-оформлення
+PREMIUM_TAGS = ('<link rel="stylesheet" href="/assets/css/premium.css">\n'
+                '<script src="/assets/js/premium.js" defer></script>\n')
+
+
+def premium(s):
+    """Підключає преміум-шар оформлення (не на рекламних лендингах — їх main() пропускає)."""
+    if '/assets/css/premium.css' in s or '</head>' not in s:
+        return s
+    return s.replace('</head>', PREMIUM_TAGS + '</head>', 1)
+
+
 # ------------------------------------------------------------------ рік у заголовках
 def bump_year(s):
     y, prev = TODAY.year, TODAY.year - 1
@@ -287,6 +299,7 @@ def page(path, title, desc, h1, sub, crumbs, main_html, faqs=(), robots='index, 
                  '.mfo-table th{background:rgba(39,174,96,.08)}.table-wrap{overflow-x:auto}'
                  '.law-facts{background:linear-gradient(135deg,rgba(39,174,96,.07),rgba(39,174,96,.02));border:1px solid rgba(39,174,96,.18);border-radius:20px;padding:22px 26px;margin:30px 0}'
                  '.law-facts li{margin:0 0 12px}.law-src{font-size:13.5px;opacity:.85}</style>')
+    assets = assets if '/assets/css/premium.css' in assets else assets + PREMIUM_TAGS
     out = (head_top + meta + style + '\n' + extra_css + assets + LOADER_HELPER + '\n' + CARD_CSS + '\n</head>\n'
            + body_top + main + '\n' + footer + '\n' + script + '\n</body>\n</html>\n')
     return out
@@ -663,6 +676,7 @@ def main():
             continue
         n = ssr_page(path, s, offers)
         n = bump_year(n)
+        n = premium(n)
         changed += wr(rel, n)
     # 3. sitemap
     state = {}
