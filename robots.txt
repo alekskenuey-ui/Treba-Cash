@@ -6,6 +6,11 @@ Allow: /
 # Службові JSON-фіди (офери, реквізити) — не для індексу.
 # Офери на SEO-сторінках вшиті в HTML на етапі збірки (tools/build_site.py).
 Disallow: /*.json$
+# KZ/MX-лендинги працюють як раніше: їхні фіди відкриті
+Allow: /mfo-kz-live-data.json
+Allow: /mfo-live-data-mx.json
+Allow: /requisites-kz.json
+Allow: /requisites-mx.json
 
 # Sitemap
 Sitemap: https://trebacash.site/sitemap.xml

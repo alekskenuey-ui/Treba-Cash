@@ -618,7 +618,8 @@ def build_sitemap(state):
         if path == '/./':
             path = '/'
         s = rd(rel)
-        if not is_indexable(path, s):
+        # KZ/MX — окремі гео-лендинги, власник просив їх не чіпати; у sitemap їх не було й немає
+        if path.startswith(('/porivnyannya-mfo-kz/', '/porivnyannya-mfo-mx/')) or not is_indexable(path, s):
             continue
         body = re.sub(r'<div class="offers-grid".*?</div>\s*<div class="offers-more">', '', s, flags=re.S)  # ротація оферів ≠ оновлення
         h = hashlib.sha1(body.encode()).hexdigest()
