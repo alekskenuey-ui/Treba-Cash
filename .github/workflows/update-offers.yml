@@ -27,10 +27,13 @@ jobs:
           PDL_API_KEY: ${{ secrets.PDL_API_KEY }}
         run: python fetch_offers.py
 
+      - name: Build SEO pages (SSR offers, /mfo/, sitemap)
+        run: python tools/build_site.py
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add mfo-live-data.json
-          git diff --staged --quiet && echo "No changes" || git commit -m "chore: update MFO offers data ($(date -u +%Y-%m-%d))"
+          git add -A
+          git diff --staged --quiet && echo "No changes" || git commit -m "chore: update MFO offers data + SEO build ($(date -u +%Y-%m-%d))"
           git push
