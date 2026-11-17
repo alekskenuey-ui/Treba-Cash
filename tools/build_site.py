@@ -43,6 +43,7 @@ SHELL = 'propozytsiyi/kredyt-cherez-diyu/index.html'   # сторінка-обо
 # Брендовий трафік: поки менеджер PDL-Profit не підтвердив, що органіка по бренду дозволена,
 # сторінки /mfo/<бренд>/ закриті від індексу. Щоб відкрити — постав True.
 BRAND_PAGES_INDEX = False
+LEGAL_DAILY_MAX = 1.0   # % на день, Закон №3498-IX (з 20.08.2024)
 
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)
 
@@ -112,6 +113,10 @@ def load_offers():
         o['dmax'] = (o.get('rateMax') or 0) / 365
         if o['dmin'] > o['dmax'] and o['dmax']:
             o['dmin'], o['dmax'] = o['dmax'], o['dmin']
+        # Закон №3498-IX: з 20.08.2024 денна ставка не може перевищувати 1%.
+        # Якщо фід показує більше (застарілі дані), не публікуємо цю цифру.
+        o['dmin'] = round(min(o['dmin'], LEGAL_DAILY_MAX), 2)
+        o['dmax'] = round(min(o['dmax'], LEGAL_DAILY_MAX), 2)
         offers.append(o)
     return data.get('generatedAt', ''), offers
 
@@ -310,7 +315,7 @@ def mfo_page(o, offers, generated):
     ex_days = min(30, o['term'])
     rows = [('Максимальна сума', f'до {fmt(o["sum"])} ₴'),
             ('Максимальний строк', f'до {o["term"]} днів'),
-            ('Денна ставка (з фіду партнерської мережі)', f'від {pct(o["dmin"])}% до {pct(o["dmax"])}%' if o['dmax'] else 'уточнюється'),
+            ('Денна ставка', (f'від {pct(o["dmin"])}% до {pct(o["dmax"])}%' + (' (законний максимум — 1%)' if o['dmax'] >= LEGAL_DAILY_MAX else '')) if o['dmax'] else 'уточнюється'),
             ('Акція для нових клієнтів', esc(o.get('goldBadgeText')) if promo else 'немає в поточних умовах'),
             ('Юридична особа (кредитор)', esc(o.get('legal') or 'дані уточнюються')),
             ('ЄДРПОУ', esc(o.get('edrpou') or '—')),
