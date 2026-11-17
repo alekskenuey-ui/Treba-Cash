@@ -284,7 +284,9 @@ def page(path, title, desc, h1, sub, crumbs, main_html, faqs=(), robots='index, 
     extra_css = ('<style>.kv{width:100%;border-collapse:collapse;margin:12px 0 20px}.kv th,.kv td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,.08);text-align:left;vertical-align:top}'
                  '.kv th{width:42%;font-weight:600}.notice{background:#fff7e6;border-left:4px solid #f5a623;padding:14px 18px;border-radius:10px;margin:0 0 22px}'
                  '.mfo-table{width:100%;border-collapse:collapse;font-size:14.5px}.mfo-table th,.mfo-table td{padding:9px 10px;border-bottom:1px solid rgba(0,0,0,.08);text-align:left}'
-                 '.mfo-table th{background:rgba(39,174,96,.08)}.table-wrap{overflow-x:auto}</style>')
+                 '.mfo-table th{background:rgba(39,174,96,.08)}.table-wrap{overflow-x:auto}'
+                 '.law-facts{background:linear-gradient(135deg,rgba(39,174,96,.07),rgba(39,174,96,.02));border:1px solid rgba(39,174,96,.18);border-radius:20px;padding:22px 26px;margin:30px 0}'
+                 '.law-facts li{margin:0 0 12px}.law-src{font-size:13.5px;opacity:.85}</style>')
     out = (head_top + meta + style + '\n' + extra_css + assets + LOADER_HELPER + '\n' + CARD_CSS + '\n</head>\n'
            + body_top + main + '\n' + footer + '\n' + script + '\n</body>\n</html>\n')
     return out
@@ -404,7 +406,7 @@ def mfo_index(offers, generated):
     return page('/mfo/', 'Каталог МФО: умови, ставки та кредитор кожного бренду | TREBA CASH',
                 f'Каталог {len(offers)} МФО: максимальна сума, строк, денна ставка та юридична особа кредитора. Повні умови й реквізити кожної компанії.',
                 f'Усі МФО каталогу TREBA CASH: умови та кредитори', 'Таблиця оновлюється щодня з даних партнерської мережі.',
-                [('Головна', '/'), ('Усі МФО', None)], body, label='Каталог')
+                [('Головна', '/'), ('Усі МФО', None)], body, label='Каталог', robots='noindex, follow')
 
 
 def requisites_page(offers, generated):
@@ -422,6 +424,158 @@ def requisites_page(offers, generated):
                 'Юридичні особи, коди ЄДРПОУ, адреси та контакти всіх МФО-партнерів TREBA CASH для перевірки в реєстрі НБУ.',
                 'Реквізити МФО-партнерів TREBA CASH', 'Юридичні особи, ЄДРПОУ та контакти кредиторів.',
                 [('Головна', '/'), ('Реквізити партнерів', None)], body, label='Прозорість')
+
+
+# ------------------------------------------------------------------ SEO-вітрина (окремо від рекламної /porivnyannya-mfo/)
+VITRINE_PATH = '/kredyt-onlayn/'
+
+
+def vitrine_card(o, pos):
+    promo = str(o.get('hasZeroBadge')).lower() == 'true'
+    return (f'<div class="offer-card v-card" data-sum="{o["sum"]}" data-term="{o["term"]}" data-promo="{1 if promo else 0}" '
+            f'data-rate="{o["dmin"]}" data-pos="{pos}">'
+            f'<div class="offer-logo-wrap"><img src="{esc(o["logo"])}" alt="{esc(o["name"])}" loading="lazy" width="120" height="48" onerror="this.style.display=\'none\'"></div>'
+            f'<div class="offer-badge">{esc(badge(o))}</div>'
+            f'<div class="offer-stats"><div class="row">Макс. сума <b>до {fmt(o["sum"])} ₴</b></div>'
+            f'<div class="row">На строк <b>до {o["term"]} дн.</b></div>'
+            f'<div class="row">Ставка від <b>{pct(o["dmin"])}% / день</b></div></div>'
+            f'<a class="offer-btn" href="{esc(o["ref"])}" data-offer="{esc(o["name"])}" data-pos="{pos}" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a>'
+            f'<a class="offer-info" href="/mfo/{o["slug"]}/">Умови {esc(o["name"])}</a></div>')
+
+
+VITRINE_JS = r'''<script>
+(function(){
+  var grid=document.getElementById('offers-grid'); if(!grid) return;
+  var cards=[].slice.call(grid.querySelectorAll('.v-card'));
+  var f={sum:document.getElementById('f-sum'),term:document.getElementById('f-term'),promo:document.getElementById('f-promo'),sort:document.getElementById('f-sort')};
+  var out=document.getElementById('f-count'), sumOut=document.getElementById('f-sum-out');
+  function fmt(n){return new Intl.NumberFormat('uk-UA').format(Math.round(n));}
+  function apply(){
+    var s=+f.sum.value, t=+f.term.value, p=f.promo.checked, k=f.sort.value, n=0;
+    sumOut.textContent=fmt(s)+' ₴';
+    cards.sort(function(a,b){
+      if(k==='sum') return b.dataset.sum-a.dataset.sum;
+      if(k==='term') return b.dataset.term-a.dataset.term;
+      if(k==='rate') return a.dataset.rate-b.dataset.rate;
+      return a.dataset.pos-b.dataset.pos;
+    }).forEach(function(c){
+      var ok=(+c.dataset.sum>=s)&&(+c.dataset.term>=t)&&(!p||c.dataset.promo==='1');
+      c.style.display=ok?'':'none'; if(ok) n++; grid.appendChild(c);
+    });
+    out.textContent=n;
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'seo_vitrine_filter',sum:s,term:t,promo:p,sort:k,results:n});}catch(e){}
+  }
+  ['input','change'].forEach(function(ev){Object.keys(f).forEach(function(x){f[x].addEventListener(ev,apply);});});
+  apply();
+  // калькулятор
+  var ca=document.getElementById('c-sum'), cd=document.getElementById('c-days');
+  function calc(){
+    var a=+ca.value||0, d=+cd.value||0;
+    document.getElementById('c-sum-out').textContent=fmt(a)+' ₴';
+    document.getElementById('c-days-out').textContent=d+' дн.';
+    document.getElementById('c-promo').textContent=fmt(a+a*0.0001*d)+' ₴';
+    document.getElementById('c-max').textContent=fmt(a+a*0.01*d)+' ₴';
+    document.getElementById('c-max-int').textContent=fmt(a*0.01*d)+' ₴';
+  }
+  ca.addEventListener('input',calc); cd.addEventListener('input',calc); calc();
+})();
+</script>'''
+
+VITRINE_CSS = '''<style>
+.v-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end;background:#fff;border-radius:22px;padding:20px 22px;box-shadow:0 18px 50px rgba(15,61,36,.08);margin:0 0 22px}
+.v-tools label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#2d4a3a}
+.v-tools select,.v-tools input[type=range]{width:100%}
+.v-tools select{padding:10px 12px;border-radius:12px;border:1px solid rgba(39,174,96,.25);background:#f8fffb;font:inherit}
+.v-count{font-size:14px;margin:0 0 14px;opacity:.85}
+.v-calc{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;background:linear-gradient(135deg,#0f3d24,#1d6b40);color:#fff;border-radius:26px;padding:28px 30px;margin:34px 0}
+.v-calc h2{color:#fff;margin:0 0 6px}.v-calc label{display:block;font-weight:700;margin:14px 0 6px}
+.v-calc input[type=range]{width:100%}
+.v-res{background:rgba(255,255,255,.1);border-radius:18px;padding:18px 20px;display:grid;gap:12px;align-content:center}
+.v-res b{font-size:24px;display:block}
+.v-res small{opacity:.8}
+@media(max-width:860px){.v-tools{grid-template-columns:1fr 1fr}.v-calc{grid-template-columns:1fr}}
+</style>'''
+
+
+def vitrine_page(offers, generated):
+    cards = '\n        '.join(vitrine_card(o, i + 1) for i, o in enumerate(offers))
+    promo_n = sum(1 for o in offers if str(o.get('hasZeroBadge')).lower() == 'true')
+    max_sum = max(o['sum'] for o in offers)
+    max_term = max(o['term'] for o in offers)
+    rows = ''.join(f'<tr><td>{esc(o["name"])}</td><td>до {fmt(o["sum"])} ₴</td><td>до {o["term"]} дн.</td>'
+                   f'<td>від {pct(o["dmin"])}%</td><td>{"так" if str(o.get("hasZeroBadge")).lower() == "true" else "—"}</td>'
+                   f'<td>{esc(o.get("legal") or "—")}</td></tr>' for o in offers)
+    facts = ('<section class="law-facts"><h2>Що каже закон</h2><ul>'
+             '<li><strong>Денна ставка — не більше 1%.</strong> Таке обмеження діє з 20.08.2024 за Законом №3498-IX. Якщо бачиш вищу ставку — це застарілі дані або порушення.</li>'
+             '<li><strong>Жодних платежів поза договором.</strong> Кредитор не може вимагати платежі, яких немає в договорі чи в розрахунку денної ставки.</li>'
+             '<li><strong>14 днів, щоб відмовитися.</strong> Стаття 15 закону про споживче кредитування дозволяє відмовитися від договору протягом 14 календарних днів без пояснення причин.</li>'
+             '<li><strong>Ліцензія — у реєстрі НБУ.</strong> Перевіряй кредитора за кодом ЄДРПОУ в Державному реєстрі фінансових установ.</li></ul>'
+             '<p class="law-src"><strong>Джерела:</strong> <a href="https://zakon.rada.gov.ua/laws/show/3498-20" target="_blank" rel="noopener">Закон №3498-IX</a>; '
+             '<a href="https://zakon.rada.gov.ua/laws/show/1734-19" target="_blank" rel="noopener">Закон «Про споживче кредитування»</a>; '
+             '<a href="https://kis.bank.gov.ua/" target="_blank" rel="noopener">Реєстр НБУ</a>.</p></section>')
+    body = f'''  <div class="container">
+    <div class="intro-wide">
+      <p class="lead">{len(offers)} пропозицій МФО в одному місці: до {fmt(max_sum)} ₴ на строк до {max_term} днів, {promo_n} компаній дають першу позику під акційну ставку. Відфільтруй за сумою і строком, порівняй вартість у калькуляторі та подай заявку в 2–3 МФО — так шанс на схвалення вищий.</p>
+    </div>
+    <section class="offers-section">
+      <h2 class="offers-title">Підбір кредиту онлайн</h2>
+      <p class="offers-sub">Дані оновлюються щодня автоматично · оновлено {esc(generated[:10])}</p>
+      <div class="v-tools" role="group" aria-label="Фільтри">
+        <div><label for="f-sum">Сума від: <span id="f-sum-out">1 000 ₴</span></label><input id="f-sum" type="range" min="1000" max="{max_sum}" step="1000" value="1000"></div>
+        <div><label for="f-term">Строк від</label><select id="f-term"><option value="0">будь-який</option><option value="30">30+ днів</option><option value="90">90+ днів</option><option value="180">180+ днів</option><option value="360">рік</option></select></div>
+        <div><label for="f-sort">Сортування</label><select id="f-sort"><option value="pos">рекомендовані</option><option value="rate">мінімальна ставка</option><option value="sum">більша сума</option><option value="term">довший строк</option></select></div>
+        <div><label><input id="f-promo" type="checkbox"> лише з акцією для нових клієнтів</label></div>
+      </div>
+      <p class="v-count">Знайдено пропозицій: <b id="f-count">{len(offers)}</b></p>
+      <div class="offers-grid" id="offers-grid" data-ssr="1">
+        {cards}
+      </div>
+    </section>
+  </div>
+  <div class="container">
+    <section class="v-calc" aria-labelledby="calc-title">
+      <div>
+        <h2 id="calc-title">Калькулятор вартості кредиту</h2>
+        <p>Порахуй суму до повернення за акційною ставкою і за граничною ставкою 1% на день.</p>
+        <label for="c-sum">Сума: <span id="c-sum-out"></span></label><input id="c-sum" type="range" min="500" max="{max_sum}" step="500" value="5000">
+        <label for="c-days">Строк: <span id="c-days-out"></span></label><input id="c-days" type="range" min="1" max="60" step="1" value="30">
+      </div>
+      <div class="v-res" aria-live="polite">
+        <div><small>До повернення за акцією 0,01%/день</small><b id="c-promo"></b></div>
+        <div><small>До повернення за ставкою 1%/день (максимум за законом)</small><b id="c-max"></b><small>з них відсотки: <span id="c-max-int"></span></small></div>
+      </div>
+    </section>
+  </div>
+  <div class="article-wrap"><article class="article">
+    <h2>Як обрати кредит онлайн: 4 кроки</h2>
+    <ol>
+      <li><strong>Визнач суму і дату повернення.</strong> Бери рівно стільки, скільки потрібно, і строк — до дня, коли точно матимеш гроші.</li>
+      <li><strong>Порівняй вартість у гривнях,</strong> а не відсоток на банері: калькулятор вище показує найкращий і найгірший законний сценарій.</li>
+      <li><strong>Перевір кредитора в реєстрі НБУ</strong> за кодом ЄДРПОУ — реквізити всіх МФО є на сторінці <a href="/rekvizyty-partneriv/">реквізити партнерів</a>.</li>
+      <li><strong>Подай 2–3 заявки, а не 10.</strong> У кожної МФО свій скоринг, але десятки запитів за день знижують шанси.</li>
+    </ol>
+    <h2>Порівняльна таблиця всіх МФО</h2>
+    <div class="table-wrap"><table class="mfo-table"><thead><tr><th>МФО</th><th>Сума</th><th>Строк</th><th>Ставка на день</th><th>Акція</th><th>Кредитор</th></tr></thead><tbody>{rows}</tbody></table></div>
+    <p>Денна ставка показана за даними партнерської мережі й не вище граничних 1% на день. Точні умови, реальну річну процентну ставку і графік дивись у паспорті споживчого кредиту до підписання. Як ми відбираємо пропозиції — у <a href="/reytynhy/metodolohiya-reytyngiv-treba-cash/">методології</a>.</p>
+    {facts}
+    <h2>Корисне перед заявкою</h2>
+    <ul>
+      <li><a href="/propozytsiyi/kredyt-onlayn-bez-vidmovy/">Кредит без відмови: що насправді означає «гарантоване схвалення»</a></li>
+      <li><a href="/propozytsiyi/kredyt-z-poganoyu-ki/">Кредит з поганою кредитною історією</a></li>
+      <li><a href="/propozytsiyi/skilky-koshtuye-kredyt-onlayn-vidsotky-mfo/">Скільки насправді коштує кредит онлайн</a></li>
+      <li><a href="/blog/how-to-get-out-of-mfo-debt-trap/">Як вийти з боргів за мікрокредитами</a></li>
+    </ul>
+  </article></div>'''
+    faqs = [('Де взяти кредит онлайн на картку?', f'У будь-якій із {len(offers)} МФО в переліку: заявка займає кілька хвилин, гроші надходять на картку після схвалення. Обирай за сумою, строком і вартістю, а кредитора перевіряй у реєстрі НБУ.'),
+            ('Яка максимальна ставка за мікрокредитом?', 'З 20.08.2024 денна процентна ставка за споживчим кредитом не може перевищувати 1% (Закон №3498-IX). Для нових клієнтів багато МФО дають першу позику під 0,01% на день.'),
+            ('Чи можна отримати кредит онлайн без відмови?', 'Гарантованого схвалення не дає жодна легальна МФО: кожна оцінює платоспроможність. Шанси підвищують правильні дані в анкеті, реалістична сума і 2–3 заявки в різні компанії.'),
+            ('Чи можна відмовитися від кредиту після оформлення?', 'Так, протягом 14 календарних днів від укладення договору — письмово повідомивши кредитора й повернувши кошти з відсотками за фактичні дні користування.'),
+            ('Чи бере TREBA CASH плату за підбір?', 'Ні. Сервіс безкоштовний для користувачів; ми отримуємо винагороду від партнерів за звернення через наші посилання.')]
+    out = page(VITRINE_PATH, f'Кредит онлайн на картку: усі МФО України {TODAY.year} | TREBA CASH',
+               f'Порівняння {len(offers)} МФО: кредит онлайн на картку до {fmt(max_sum)} ₴, фільтри за сумою і строком, калькулятор вартості та ставки в межах закону. Оновлюється щодня.',
+               'Кредит онлайн на картку: порівняння всіх МФО', 'Фільтри, калькулятор і таблиця умов — дані оновлюються щодня.',
+               [('Головна', '/'), ('Кредит онлайн', None)], body, faqs, label='Порівняння')
+    return out.replace('</head>', VITRINE_CSS + '\n</head>', 1).replace('</body>', VITRINE_JS + '\n</body>', 1)
 
 
 # ------------------------------------------------------------------ sitemap
@@ -487,6 +641,7 @@ def main():
         live.add(o['slug'])
         changed += wr(f'mfo/{o["slug"]}/index.html', mfo_page(o, offers, generated))
     changed += wr('mfo/index.html', mfo_index(offers, generated))
+    changed += wr('kredyt-onlayn/index.html', vitrine_page(offers, generated))
     changed += wr('rekvizyty-partneriv/index.html', requisites_page(offers, generated))
     # МФО, що зникли з фіду → редирект на каталог
     if os.path.isdir(os.path.join(ROOT, 'mfo')):
@@ -501,7 +656,7 @@ def main():
             continue
         rel = os.path.relpath(os.path.join(dp, 'index.html'), ROOT).replace(os.sep, '/')
         path = '' if rel == 'index.html' else rel[:-len('index.html')]
-        if path.startswith(PROTECTED) or path.startswith('mfo/') or path.startswith('rekvizyty-partneriv/'):
+        if path.startswith(PROTECTED) or path.startswith(('mfo/', 'rekvizyty-partneriv/', 'kredyt-onlayn/')):
             continue
         s = rd(rel)
         if 'http-equiv="refresh"' in s:
