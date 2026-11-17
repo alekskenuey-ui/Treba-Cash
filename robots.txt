@@ -3,6 +3,9 @@
 
 User-agent: *
 Allow: /
+# Службові JSON-фіди (офери, реквізити) — не для індексу.
+# Офери на SEO-сторінках вшиті в HTML на етапі збірки (tools/build_site.py).
+Disallow: /*.json$
 
 # Sitemap
 Sitemap: https://trebacash.site/sitemap.xml
