@@ -28,6 +28,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -274,18 +277,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>function tcOffersFetch(u,o){var g=document.getElementById('offers-grid');return (g&&g.dataset.ssr)?new Promise(function(){}):fetch(u,o);}</script>
 <style>.offer-info{display:block;text-align:center;font-size:12.5px;margin-top:8px;color:inherit;opacity:.75}.requisites-compact details{margin-top:12px}.requisites-compact summary{cursor:pointer;font-weight:600}.req-list{columns:2;font-size:14px;margin-top:10px}@media(max-width:640px){.req-list{columns:1}}</style>
 <style>
-.v-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end;background:#fff;border-radius:22px;padding:20px 22px;box-shadow:0 18px 50px rgba(15,61,36,.08);margin:0 0 22px}
-.v-tools label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#2d4a3a}
-.v-tools select,.v-tools input[type=range]{width:100%}
-.v-tools select{padding:10px 12px;border-radius:12px;border:1px solid rgba(39,174,96,.25);background:#f8fffb;font:inherit}
-.v-count{font-size:14px;margin:0 0 14px;opacity:.85}
-.v-calc{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;background:linear-gradient(135deg,#0f3d24,#1d6b40);color:#fff;border-radius:26px;padding:28px 30px;margin:34px 0}
-.v-calc h2{color:#fff;margin:0 0 6px}.v-calc label{display:block;font-weight:700;margin:14px 0 6px}
-.v-calc input[type=range]{width:100%}
-.v-res{background:rgba(255,255,255,.1);border-radius:18px;padding:18px 20px;display:grid;gap:12px;align-content:center}
-.v-res b{font-size:24px;display:block}
-.v-res small{opacity:.8}
-@media(max-width:860px){.v-tools{grid-template-columns:1fr 1fr}.v-calc{grid-template-columns:1fr}}
+.hero h1{font-family:'Unbounded',sans-serif;font-weight:900;letter-spacing:-0.03em;line-height:1.08}
+.offers-title,.article h2,.v-section-title{font-family:'Unbounded',sans-serif;font-weight:900;letter-spacing:-.02em}
+.calc-card{position:relative;background:rgba(255,255,255,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.7);border-radius:32px;padding:36px 40px 40px;box-shadow:0 30px 80px rgba(13,21,18,.12),0 10px 30px rgba(39,174,96,.1);margin:0 0 26px}
+.calc-card::before{content:'';position:absolute;inset:0;border-radius:32px;padding:1px;background:linear-gradient(135deg,rgba(46,204,113,.5),rgba(245,185,66,.3),transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.calc-title{display:flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-size:20px;font-weight:900;color:#1a2421;margin:0 0 6px}
+.calc-sub{font-size:14px;color:#5a6b64;margin:0 0 26px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:end}
+.calc-field label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:800;color:#1a2421;margin-bottom:12px}
+.calc-field label .val{color:#1e8449;font-family:'Unbounded',sans-serif;font-size:15px}
+.calc-card input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;background:linear-gradient(90deg,#27ae60 0%,#27ae60 var(--pct,50%),#e3ece6 var(--pct,50%),#e3ece6 100%);outline:none;cursor:pointer;margin:6px 0}
+.calc-card input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid #27ae60;box-shadow:0 4px 14px rgba(39,174,96,.4);cursor:grab;transition:transform .15s}
+.calc-card input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.calc-card input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid #27ae60;box-shadow:0 4px 14px rgba(39,174,96,.4);cursor:grab}
+.calc-results{margin-top:28px;padding-top:26px;border-top:1px dashed rgba(39,174,96,.25);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.calc-result{text-align:center;padding:14px 10px;border-radius:16px;background:rgba(39,174,96,.06)}
+.calc-result b{display:block;font-family:'Unbounded',sans-serif;font-size:clamp(16px,2vw,22px);font-weight:900;color:#1e8449}
+.calc-result span{display:block;margin-top:6px;font-size:11.5px;line-height:1.35;color:#5a6b64;font-weight:700}
+.calc-result.gold b{color:#f5b942}
+.calc-hint{font-size:12px;color:#5a6b64;margin-top:14px;text-align:center}
+.filter-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
+.filter-label{font-size:13px;font-weight:800;color:#5a6b64;margin-right:6px}
+.sort-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:999px;border:2px solid rgba(39,174,96,.2);background:#fff;color:#5a6b64;font:700 13px 'Manrope',sans-serif;cursor:pointer;transition:.2s}
+.sort-btn:hover{border-color:#27ae60;color:#27ae60}
+.sort-btn.active{background:linear-gradient(90deg,#27ae60,#2ecc71);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(39,174,96,.3)}
+.promo-filter-label{display:inline-flex;align-items:center;gap:10px;padding:9px 18px 9px 14px;border-radius:999px;border:2px solid rgba(245,185,66,.4);background:linear-gradient(120deg,rgba(245,185,66,.1),rgba(255,207,110,.06));cursor:pointer;font-size:13px;font-weight:800;color:#8a6100}
+.promo-filter-label:hover{border-color:#f5b942;background:rgba(245,185,66,.15)}
+.promo-filter-label input[type=checkbox]{appearance:none;-webkit-appearance:none;width:20px;height:20px;border-radius:6px;border:2px solid rgba(245,185,66,.6);background:#fff;cursor:pointer;position:relative;flex-shrink:0;margin:0}
+.promo-filter-label input[type=checkbox]:checked{background:linear-gradient(120deg,#f5b942,#ffcf6e);border-color:#f5b942}
+.promo-filter-label input[type=checkbox]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5c3d00;font-size:13px;font-weight:900}
+.v-count{font-size:14px;margin:4px 0 16px;color:#5a6b64}.v-count b{font-family:'Unbounded',sans-serif;color:#1e8449}
+.v-filters{margin:0 0 8px}
+@media(max-width:860px){.calc-card{padding:26px 20px 28px;border-radius:24px}.calc-grid{grid-template-columns:1fr;gap:18px}.calc-results{grid-template-columns:repeat(2,1fr)}
+.filter-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.filter-row .filter-label,.filter-row .promo-filter-label{grid-column:1/-1}.filter-row .sort-btn{justify-content:center;padding:9px 8px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -335,14 +359,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="intro-wide">
       <p class="lead">43 пропозицій МФО в одному місці: до 150 000 ₴ на строк до 365 днів, 26 компаній дають першу позику під акційну ставку. Відфільтруй за сумою і строком, порівняй вартість у калькуляторі та подай заявку в 2–3 МФО — так шанс на схвалення вищий.</p>
     </div>
+    <section class="calc-card" aria-labelledby="calc-title">
+      <h2 class="calc-title" id="calc-title"><span aria-hidden="true">🧮</span> Калькулятор вартості кредиту</h2>
+      <p class="calc-sub">Обери суму та строк — побачиш, скільки повернути, і скільки МФО дають такі умови.</p>
+      <div class="calc-grid">
+        <div class="calc-field"><label for="c-sum">Сума кредиту <span class="val" id="c-sum-out"></span></label><input id="c-sum" type="range" min="500" max="150000" step="500" value="5000"></div>
+        <div class="calc-field"><label for="c-days">Строк <span class="val" id="c-days-out"></span></label><input id="c-days" type="range" min="1" max="60" step="1" value="30"></div>
+      </div>
+      <div class="calc-results" aria-live="polite">
+        <div class="calc-result"><b id="c-promo"></b><span>до повернення за акцією 0,01%/день</span></div>
+        <div class="calc-result"><b id="c-max"></b><span>до повернення за 1%/день (максимум за законом)</span></div>
+        <div class="calc-result"><b id="c-max-int"></b><span>відсотки за 1%/день</span></div>
+        <div class="calc-result gold"><b id="c-match"></b><span>МФО з такою сумою і строком</span></div>
+      </div>
+      <p class="calc-hint">Розрахунок орієнтовний: сума × денна ставка × дні. Точні умови — у паспорті споживчого кредиту.</p>
+    </section>
     <section class="offers-section">
       <h2 class="offers-title">Підбір кредиту онлайн</h2>
       <p class="offers-sub">Дані оновлюються щодня автоматично · оновлено 2026-11-17</p>
-      <div class="v-tools" role="group" aria-label="Фільтри">
-        <div><label for="f-sum">Сума від: <span id="f-sum-out">1 000 ₴</span></label><input id="f-sum" type="range" min="1000" max="150000" step="1000" value="1000"></div>
-        <div><label for="f-term">Строк від</label><select id="f-term"><option value="0">будь-який</option><option value="30">30+ днів</option><option value="90">90+ днів</option><option value="180">180+ днів</option><option value="360">рік</option></select></div>
-        <div><label for="f-sort">Сортування</label><select id="f-sort"><option value="pos">рекомендовані</option><option value="rate">мінімальна ставка</option><option value="sum">більша сума</option><option value="term">довший строк</option></select></div>
-        <div><label><input id="f-promo" type="checkbox"> лише з акцією для нових клієнтів</label></div>
+      <div class="v-filters" role="group" aria-label="Фільтри">
+        <div class="filter-row"><span class="filter-label">Сума від <b id="f-sum-out">1 000 ₴</b></span></div>
+        <div class="calc-card" style="padding:18px 24px;margin:0 0 16px;border-radius:20px"><input id="f-sum" type="range" min="1000" max="150000" step="1000" value="1000" aria-label="Мінімальна сума"></div>
+        <div class="filter-row"><span class="filter-label">Строк:</span>
+          <button type="button" class="sort-btn active" data-term="0" aria-pressed="true">будь-який</button>
+          <button type="button" class="sort-btn" data-term="30" aria-pressed="false">30+ днів</button>
+          <button type="button" class="sort-btn" data-term="90" aria-pressed="false">90+ днів</button>
+          <button type="button" class="sort-btn" data-term="180" aria-pressed="false">180+ днів</button>
+          <button type="button" class="sort-btn" data-term="360" aria-pressed="false">рік</button></div>
+        <div class="filter-row"><span class="filter-label">Сортувати:</span>
+          <button type="button" class="sort-btn active" data-sort="pos" aria-pressed="true">рекомендовані</button>
+          <button type="button" class="sort-btn" data-sort="rate" aria-pressed="false">мінімальна ставка</button>
+          <button type="button" class="sort-btn" data-sort="sum" aria-pressed="false">більша сума</button>
+          <button type="button" class="sort-btn" data-sort="term" aria-pressed="false">довший строк</button>
+          <label class="promo-filter-label"><input id="f-promo" type="checkbox"> лише з акцією для нових клієнтів</label></div>
       </div>
       <p class="v-count">Знайдено пропозицій: <b id="f-count">43</b></p>
       <div class="offers-grid" id="offers-grid" data-ssr="1">
@@ -389,20 +438,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="offer-card v-card" data-sum="50000" data-term="30" data-promo="1" data-rate="0.1" data-pos="41"><div class="offer-logo-wrap"><img src="https://pdl-profit.com/uploads/2026-09-14/file_6aa7c57fa0b82.png" alt="Minibank" loading="lazy" width="120" height="48" onerror="this.style.display='none'"></div><div class="offer-badge">Перша позика під 0.1%*</div><div class="offer-stats"><div class="row">Макс. сума <b>до 50 000 ₴</b></div><div class="row">На строк <b>до 30 дн.</b></div><div class="row">Ставка від <b>0,1% / день</b></div></div><a class="offer-btn" href="https://tds.pdl-profit.com?offerid=3967&amp;affid=62311" data-offer="Minibank" data-pos="41" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a><a class="offer-info" href="/mfo/minibank/">Умови Minibank</a></div>
         <div class="offer-card v-card" data-sum="50000" data-term="30" data-promo="1" data-rate="0.1" data-pos="42"><div class="offer-logo-wrap"><img src="https://pdl-profit.com/uploads/2026-10-15/file_6ad0ccf64eaed.png" alt="Finstep.Space" loading="lazy" width="120" height="48" onerror="this.style.display='none'"></div><div class="offer-badge">Перша позика під 0.1%*</div><div class="offer-stats"><div class="row">Макс. сума <b>до 50 000 ₴</b></div><div class="row">На строк <b>до 30 дн.</b></div><div class="row">Ставка від <b>0,1% / день</b></div></div><a class="offer-btn" href="https://tds.pdl-profit.com?offerid=3993&amp;affid=62311" data-offer="Finstep.Space" data-pos="42" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a><a class="offer-info" href="/mfo/finstep-space/">Умови Finstep.Space</a></div>
         <div class="offer-card v-card" data-sum="50000" data-term="120" data-promo="1" data-rate="1.0" data-pos="43"><div class="offer-logo-wrap"><img src="https://pdl-profit.com/uploads/2026-11-11/file_6af4340f3b80e.png" alt="FreshCash" loading="lazy" width="120" height="48" onerror="this.style.display='none'"></div><div class="offer-badge">Перша позика під 0.1%*</div><div class="offer-stats"><div class="row">Макс. сума <b>до 50 000 ₴</b></div><div class="row">На строк <b>до 120 дн.</b></div><div class="row">Ставка від <b>1% / день</b></div></div><a class="offer-btn" href="https://tds.pdl-profit.com?offerid=4031&amp;affid=62311" data-offer="FreshCash" data-pos="43" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a><a class="offer-info" href="/mfo/freshcash/">Умови FreshCash</a></div>
-      </div>
-    </section>
-  </div>
-  <div class="container">
-    <section class="v-calc" aria-labelledby="calc-title">
-      <div>
-        <h2 id="calc-title">Калькулятор вартості кредиту</h2>
-        <p>Порахуй суму до повернення за акційною ставкою і за граничною ставкою 1% на день.</p>
-        <label for="c-sum">Сума: <span id="c-sum-out"></span></label><input id="c-sum" type="range" min="500" max="150000" step="500" value="5000">
-        <label for="c-days">Строк: <span id="c-days-out"></span></label><input id="c-days" type="range" min="1" max="60" step="1" value="30">
-      </div>
-      <div class="v-res" aria-live="polite">
-        <div><small>До повернення за акцією 0,01%/день</small><b id="c-promo"></b></div>
-        <div><small>До повернення за ставкою 1%/день (максимум за законом)</small><b id="c-max"></b><small>з них відсотки: <span id="c-max-int"></span></small></div>
       </div>
     </section>
   </div>
@@ -466,35 +501,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function(){
   var grid=document.getElementById('offers-grid'); if(!grid) return;
   var cards=[].slice.call(grid.querySelectorAll('.v-card'));
-  var f={sum:document.getElementById('f-sum'),term:document.getElementById('f-term'),promo:document.getElementById('f-promo'),sort:document.getElementById('f-sort')};
+  var state={term:0, sort:'pos'};
+  var sum=document.getElementById('f-sum'), promo=document.getElementById('f-promo');
   var out=document.getElementById('f-count'), sumOut=document.getElementById('f-sum-out');
   function fmt(n){return new Intl.NumberFormat('uk-UA').format(Math.round(n));}
+  function pct(r){var v=((r.value-r.min)/(r.max-r.min))*100; r.style.setProperty('--pct',v+'%');}
   function apply(){
-    var s=+f.sum.value, t=+f.term.value, p=f.promo.checked, k=f.sort.value, n=0;
-    sumOut.textContent=fmt(s)+' ₴';
+    var s=+sum.value, n=0; pct(sum); sumOut.textContent=fmt(s)+' ₴';
     cards.sort(function(a,b){
-      if(k==='sum') return b.dataset.sum-a.dataset.sum;
-      if(k==='term') return b.dataset.term-a.dataset.term;
-      if(k==='rate') return a.dataset.rate-b.dataset.rate;
+      if(state.sort==='sum') return b.dataset.sum-a.dataset.sum;
+      if(state.sort==='term') return b.dataset.term-a.dataset.term;
+      if(state.sort==='rate') return a.dataset.rate-b.dataset.rate;
       return a.dataset.pos-b.dataset.pos;
     }).forEach(function(c){
-      var ok=(+c.dataset.sum>=s)&&(+c.dataset.term>=t)&&(!p||c.dataset.promo==='1');
+      var ok=(+c.dataset.sum>=s)&&(+c.dataset.term>=state.term)&&(!promo.checked||c.dataset.promo==='1');
       c.style.display=ok?'':'none'; if(ok) n++; grid.appendChild(c);
     });
     out.textContent=n;
-    try{(window.dataLayer=window.dataLayer||[]).push({event:'seo_vitrine_filter',sum:s,term:t,promo:p,sort:k,results:n});}catch(e){}
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'seo_vitrine_filter',sum:s,term:state.term,promo:promo.checked,sort:state.sort,results:n});}catch(e){}
   }
-  ['input','change'].forEach(function(ev){Object.keys(f).forEach(function(x){f[x].addEventListener(ev,apply);});});
-  apply();
-  // калькулятор
+  function group(attr){
+    [].forEach.call(document.querySelectorAll('[data-'+attr+']'),function(btn){
+      btn.addEventListener('click',function(){
+        [].forEach.call(document.querySelectorAll('[data-'+attr+']'),function(b){b.classList.remove('active');b.setAttribute('aria-pressed','false');});
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+        state[attr]=attr==='term'?+btn.dataset[attr]:btn.dataset[attr]; apply();
+      });
+    });
+  }
+  group('term'); group('sort');
+  sum.addEventListener('input',apply); promo.addEventListener('change',apply); apply();
   var ca=document.getElementById('c-sum'), cd=document.getElementById('c-days');
   function calc(){
-    var a=+ca.value||0, d=+cd.value||0;
+    var a=+ca.value||0, d=+cd.value||0; pct(ca); pct(cd);
     document.getElementById('c-sum-out').textContent=fmt(a)+' ₴';
     document.getElementById('c-days-out').textContent=d+' дн.';
     document.getElementById('c-promo').textContent=fmt(a+a*0.0001*d)+' ₴';
     document.getElementById('c-max').textContent=fmt(a+a*0.01*d)+' ₴';
     document.getElementById('c-max-int').textContent=fmt(a*0.01*d)+' ₴';
+    var m=0; cards.forEach(function(c){ if(+c.dataset.sum>=a && +c.dataset.term>=d) m++; });
+    document.getElementById('c-match').textContent=m;
   }
   ca.addEventListener('input',calc); cd.addEventListener('input',calc); calc();
 })();
