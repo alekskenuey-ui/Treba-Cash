@@ -409,7 +409,7 @@ def mfo_index(offers, generated):
     <div class="table-wrap"><table class="mfo-table"><thead><tr><th>МФО</th><th>Сума</th><th>Строк</th><th>Ставка на день</th><th>Кредитор</th></tr></thead><tbody>{rows}</tbody></table></div>
     <p>Дані з фіду партнерської мережі станом на {esc(generated[:10])}. Кілька брендів можуть належати одній юридичній особі — про це в матеріалі <a href="/reytynhy/skilky-mfo-v-ukrayini-brendy-i-yurydychni-osoby/">хто стоїть за брендами МФО</a>.</p>
   </article></div>'''
-    return page('/mfo/', f'Усі МФО України {TODAY.year}: умови, ставки, кредитори | TREBA CASH',
+    return page('/mfo/', 'Каталог МФО: умови, ставки та кредитор кожного бренду | TREBA CASH',
                 f'Каталог {len(offers)} МФО: максимальна сума, строк, денна ставка та юридична особа кредитора. Повні умови й реквізити кожної компанії.',
                 f'Усі МФО каталогу TREBA CASH: умови та кредитори', 'Таблиця оновлюється щодня з даних партнерської мережі.',
                 [('Головна', '/'), ('Усі МФО', None)], body, label='Каталог')
