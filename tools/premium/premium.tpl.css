@@ -1,4 +1,5 @@
 /* TREBA CASH — преміум-шар оформлення SEO-сторінок.
+ * Шрифти НЕ змінює: гарнітура, розмір і насиченість заголовків — як в оригінальних стилях сторінок.
  * Підключається після інлайнових стилів сторінки, тому перекриває їх без !important там, де можливо.
  * Футер і рекламні лендинги (/porivnyannya-mfo/, FB, KZ, MX) цей файл НЕ підключають і НЕ стилізують.
  * Ідея: темно-зелений «грошовий» hero з лінійними іконками (монети, гаманець, картка, ₴),
@@ -41,8 +42,6 @@ body {
 .hero .container, .hero .hero-inner { position: relative; z-index: 2; }
 .hero h1, .hero .hero-title {
   color: #fff;
-  font-family: 'Unbounded', 'Manrope', sans-serif;
-  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .hero .accent { color: var(--tc-gold); }
@@ -102,13 +101,9 @@ body {
 }
 .intro-wide { border-radius: 26px; }
 .article h2, .article-wrap h2, .offers-title, .section-title {
-  font-family: 'Unbounded', 'Manrope', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
   color: var(--tc-ink);
   text-wrap: balance;
 }
-.article h2 { font-size: clamp(20px, 2.3vw, 26px); line-height: 1.25; }
 .article p, .article li { max-width: 72ch; }
 .article a:not(.offer-btn):not(.btn) { text-decoration-color: rgba(39,174,96,.45); text-underline-offset: 3px; }
 
