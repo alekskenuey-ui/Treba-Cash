@@ -10,7 +10,7 @@
   2. Замінює важкий блок «Реквізити партнерів» на компактний — лише МФО,
      показані на сторінці; повні реквізити — на /rekvizyty-partneriv/.
   3. Генерує сторінки МФО-брендів /mfo/<slug>/, каталог /mfo/ і /rekvizyty-partneriv/.
-  4. Оновлює максимальну ставку у футері з фіду.
+  4. Футер НЕ змінює (вимога власника: футер однаковий на всіх сторінках).
   5. Після 1 січня замінює минулий рік на поточний у title/H1/og-title.
   6. Перебудовує sitemap.xml: лише індексовані сторінки, lastmod змінюється,
      тільки коли змінився вміст сторінки.
@@ -40,6 +40,9 @@ CARDS_DEFAULT = 12
 SUM_FILTER = {'propozytsiyi/kredyt-na-5000-grn/': 5000, 'propozytsiyi/kredyt-na-10000-grn/': 10000,
               'propozytsiyi/kredyt-na-20000-grn/': 20000}
 SHELL = 'propozytsiyi/kredyt-cherez-diyu/index.html'   # сторінка-оболонка для генерованих сторінок
+# Брендовий трафік: поки менеджер PDL-Profit не підтвердив, що органіка по бренду дозволена,
+# сторінки /mfo/<бренд>/ закриті від індексу. Щоб відкрити — постав True.
+BRAND_PAGES_INDEX = False
 
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)
 
@@ -181,15 +184,7 @@ def ssr_page(path, s, offers):
     return s
 
 
-# ------------------------------------------------------------------ футер, рік
-def footer_rate(s, offers):
-    mx = max((o.get('rateMax') or 0) for o in offers)
-    if not mx:
-        return s
-    return re.sub(r'Максимальна річна відсоткова ставка \(APR\) може становити до [\d\s,.]+%',
-                  f'Максимальна річна відсоткова ставка (APR) може становити до {pct(mx)}%', s)
-
-
+# ------------------------------------------------------------------ рік у заголовках
 def bump_year(s):
     y, prev = TODAY.year, TODAY.year - 1
     if y <= 2026:
@@ -201,15 +196,6 @@ def bump_year(s):
     s = re.sub(r'<meta (?:property|name)="(?:og|twitter):title" content="[^"]*"', rep, s)
     s = re.sub(r'"(?:headline|name)": "[^"]*"', rep, s)
     return s
-
-
-FOOTER_LINKS = ' | <a href="/mfo/">Усі МФО</a> | <a href="/rekvizyty-partneriv/">Реквізити партнерів</a>'
-
-
-def footer_links(s):
-    if '/rekvizyty-partneriv/">Реквізити партнерів' in s or '<a href="/reytynhy/">Рейтинги й огляди</a>' not in s:
-        return s
-    return s.replace('<a href="/reytynhy/">Рейтинги й огляди</a>', '<a href="/reytynhy/">Рейтинги й огляди</a>' + FOOTER_LINKS, 1)
 
 
 # ------------------------------------------------------------------ генеровані сторінки
@@ -296,7 +282,7 @@ def page(path, title, desc, h1, sub, crumbs, main_html, faqs=(), robots='index, 
                  '.mfo-table th{background:rgba(39,174,96,.08)}.table-wrap{overflow-x:auto}</style>')
     out = (head_top + meta + style + '\n' + extra_css + assets + LOADER_HELPER + '\n' + CARD_CSS + '\n</head>\n'
            + body_top + main + '\n' + footer + '\n' + script + '\n</body>\n</html>\n')
-    return footer_links(out)
+    return out
 
 
 def offers_section(cards, title='Схожі пропозиції', note=''):
@@ -395,7 +381,8 @@ def mfo_page(o, offers, generated):
             f'юридична особа та ЄДРПОУ, як перевірити в реєстрі НБУ і схожі пропозиції.')
     return page(f'/mfo/{o["slug"]}/', title, desc, f'{name}: умови кредиту онлайн, ставки та реквізити',
                 f'Оновлено {esc(generated[:10])} з даних партнерської мережі', [('Головна', '/'), ('Усі МФО', '/mfo/'), (name, None)],
-                body, faqs, label='Огляд МФО')
+                body, faqs, label='Огляд МФО',
+                robots='index, follow, max-image-preview:large' if BRAND_PAGES_INDEX else 'noindex, follow')
 
 
 def mfo_index(offers, generated):
@@ -515,8 +502,6 @@ def main():
         if 'http-equiv="refresh"' in s:
             continue
         n = ssr_page(path, s, offers)
-        n = footer_rate(n, offers)
-        n = footer_links(n)
         n = bump_year(n)
         changed += wr(rel, n)
     # 3. sitemap
