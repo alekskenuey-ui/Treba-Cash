@@ -92,8 +92,24 @@
     a.href = u.toString();
   }
 
+  // SEO-сторінки віддають посилання на офери як href="#" data-go="…", щоб роботи без JS
+  // не ходили по них і не накручували «уніки» в PDL-Profit. Людям справжнє посилання
+  // підставляємо одразу після завантаження (і про всяк випадок — у момент кліку).
+  function activate(a) {
+    var go = a && a.getAttribute && a.getAttribute('data-go');
+    if (!go) return;
+    try { if (PARTNER.test(new URL(go, location.href).hostname) && a.getAttribute('href') !== go) a.setAttribute('href', go); } catch (e) {}
+  }
+  function activateAll() {
+    var list = document.querySelectorAll('a[data-go]');
+    for (var i = 0; i < list.length; i++) activate(list[i]);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', activateAll);
+  else activateAll();
+
   function handler(e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    activate(a);
     decorate(a);
   }
   ['mousedown', 'touchstart', 'keydown', 'contextmenu', 'click'].forEach(function (t) {

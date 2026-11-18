@@ -134,7 +134,7 @@ def card_html(o, pos):
             f'<div class="offer-badge">{esc(badge(o))}</div>'
             f'<div class="offer-stats"><div class="row">Макс. сума <b>до {fmt(o["sum"])} ₴</b></div>'
             f'<div class="row">На строк <b>до {o["term"]} дн.</b></div></div>'
-            f'<a class="offer-btn" href="{esc(o["ref"])}" data-offer="{esc(o["name"])}" data-pos="{pos}" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a>'
+            f'<a class="offer-btn" href="#" data-go="{esc(o["ref"])}" data-offer="{esc(o["name"])}" data-pos="{pos}" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a>'
             f'<a class="offer-info" href="/mfo/{o["slug"]}/">Умови {esc(o["name"])}</a>'
             f'</div>')
 
@@ -374,7 +374,7 @@ def mfo_page(o, offers, generated):
     body = f'''  <div class="container"><div class="intro-wide">
     {notice}
     <p class="lead">{esc(name)} — онлайн-кредит на картку до {fmt(o["sum"])} ₴ на строк до {o["term"]} днів. {esc(badge(o))}. Нижче — актуальні умови з фіду партнерської мережі (оновлено {esc(generated[:10])}), реквізити кредитора та приклад розрахунку вартості.</p>
-    <p style="margin-top:14px"><a class="offer-btn" style="display:inline-block;max-width:320px" href="{esc(o["ref"])}" data-offer="{esc(name)}" data-pos="0" target="_blank" rel="sponsored nofollow noopener noreferrer">Перейти на сайт {esc(name)}</a></p>
+    <p style="margin-top:14px"><a class="offer-btn" style="display:inline-block;max-width:320px" href="#" data-go="{esc(o["ref"])}" data-offer="{esc(name)}" data-pos="0" target="_blank" rel="sponsored nofollow noopener noreferrer">Перейти на сайт {esc(name)}</a></p>
   </div></div>
   <div class="article-wrap"><article class="article">
     <h2>Умови кредиту {esc(name)}</h2>
@@ -455,7 +455,7 @@ def vitrine_card(o, pos):
             f'<div class="offer-stats"><div class="row">Макс. сума <b>до {fmt(o["sum"])} ₴</b></div>'
             f'<div class="row">На строк <b>до {o["term"]} дн.</b></div>'
             f'<div class="row">Ставка від <b>{pct(o["dmin"])}% / день</b></div></div>'
-            f'<a class="offer-btn" href="{esc(o["ref"])}" data-offer="{esc(o["name"])}" data-pos="{pos}" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a>'
+            f'<a class="offer-btn" href="#" data-go="{esc(o["ref"])}" data-offer="{esc(o["name"])}" data-pos="{pos}" target="_blank" rel="sponsored nofollow noopener noreferrer">Отримати гроші</a>'
             f'<a class="offer-info" href="/mfo/{o["slug"]}/">Умови {esc(o["name"])}</a></div>')
 
 
