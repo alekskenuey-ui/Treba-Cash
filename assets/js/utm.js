@@ -1,13 +1,16 @@
 /* TREBA CASH — атрибуція трафіку та UTM для партнерських посилань.
  * Визначає канал при першому заході (першочергово — вхідні UTM/click-id),
  * зберігає на сесію і дописує мітки до посилань на PDL-Profit у момент кліку,
- * тому працює і для карток, які рендеряться з mfo-live-data.json. */
+ * тому працює і для карток, які рендеряться з mfo-live-data.json.
+ * Додаткові вхідні мітки (utm_creative, utm_adposition, utm_device, subid…) передаються як є. */
 (function () {
   'use strict';
   var KEY = 'tc_attr';
   var PARTNER = /(^|\.)(pdl-profit\.com|track-pdlp\.com)$/i;
   var CLICK_IDS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid'];
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  // Усі інші вхідні мітки (utm_creative, utm_adposition, utm_device, utm_keyword, subid1…) теж передаємо в партнерку
+  var PASS = /^(utm_[a-z0-9_]+|sub(id)?\d*|aff_sub\d*)$/i;
   var SEARCH = { 'google': 'google', 'bing': 'bing', 'yahoo': 'yahoo', 'duckduckgo': 'duckduckgo', 'yandex': 'yandex', 'ukr.net': 'ukr_net', 'ecosia': 'ecosia' };
   var SOCIAL = { 'facebook': 'facebook', 'instagram': 'instagram', 't.me': 'telegram', 'telegram': 'telegram', 'viber': 'viber', 'tiktok': 'tiktok', 'youtube': 'youtube' };
 
@@ -30,6 +33,9 @@
     var a = {};
     UTM_KEYS.forEach(function (k) { if (q.get(k)) a[k] = q.get(k); });
     CLICK_IDS.forEach(function (k) { if (q.get(k)) a[k] = q.get(k); });
+    var extra = {};
+    q.forEach(function (v, k) { if (v && PASS.test(k) && UTM_KEYS.indexOf(k) === -1) extra[k] = v.slice(0, 200); });
+    a.extra = extra;
 
     if (!a.utm_source) {
       var h = host(document.referrer);
@@ -50,7 +56,8 @@
   try { attr = JSON.parse(store(true) || 'null'); } catch (e) { attr = null; }
   // Перший дотик зберігаємо; новий вхід із міткою/click-id перезаписує його
   var q0 = new URLSearchParams(location.search);
-  var fresh = UTM_KEYS.concat(CLICK_IDS).some(function (k) { return q0.get(k); });
+  var fresh = UTM_KEYS.concat(CLICK_IDS).some(function (k) { return q0.get(k); }) ||
+    Array.from(q0.keys()).some(function (k) { return PASS.test(k); });
   if (!attr || fresh) { attr = detect(); store(false, JSON.stringify(attr)); }
 
   window.dataLayer = window.dataLayer || [];
@@ -74,6 +81,8 @@
     put('utm_content', attr.utm_content || ('p_' + pageSlug()));
     put('utm_term', attr.utm_term);
     CLICK_IDS.forEach(function (k) { put(k, attr[k]); });
+    var ex = attr.extra || {};
+    for (var k in ex) put(k, ex[k]);
     a.href = u.toString();
   }
 
