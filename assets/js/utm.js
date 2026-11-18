@@ -74,15 +74,21 @@
     try { u = new URL(a.href, location.href); } catch (e) { return; }
     if (!PARTNER.test(u.hostname)) return;
     function put(k, v) { if (v && !u.searchParams.has(k)) u.searchParams.set(k, v); }
+    // PDL-Profit приймає лише: subid…subid10, utm_source, utm_medium, utm_campaign, utm_term,
+    // utm_creative, utm_adgroup, utm_device, utm_adposition, gclid. utm_content він не зберігає,
+    // тому сторінки та позицію передаємо в subid (subid3 і utm_device вже ставить GTM — їх не чіпаємо).
     put('utm_source', attr.utm_source);
     put('utm_medium', attr.utm_medium);
     put('utm_campaign', attr.utm_campaign);
-    // utm_content: творчість із реклами, інакше сторінка, з якої зроблено клік
-    put('utm_content', attr.utm_content || ('p_' + pageSlug()));
     put('utm_term', attr.utm_term);
+    put('subid', attr.landing);                       // сторінка входу на сайт
+    put('subid2', pageSlug());                        // сторінка, з якої клікнули на офер
+    put('subid4', attr.utm_content);                  // utm_content з реклами (оголошення/креатив)
+    put('subid5', a.getAttribute('data-pos') || (a.closest && a.closest('[data-pos]') ? a.closest('[data-pos]').getAttribute('data-pos') : ''));  // позиція оферу
     CLICK_IDS.forEach(function (k) { put(k, attr[k]); });
     var ex = attr.extra || {};
     for (var k in ex) put(k, ex[k]);
+    u.searchParams.delete('utm_content');
     a.href = u.toString();
   }
 
