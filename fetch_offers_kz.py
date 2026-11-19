@@ -133,6 +133,24 @@ SUM_OVERRIDES = {
     "3923": 400000,  # MegaZaim
 }
 
+# Офери, які не показуємо на вітрині KZ (рішення власника 19.11.2026).
+#   Banando (3983) — не МФО: платний сервіс підбору (ТОО DataWave, підписка 10 000 ₸/міс.), ризик для Google Ads.
+HIDDEN_OFFER_IDS = {"3983"}
+
+# Ставки для оферів, по яких API PDL-Profit не віддає first_credit_percent (дослідження 19.11.2026).
+# Діють лише коли API повертає порожнє значення.
+#   MegaZaim (ТОО «ELEX LOMBARD UK»): 10–400 тис. ₸, 5–30 дн., ~0,1%/день, ГЭСВ до 179% — bank.kz/mfo/megazaim, megazaim.com
+#   Limecredit (ТОО «LOMBARD 333 TM»): 0,1%/день на перший займ, ГЭСВ до 179% — prodengi.kz, kazkredit.kz, loancompas.kz, izaim.kz
+FIRST_PCT_OVERRIDES = {
+    "3923": 0.1,  # MegaZaim
+    "3615": 0.1,  # Limecredit
+}
+# Верхня межа ГЭСВ для них — граничне значення для PDL-займів до 45 днів (179%, постанова АРРФР/НБРК).
+RATE_MAX_OVERRIDES = {
+    "3923": 179.0,  # MegaZaim
+    "3615": 179.0,  # Limecredit
+}
+
 
 def transform_offer(offer, requisites):
     name = clean_name(offer.get("name", ""))
@@ -144,10 +162,15 @@ def transform_offer(offer, requisites):
 
     first_pct = to_float(offer.get("first_credit_percent"), None)
     standard_pct = to_float(offer.get("first_credit_percent_standard"), None)
+    oid = str(offer.get("id"))
+    if first_pct is None and oid in FIRST_PCT_OVERRIDES:
+        first_pct = FIRST_PCT_OVERRIDES[oid]
 
     # ГЭСВ ориентировочно: дневная ставка * 365 (упрощённо, для отображения диапазона)
     rate_min = round(first_pct * 365, 1) if first_pct is not None else None
     rate_max = round(standard_pct * 365, 1) if standard_pct is not None else rate_min
+    if standard_pct is None and oid in RATE_MAX_OVERRIDES:
+        rate_max = RATE_MAX_OVERRIDES[oid]
 
     has_zero_badge = first_pct is not None and first_pct <= 0.5
 
@@ -202,7 +225,11 @@ def main():
     requisites = load_requisites()
     print(f"📋 Загружено реквизитов для {len(requisites)} компаний")
 
-    transformed = [transform_offer(o, requisites) for o in raw_offers]
+    hidden = [o.get("name") for o in raw_offers if str(o.get("id")) in HIDDEN_OFFER_IDS]
+    if hidden:
+        print(f"🙈 Скрыты с витрины: {', '.join(map(str, hidden))}")
+    transformed = [transform_offer(o, requisites) for o in raw_offers
+                   if str(o.get("id")) not in HIDDEN_OFFER_IDS]
 
     missing_legal = [o["name"] for o in transformed if not o.get("legal")]
     if missing_legal:
