@@ -133,11 +133,18 @@ SUM_OVERRIDES = {
     "3923": 400000,  # MegaZaim
 }
 
-# Бейдж «Первый займ под 0%» від власника (19.11.2026) для оферів, по яких API не дає ставку
-# або дає вищу. Діє, лише якщо автоматичний бейдж не з'явився.
-ZERO_BADGE_OVERRIDES = {
-    "3983": "Первый займ под 0%*",  # Banando
-    "3923": "Первый займ под 0%*",  # MegaZaim
+# Ставки для оферів, по яких API PDL-Profit не віддає first_credit_percent (дослідження 19.11.2026).
+# Діють лише коли API повертає порожнє значення.
+#   MegaZaim (ТОО «ELEX LOMBARD UK»): 10–400 тис. ₸, 5–30 дн., ~0,1%/день, ГЭСВ до 179% — bank.kz/mfo/megazaim, megazaim.com
+#   Limecredit (ТОО «LOMBARD 333 TM»): 0,1%/день на перший займ, ГЭСВ до 179% — prodengi.kz, kazkredit.kz, loancompas.kz, izaim.kz
+FIRST_PCT_OVERRIDES = {
+    "3923": 0.1,  # MegaZaim
+    "3615": 0.1,  # Limecredit
+}
+# Верхня межа ГЭСВ для них — граничне значення для PDL-займів до 45 днів (179%, постанова АРРФР/НБРК).
+RATE_MAX_OVERRIDES = {
+    "3923": 179.0,  # MegaZaim
+    "3615": 179.0,  # Limecredit
 }
 
 
@@ -151,16 +158,17 @@ def transform_offer(offer, requisites):
 
     first_pct = to_float(offer.get("first_credit_percent"), None)
     standard_pct = to_float(offer.get("first_credit_percent_standard"), None)
+    oid = str(offer.get("id"))
+    if first_pct is None and oid in FIRST_PCT_OVERRIDES:
+        first_pct = FIRST_PCT_OVERRIDES[oid]
 
     # ГЭСВ ориентировочно: дневная ставка * 365 (упрощённо, для отображения диапазона)
     rate_min = round(first_pct * 365, 1) if first_pct is not None else None
     rate_max = round(standard_pct * 365, 1) if standard_pct is not None else rate_min
+    if standard_pct is None and oid in RATE_MAX_OVERRIDES:
+        rate_max = RATE_MAX_OVERRIDES[oid]
 
     has_zero_badge = first_pct is not None and first_pct <= 0.5
-    gold_override = None
-    if not has_zero_badge and str(offer.get("id")) in ZERO_BADGE_OVERRIDES:
-        has_zero_badge = True
-        gold_override = ZERO_BADGE_OVERRIDES[str(offer.get("id"))]
 
     badge_text, badge_color = determine_badge(first_credit_sum, term)
 
@@ -187,8 +195,7 @@ def transform_offer(offer, requisites):
         "badgeColor": badge_color,
         "hasZeroBadge": has_zero_badge,
         "goldBadgeText": (
-            gold_override if gold_override
-            else f"Первый займ под {first_pct}%*" if has_zero_badge and first_pct is not None
+            f"Первый займ под {first_pct}%*" if has_zero_badge and first_pct is not None
             else "Первый займ под 0,01%*" if has_zero_badge else None
         ),
         "legal": req.get("legal") or api_legal_info,
