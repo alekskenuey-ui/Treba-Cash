@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-19T06:58:03.050409+00:00",
-  "count": 15,
+  "count": 14,
   "offers": [
     {
       "id": 1159,
@@ -300,29 +300,6 @@
       "apiTitle": "Мгновенный микрокредит на карту",
       "epc": 0.0,
       "cr": 0.0
-    },
-    {
-      "id": 3983,
-      "name": "Banando",
-      "logo": "https://pdl-profit.com/uploads/2026-10-05/file_6ac39e87c4551.png",
-      "ref": "https://tds.pdl-profit.com?offerid=3983&affid=62311",
-      "sum": 500000,
-      "term": 30,
-      "rateMin": 0,
-      "rateMax": 0,
-      "badge": "До 500 000 ₸ на карту",
-      "badgeColor": "blue",
-      "hasZeroBadge": false,
-      "goldBadgeText": null,
-      "legal": null,
-      "bin": null,
-      "license": null,
-      "address": null,
-      "phone": null,
-      "email": null,
-      "apiTitle": "Работает 24/7",
-      "epc": 17.2,
-      "cr": 12.33
     },
     {
       "id": 3995,

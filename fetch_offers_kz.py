@@ -133,6 +133,10 @@ SUM_OVERRIDES = {
     "3923": 400000,  # MegaZaim
 }
 
+# Офери, які не показуємо на вітрині KZ (рішення власника 19.11.2026).
+#   Banando (3983) — не МФО: платний сервіс підбору (ТОО DataWave, підписка 10 000 ₸/міс.), ризик для Google Ads.
+HIDDEN_OFFER_IDS = {"3983"}
+
 # Ставки для оферів, по яких API PDL-Profit не віддає first_credit_percent (дослідження 19.11.2026).
 # Діють лише коли API повертає порожнє значення.
 #   MegaZaim (ТОО «ELEX LOMBARD UK»): 10–400 тис. ₸, 5–30 дн., ~0,1%/день, ГЭСВ до 179% — bank.kz/mfo/megazaim, megazaim.com
@@ -221,7 +225,11 @@ def main():
     requisites = load_requisites()
     print(f"📋 Загружено реквизитов для {len(requisites)} компаний")
 
-    transformed = [transform_offer(o, requisites) for o in raw_offers]
+    hidden = [o.get("name") for o in raw_offers if str(o.get("id")) in HIDDEN_OFFER_IDS]
+    if hidden:
+        print(f"🙈 Скрыты с витрины: {', '.join(map(str, hidden))}")
+    transformed = [transform_offer(o, requisites) for o in raw_offers
+                   if str(o.get("id")) not in HIDDEN_OFFER_IDS]
 
     missing_legal = [o["name"] for o in transformed if not o.get("legal")]
     if missing_legal:
