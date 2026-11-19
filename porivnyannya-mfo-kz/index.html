@@ -350,7 +350,130 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 .requisite-card .req-nbu-link{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--green-dark);font-weight:800;text-decoration:none;}
 .requisite-card .req-nbu-link:hover{text-decoration:underline;}
 
+/* ===== КОМПАКТНІ КАРТКИ + 3D-КНОПКА + МЕХАНІКА «2–3 ЗАЯВКИ» ===== */
+.mfo-grid{grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;}
+.mfo-card{display:flex;flex-direction:column;padding:14px 14px 12px;border-radius:18px;border:1px solid #e2ebe5;background:#fff;box-shadow:0 4px 18px rgba(13,21,18,.05);}
+.mfo-card::before{display:none;}
+.mfo-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(13,21,18,.10);border-color:rgba(39,174,96,.35);}
+.mfo-card--new{border:1.5px solid rgba(46,204,113,.6);}
+.mfo-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;}
+.mfo-rank{font:800 12px/1 'Unbounded',sans-serif;color:#4b5b52;background:#f1f5f2;border:1px solid #e3ebe6;border-radius:8px;padding:6px 8px;}
+.mfo-card .mfo-card-badge{margin:0;font-size:11px;font-weight:800;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:8px;padding:5px 9px;white-space:nowrap;}
+.mfo-card .mfo-card-badge::before{content:"●";margin-right:5px;font-size:8px;vertical-align:1px;color:#27ae60;}
+.mfo-card .mfo-badges-row{flex-direction:row;flex-wrap:wrap;gap:6px;padding:0;margin:10px 0 0;}
+.mfo-card .mfo-badge{width:auto;flex:1 1 auto;font-size:12px;font-weight:800;padding:6px 10px;border-radius:9px;box-shadow:none;animation:none;transform:none;border:1px solid transparent;}
+.mfo-card .mfo-badge.color-green{background:#e9f7ef;color:#1e8449;border-color:#c4ead3;}
+.mfo-card .mfo-badge.color-blue{background:#eaf3fb;color:#21618c;border-color:#c6dcf0;}
+.mfo-card .mfo-badge.color-purple{background:#f4ecf7;color:#6c3483;border-color:#e0cdea;}
+.mfo-card .mfo-badge.color-teal{background:#e8f8f5;color:#117a65;border-color:#bfe9df;}
+.mfo-card .mfo-badge.color-new{background:#eafaf1;color:#1e8449;border-color:#b9ecc9;}
+.mfo-card .mfo-badge.color-gold{background:#fff6e0;color:#8a5a00;border-color:#f3d58f;}
+.mfo-card .mfo-card-top{padding:0;gap:8px;align-items:stretch;border:none;margin:0;}
+.mfo-card .mfo-logo-wrap{height:64px;background:#f7faf8;border:1px solid #e8efe9;border-radius:12px;}
+.mfo-card .mfo-logo-wrap img{max-width:80%;max-height:46px;}
+.mfo-card .mfo-logo-fallback{width:46px;height:46px;font-size:15px;border-radius:12px;}
+.mfo-card .mfo-card-name{font:800 17px/1.2 'Manrope',sans-serif;color:var(--text);text-align:left;letter-spacing:-.01em;margin-top:2px;}
+.mfo-card .mfo-card-body{flex:1;padding:10px 0 0;}
+.mfo-card .mfo-stat-row{margin:0;padding:8px 12px;align-items:center;gap:8px;white-space:nowrap;background:#f7faf8;border:1px solid #e8efe9;border-radius:0;}
+.mfo-card .mfo-stat-row + .mfo-stat-row{border-top:1px dashed #dfe8e2;}
+.mfo-card .mfo-stat-row:has(+ .mfo-stat-row){border-bottom:none;}
+.mfo-card .mfo-stat-row:first-child{border-radius:12px 12px 0 0;}
+.mfo-card .mfo-stat-row:not(:has(+ .mfo-stat-row)){border-radius:0 0 12px 12px;}
+.mfo-card .mfo-stat-row:first-child:not(:has(+ .mfo-stat-row)){border-radius:12px;}
+.mfo-card .mfo-stat-row .k{font-size:12.5px;font-weight:700;color:#6b7c72;}
+.mfo-card .mfo-stat-row .v{font:800 14px/1.2 'Unbounded',sans-serif;color:var(--text);}
+.mfo-card .rrps-toggle{border-top:none;margin-top:2px;padding:8px 2px;font-size:12px;}
+.mfo-card .mfo-card-cta{flex-direction:column;gap:6px;padding:4px 0 0;}
+/* 3D-кнопка: «товщина» знизу + темніший блок зі стрілкою праворуч */
+.mfo-card .btn-primary{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  padding:15px 58px 15px 16px;font:900 15.5px/1 'Manrope',sans-serif;letter-spacing:.01em;color:#fff;border-radius:12px;
+  background:linear-gradient(135deg,#ff7a1a 0%,#ff5e00 100%);
+  box-shadow:0 4px 0 #c24600,0 10px 18px rgba(255,94,0,.28);transform:translateY(0);
+  transition:transform .12s ease,box-shadow .12s ease,filter .12s ease;}
+.mfo-card .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 0 #c24600,0 14px 24px rgba(255,94,0,.34);filter:brightness(1.04);}
+.mfo-card .btn-primary:active{transform:translateY(3px);box-shadow:0 1px 0 #c24600,0 4px 10px rgba(255,94,0,.25);}
+.mfo-card .btn-arrow{position:absolute;top:0;right:0;bottom:0;width:46px;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.16);font-size:18px;pointer-events:none;}
+/* Стан «заявку подано» */
+.mfo-applied-note{display:none;align-items:center;justify-content:center;gap:6px;font:800 12px/1.2 'Manrope',sans-serif;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:9px;padding:6px 8px;}
+.mfo-card.is-applied{border-color:#27ae60;box-shadow:0 0 0 2px rgba(39,174,96,.18),0 8px 22px rgba(39,174,96,.14);}
+.mfo-card.is-applied .mfo-applied-note{display:flex;}
+.mfo-card.is-applied .btn-primary{background:linear-gradient(135deg,#2ecc71 0%,#27ae60 100%);box-shadow:0 4px 0 #1b7a43,0 10px 18px rgba(39,174,96,.28);}
+.mfo-card.is-applied .btn-primary:active{box-shadow:0 1px 0 #1b7a43,0 4px 10px rgba(39,174,96,.25);}
+
+/* Блок «Як збільшити шанс» над списком */
+.apply-boost{background:#fff;border:1px solid #e2ebe5;border-radius:18px;padding:16px 18px;margin:4px 0 18px;box-shadow:0 4px 18px rgba(13,21,18,.04);}
+.ab-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}
+.ab-title{font:800 15px/1.3 'Manrope',sans-serif;color:var(--text);}
+.ab-count{flex:0 0 auto;font:800 12px/1 'Manrope',sans-serif;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:999px;padding:7px 12px;}
+.ab-count b{font-family:'Unbounded',sans-serif;}
+.ab-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.ab-step{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:10px 8px;border-radius:12px;background:#f7faf8;border:1px solid #e8efe9;transition:background .25s,border-color .25s;}
+.ab-step .ab-n{font-size:10.5px;font-weight:800;color:#6b7c72;text-transform:uppercase;letter-spacing:.05em;}
+.ab-step b{font:800 14px/1.2 'Manrope',sans-serif;color:var(--text);}
+.ab-step.is-done{background:#e9f7ef;border-color:#9fdcb7;}
+.ab-step.is-done b{color:#1e8449;}
+.ab-step.is-done .ab-n::before{content:"✓ ";color:#27ae60;}
+.ab-note{margin:12px 0 0;font-size:13px;line-height:1.5;color:#3d4c44;background:#fffaf0;border-left:3px solid var(--orange,#ff7a1a);border-radius:8px;padding:9px 12px;}
+
+/* Липка панель прогресу під шапкою */
+.apply-bar{position:fixed;top:68px;left:0;right:0;z-index:990;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #dfe9e3;box-shadow:0 6px 18px rgba(13,21,18,.06);transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .25s ease,opacity .25s ease;}
+.apply-bar.is-visible{transform:none;opacity:1;pointer-events:auto;}
+.apply-bar-inner{display:flex;align-items:center;gap:12px;padding:8px 24px;max-width:1240px;margin:0 auto;}
+.apb-chance{flex:0 0 auto;font:800 12px/1 'Manrope',sans-serif;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:8px;padding:7px 10px;}
+.apb-text{flex:1 1 auto;min-width:0;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.apb-slots{flex:0 0 auto;display:flex;gap:6px;}
+.apb-slot{max-width:120px;font:700 11.5px/1 'Manrope',sans-serif;color:#6b7c72;background:#f4f7f5;border:1px dashed #cfdcd4;border-radius:8px;padding:7px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+.apb-slot.is-filled{color:#1e8449;background:#e9f7ef;border:1px solid #9fdcb7;cursor:default;}
+.apply-bar.bump .apb-chance{animation:apbBump .5s ease;}
+@keyframes apbBump{0%,100%{transform:scale(1);}40%{transform:scale(1.15);}}
+
+@media(max-width:640px){
+  .mfo-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .mfo-card{padding:10px 9px 10px;border-radius:14px;}
+  .mfo-card-head{margin-bottom:7px;gap:4px;}
+  .mfo-rank{font-size:9.5px;padding:4px 5px;border-radius:6px;}
+  .mfo-card .mfo-card-badge{font-size:8.5px;padding:3px 5px;border-radius:6px;}
+  .mfo-card .mfo-card-badge::before{margin-right:3px;font-size:6px;}
+  .mfo-card .mfo-badges-row{gap:4px;margin:7px 0 0;}
+  .mfo-card .mfo-badge{font-size:9.5px;padding:4px 5px;border-radius:7px;line-height:1.2;}
+  .mfo-card .mfo-logo-wrap{height:44px;border-radius:9px;}
+  .mfo-card .mfo-logo-wrap img{max-height:32px;}
+  .mfo-card .mfo-logo-fallback{width:34px;height:34px;font-size:12px;border-radius:9px;}
+  .mfo-card .mfo-card-name{font-size:12.5px;}
+  .mfo-card .mfo-card-body{padding-top:7px;}
+  .mfo-card .mfo-stat-row{flex-direction:row;align-items:center;justify-content:space-between;gap:3px;padding:6px 5px;white-space:nowrap;}
+  .mfo-card .mfo-stat-row .k{font-size:8px;letter-spacing:-.01em;text-transform:none;font-weight:700;}
+  .mfo-card .mfo-stat-row .v{font:800 10px/1.2 'Manrope',sans-serif;letter-spacing:-.01em;}
+  .mfo-card .rrps-toggle{font-size:10.5px;padding:6px 1px;}
+  .mfo-card .btn-primary{padding:11px 32px 11px 8px;font-size:12px;border-radius:10px;white-space:nowrap;box-shadow:0 3px 0 #c24600,0 6px 12px rgba(255,94,0,.25);}
+  .mfo-card.is-applied .btn-primary{box-shadow:0 3px 0 #1b7a43,0 6px 12px rgba(39,174,96,.25);}
+  .mfo-card .btn-arrow{width:28px;font-size:14px;}
+  .mfo-applied-note{font-size:10px;padding:4px 5px;}
+  .apply-boost{padding:12px;border-radius:14px;margin-bottom:14px;}
+  .ab-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:10px;}
+  .ab-title{font-size:14px;}
+  .ab-steps{gap:6px;}
+  .ab-step{padding:8px 4px;}
+  .ab-step .ab-n{font-size:9px;}
+  .ab-step b{font-size:11.5px;}
+  .ab-note{font-size:12px;padding:8px 10px;}
+  .apply-bar-inner{padding:7px 12px;gap:8px;}
+  .apb-text{font-size:11.5px;}
+  .apb-slots{display:none;}
+}
+@media(max-width:360px){.mfo-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){.apply-bar,.mfo-card .btn-primary{transition:none;}.apply-bar.bump .apb-chance{animation:none;}}
+/* KZ/MX: довші бейджі реєстрації й суми в MXN — переносимо, а не виходимо за картку */
+@media(max-width:640px){
+  .mfo-card .mfo-card-badge{white-space:normal;text-align:center;line-height:1.15;min-width:0;}
+  .mfo-card .mfo-stat-row{white-space:normal;}
+  .mfo-card .mfo-stat-row .k{min-width:0;line-height:1.25;}
+  .mfo-card .mfo-stat-row .v{text-align:right;white-space:nowrap;}
+}
+
 </style>
+<script src="/assets/js/utm.js" defer></script>
 </head>
 <body>
 
@@ -921,6 +1044,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ===== FILTERS + GRID ===== -->
+  <!-- ===== Липка панель прогресу «2–3 заявки» ===== -->
+  <div class="apply-bar" id="apply-bar" aria-live="polite" aria-label="Прогресс заявок">
+    <div class="apply-bar-inner">
+      <span class="apb-chance">📈 Шанс <b id="apb-count">0/3</b></span>
+      <span class="apb-text" id="apb-text">Подайте заявку в 2–3 МФО — так больше шансов на одобрение</span>
+      <span class="apb-slots" id="apb-slots"></span>
+    </div>
+  </div>
+
   <section class="filters-section container" id="mfo-grid-anchor">
     <h2 class="section-title">Все предложения МФО</h2>
     <p class="section-sub" style="margin-bottom:10px;">Сортируйте по сумме, ставке или дате обновления — все предложения всегда доступны для просмотра.</p>
@@ -939,6 +1071,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="sort-btn" data-sort="cr-desc">💬 Рекомендовано клиентами</button>
       <button class="sort-btn" data-sort="epc-desc">💳 ТОП от TREBACASH</button>
       <button class="sort-btn" id="reset-calc-filter" style="display:none;background:#fdecea;border-color:#e74c3c;color:#e74c3c;">✕ Сбросить фильтр калькулятора</button>
+    </div>
+
+    <div class="apply-boost" id="apply-boost">
+      <div class="ab-head">
+        <span class="ab-title">📈 Как увеличить шанс получить деньги?</span>
+        <span class="ab-count">Выбрано: <b id="ab-count">0</b> / 3</span>
+      </div>
+      <div class="ab-steps">
+        <div class="ab-step" data-step="1"><span class="ab-n">1 заявка</span><b>Базовый шанс</b></div>
+        <div class="ab-step" data-step="2"><span class="ab-n">2 заявки</span><b>Выше шанс</b></div>
+        <div class="ab-step" data-step="3"><span class="ab-n">3 заявки</span><b>Наивысший шанс</b></div>
+      </div>
+      <p class="ab-note">📌 Каждая МФО принимает решение отдельно. Подайте заявку сразу в 2–3 компании — так больше шансов, что хотя бы одна одобрит нужную сумму.</p>
     </div>
 
     <p class="results-count" id="results-count"></p>
@@ -1387,15 +1532,19 @@ function cardHTML(m, idx) {
     badgesHTML += `<span class="mfo-badge color-gold">🔥 ${m.goldBadgeText}</span>`;
   }
 
+  const applied = isApplied(m.name);
   return `
-  <div class="mfo-card${newOffer ? ' mfo-card--new' : ''}">
+  <div class="mfo-card${newOffer ? ' mfo-card--new' : ''}${applied ? ' is-applied' : ''}" data-mfo="${String(m.name).replace(/"/g, '&quot;')}">
+    <div class="mfo-card-head">
+      <span class="mfo-rank">#${String(idx + 1).padStart(2, '0')}</span>
+      <span class="mfo-card-badge">${regBadgeText(m)}</span>
+    </div>
     <div class="mfo-card-top">
       <div class="mfo-logo-wrap">
         <img src="${m.logo && m.logo.startsWith('http') ? m.logo : '/mfo-logos/' + m.logo}" alt="${m.name}" loading="lazy"
              onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\\'mfo-logo-fallback\\' style=\\'background:${fbColor}\\'>${initials(m.name)}</div>';">
       </div>
       <div class="mfo-card-name">${m.name}</div>
-      <span class="mfo-card-badge">${regBadgeText(m)}</span>
     </div>
     <div class="mfo-badges-row">${badgesHTML}</div>
     <div class="mfo-card-body">
@@ -1412,7 +1561,8 @@ function cardHTML(m, idx) {
       </div>
     </div>
     <div class="mfo-card-cta">
-      <a class="btn-primary" href="${m.ref}" target="_blank" rel="sponsored nofollow noopener noreferrer">Подать заявку →</a>
+      <div class="mfo-applied-note">✓ Заявка подана</div>
+      <a class="btn-primary" href="${m.ref}" target="_blank" rel="sponsored nofollow noopener noreferrer">Подать заявку <span class="btn-arrow" aria-hidden="true">→</span></a>
     </div>
   </div>`;
 }
@@ -1460,8 +1610,92 @@ loadMoreBtn.addEventListener('click', () => {
   renderGrid();
 });
 
+
+/* ====== МЕХАНІКА «2–3 ЗАЯВКИ» (як на /porivnyannya-mfo/) ======
+   Клік «Подать заявку» додає МФО до обраних (sessionStorage), картка отримує позначку,
+   блок над списком і липка панель показують прогрес. Подія в dataLayer: multi_apply_add. */
+const APPLY_KEY = 'tcAppliedMfo';
+const APPLY_GOAL = 3;
+function getApplied() {
+  try { const v = JSON.parse(sessionStorage.getItem(APPLY_KEY) || '[]'); return Array.isArray(v) ? v : []; }
+  catch (e) { return []; }
+}
+function isApplied(name) { return getApplied().indexOf(name) !== -1; }
+function addApplied(name) {
+  const list = getApplied();
+  if (list.indexOf(name) !== -1) return list;
+  list.push(name);
+  try { sessionStorage.setItem(APPLY_KEY, JSON.stringify(list)); } catch (e) {}
+  return list;
+}
+const APPLY_TEXTS = [
+  'Подайте заявку в 2–3 МФО — так больше шансов на одобрение',
+  'Отлично! Добавьте ещё 1–2 МФО для более высокого шанса',
+  'Ещё одна заявка — и шанс наивысший',
+  '✓ Готово! Ожидайте решения от МФО'
+];
+function updateApplyUI(bump) {
+  const list = getApplied();
+  const n = list.length;
+  const shown = Math.min(n, APPLY_GOAL);
+  const abCount = document.getElementById('ab-count');
+  if (abCount) abCount.textContent = shown;
+  document.querySelectorAll('.ab-step').forEach(s => s.classList.toggle('is-done', n >= Number(s.dataset.step)));
+  const bar = document.getElementById('apply-bar');
+  if (!bar) return;
+  document.getElementById('apb-count').textContent = shown + '/' + APPLY_GOAL;
+  document.getElementById('apb-text').textContent = APPLY_TEXTS[Math.min(n, 3)];
+  const slots = document.getElementById('apb-slots');
+  let html = '';
+  for (let i = 0; i < APPLY_GOAL; i++) {
+    html += list[i]
+      ? `<span class="apb-slot is-filled" title="${list[i].replace(/"/g, '&quot;')}">✓ ${list[i]}</span>`
+      : `<span class="apb-slot" data-empty="1">МФО #${i + 1}</span>`;
+  }
+  slots.innerHTML = html;
+  if (bump) { bar.classList.remove('bump'); void bar.offsetWidth; bar.classList.add('bump'); }
+}
+document.getElementById('apb-slots')?.addEventListener('click', (e) => {
+  if (e.target.closest('[data-empty]')) {
+    document.getElementById('mfo-grid-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+grid.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn-primary');
+  if (!btn) return;
+  const card = btn.closest('.mfo-card');
+  const name = card && card.dataset.mfo;
+  if (!name) return;
+  const before = getApplied().length;
+  const list = addApplied(name);
+  card.classList.add('is-applied');
+  if (list.length !== before) {
+    updateApplyUI(true);
+    try { (window.dataLayer = window.dataLayer || []).push({ event: 'multi_apply_add', mfo_name: name, apply_count: list.length }); } catch (err) {}
+  }
+});
+(function () {
+  const bar = document.getElementById('apply-bar');
+  const section = document.getElementById('mfo-grid-anchor');
+  const header = document.getElementById('main-header');
+  if (!bar || !section) return;
+  function syncBar() {
+    const hb = header ? header.getBoundingClientRect().bottom : 68;
+    bar.style.top = Math.max(0, hb) + 'px';
+    const r = section.getBoundingClientRect();
+    const inGrid = r.top < hb + 40 && r.bottom > window.innerHeight * 0.5;
+    const ov = document.getElementById('top3-overlay');
+    const blocked = (ov && ov.classList.contains('is-open')) || document.getElementById('mobile-nav')?.classList.contains('open');
+    bar.classList.toggle('is-visible', inGrid && !blocked);
+  }
+  window.addEventListener('scroll', syncBar, { passive: true });
+  window.addEventListener('resize', syncBar);
+  syncBar();
+})();
+
 /* Initial render */
 renderGrid();
+updateApplyUI(false);
 
 /* ====== COUNTER ANIMATION for hero stats ====== */
 function animateCounter(el, target, duration = 1400) {

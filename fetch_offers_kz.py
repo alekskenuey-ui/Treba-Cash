@@ -125,10 +125,21 @@ def determine_badge(sum_val, term_val):
     return ("Выгодные условия для новых клиентов", "green")
 
 
+# Суми від власника для оферів, по яких API PDL-Profit віддає 0 (19.11.2026).
+# Застосовуються лише коли API повертає 0 — якщо PDL почне віддавати суму, береться вона.
+SUM_OVERRIDES = {
+    "1159": 150000,  # CreditPlus
+    "3615": 200000,  # Limecredit
+    "3923": 400000,  # MegaZaim
+}
+
+
 def transform_offer(offer, requisites):
     name = clean_name(offer.get("name", ""))
 
     first_credit_sum = to_int(offer.get("first_credit") or offer.get("credit"), 0)
+    if first_credit_sum <= 0:
+        first_credit_sum = SUM_OVERRIDES.get(str(offer.get("id")), first_credit_sum)
     term = to_int(offer.get("term") or offer.get("days"), 30)
 
     first_pct = to_float(offer.get("first_credit_percent"), None)
