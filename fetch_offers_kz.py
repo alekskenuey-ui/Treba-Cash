@@ -133,6 +133,13 @@ SUM_OVERRIDES = {
     "3923": 400000,  # MegaZaim
 }
 
+# Бейдж «Первый займ под 0%» від власника (19.11.2026) для оферів, по яких API не дає ставку
+# або дає вищу. Діє, лише якщо автоматичний бейдж не з'явився.
+ZERO_BADGE_OVERRIDES = {
+    "3983": "Первый займ под 0%*",  # Banando
+    "3923": "Первый займ под 0%*",  # MegaZaim
+}
+
 
 def transform_offer(offer, requisites):
     name = clean_name(offer.get("name", ""))
@@ -150,6 +157,10 @@ def transform_offer(offer, requisites):
     rate_max = round(standard_pct * 365, 1) if standard_pct is not None else rate_min
 
     has_zero_badge = first_pct is not None and first_pct <= 0.5
+    gold_override = None
+    if not has_zero_badge and str(offer.get("id")) in ZERO_BADGE_OVERRIDES:
+        has_zero_badge = True
+        gold_override = ZERO_BADGE_OVERRIDES[str(offer.get("id"))]
 
     badge_text, badge_color = determine_badge(first_credit_sum, term)
 
@@ -176,7 +187,8 @@ def transform_offer(offer, requisites):
         "badgeColor": badge_color,
         "hasZeroBadge": has_zero_badge,
         "goldBadgeText": (
-            f"Первый займ под {first_pct}%*" if has_zero_badge and first_pct is not None
+            gold_override if gold_override
+            else f"Первый займ под {first_pct}%*" if has_zero_badge and first_pct is not None
             else "Первый займ под 0,01%*" if has_zero_badge else None
         ),
         "legal": req.get("legal") or api_legal_info,
