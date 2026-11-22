@@ -8,7 +8,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WVVDCSG7');</script>
 <!-- End Google Tag Manager -->
-<script src="https://pdl-profit.com/static/js/tools/GA4.js" data-ga-measure-id="GTM-WVVDCSG7"></script>
+<script src="https://pdl-profit.com/static/js/tools/GA4.js" data-ga-measure-id="G-F44NSFNG50"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-adsense-account" content="ca-pub-5215445288000140">
@@ -393,6 +393,8 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 .mfo-card .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 0 #c24600,0 14px 24px rgba(255,94,0,.34);filter:brightness(1.04);}
 .mfo-card .btn-primary:active{transform:translateY(3px);box-shadow:0 1px 0 #c24600,0 4px 10px rgba(255,94,0,.25);}
 .mfo-card .btn-arrow{position:absolute;top:0;right:0;bottom:0;width:46px;display:flex;align-items:center;justify-content:center;
+/* Клік по стрілці має зараховуватись як клік по кнопці (GTM дивиться на клас btn-primary) */
+.mfo-card .btn-arrow{pointer-events:none;}
   background:rgba(0,0,0,.16);font-size:18px;pointer-events:none;}
 /* Стан «заявку подано» */
 .mfo-applied-note{display:none;align-items:center;justify-content:center;gap:6px;font:800 12px/1.2 'Manrope',sans-serif;color:#1e8449;background:#e9f7ef;border:1px solid #c4ead3;border-radius:9px;padding:6px 8px;}
@@ -2014,5 +2016,39 @@ if (requisitesGrid) {
 })();
 </script>
 
+<script>
+/* Клік по оферу → dataLayer: { event: 'offer_click', mfo_name, offer_position, offer_block }.
+   Ловимо будь-яке посилання на PDL (картки, ТОП-3, інші блоки) у фазі capture, незалежно від того,
+   по якому дочірньому елементу кнопки клікнули. У GTM: тригер «Спеціальна подія» = offer_click. */
+(function () {
+  var PDL = /(^|\.)(pdl-profit\.com|pdlp\.com|track-pdlp\.com)$/i;
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var host = '';
+    try { host = new URL(a.href, location.href).hostname; } catch (err) { return; }
+    if (!PDL.test(host)) return;
+    var card = a.closest('.mfo-card'), top3 = a.closest('.top3-row');
+    var name = '', pos = '', block = 'other';
+    if (card) {
+      block = 'card';
+      name = card.getAttribute('data-mfo') || ((card.querySelector('.mfo-card-name') || {}).textContent || '');
+      pos = ((card.querySelector('.mfo-rank') || {}).textContent || '').replace(/[^0-9]/g, '');
+    } else if (top3) {
+      block = a.closest('#top3-list-rec') ? 'top3_rec' : 'top3';
+      name = (top3.querySelector('.top3-row-name') || {}).textContent || '';
+      pos = ((top3.querySelector('.top3-row-rank') || {}).textContent || '').replace(/[^0-9]/g, '');
+    }
+    try {
+      (window.dataLayer = window.dataLayer || []).push({
+        event: 'offer_click',
+        mfo_name: String(name).trim(),
+        offer_position: pos ? Number(pos) : null,
+        offer_block: block
+      });
+    } catch (err) {}
+  }, true);
+})();
+</script>
 </body>
 </html>
