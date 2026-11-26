@@ -1,6 +1,8 @@
 {
-  "generatedAt": "2026-11-26T07:07:59.176882+00:00",
+  "generatedAt": "2026-11-26T14:15:06.810568+00:00",
   "count": 43,
+  "statsDays": 60,
+  "recentDays": 5,
   "offers": [
     {
       "id": 1147,
@@ -19,7 +21,19 @@
       "edrpou": "42753492",
       "address": "м. Київ, вул. Дніпровська наб., 25, п. 318",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 37.32,
+      "crNet": 2.27,
+      "stats60": {
+        "uniqs": 30,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 4,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1148,
@@ -38,7 +52,19 @@
       "edrpou": "40484607",
       "address": "м. Київ, вул. Багговутівська, 17-21",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 27.1,
+      "crNet": 1.88,
+      "stats60": {
+        "uniqs": 6,
+        "approved": 1,
+        "payout": 2380.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1154,
@@ -57,7 +83,19 @@
       "edrpou": "39861924",
       "address": "01010, м. Київ, пл. Арсенальна, 1-Б",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 55.46,
+      "crNet": 4.45,
+      "stats60": {
+        "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1158,
@@ -76,7 +114,19 @@
       "edrpou": "41078230",
       "address": "03062, м. Київ, пр-т Перемоги, 90-А",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 30.29,
+      "crNet": 3.11,
+      "stats60": {
+        "uniqs": 12,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1160,
@@ -95,7 +145,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 43.2,
+      "crNet": 3.32,
+      "stats60": {
+        "uniqs": 14,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1172,
@@ -114,7 +176,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 21.0,
+      "crNet": 1.46,
+      "stats60": {
+        "uniqs": 12,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1203,
@@ -133,7 +207,19 @@
       "edrpou": "38548598",
       "address": "01133, м. Київ, бул. Лесі Українки, 26, оф. 407",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 54.44,
+      "crNet": 3.42,
+      "stats60": {
+        "uniqs": 49,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1306,
@@ -152,7 +238,19 @@
       "edrpou": "43067861",
       "address": "49057, м. Дніпро, пр. Б. Хмельницького, 180, оф. 211",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 42.76,
+      "crNet": 2.12,
+      "stats60": {
+        "uniqs": 37,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1372,
@@ -171,7 +269,19 @@
       "edrpou": "42350798",
       "address": "04107, м. Київ, пр. Перемоги, 90-А",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 61.79,
+      "crNet": 3.01,
+      "stats60": {
+        "uniqs": 112,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 17,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1374,
@@ -190,7 +300,19 @@
       "edrpou": "37356833",
       "address": "01032, м. Київ, вул. Саксаганського, 133-А",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 49.34,
+      "crNet": 3.22,
+      "stats60": {
+        "uniqs": 43,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 5,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1668,
@@ -209,7 +331,19 @@
       "edrpou": "40484607",
       "address": "м. Київ, вул. Багговутівська, 17-21",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 26.58,
+      "crNet": 2.63,
+      "stats60": {
+        "uniqs": 17,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1687,
@@ -228,7 +362,19 @@
       "edrpou": "42152351",
       "address": "02002, м. Київ, вул. Митрополита Андрея Шептицького, 4А",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 16.93,
+      "crNet": 1.99,
+      "stats60": {
+        "uniqs": 30,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1777,
@@ -247,7 +393,19 @@
       "edrpou": null,
       "address": "м. Київ, вул. Жилянська, 101, оф. 601",
       "phone": "0 800 30 30 32",
-      "email": "office@cashpoint.ua"
+      "email": "office@cashpoint.ua",
+      "epcNet": 13.29,
+      "crNet": 1.33,
+      "stats60": {
+        "uniqs": 64,
+        "approved": 2,
+        "payout": 2000.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1903,
@@ -266,7 +424,19 @@
       "edrpou": "43174156",
       "address": "04071, м. Київ, вул. Ярославська, 5/2В",
       "phone": "(044) 498 68 98",
-      "email": "info@aviracredit.com.ua"
+      "email": "info@aviracredit.com.ua",
+      "epcNet": 18.02,
+      "crNet": 2.51,
+      "stats60": {
+        "uniqs": 10,
+        "approved": 1,
+        "payout": 1020.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1906,
@@ -285,7 +455,19 @@
       "edrpou": "42146903",
       "address": "04071, м. Київ, вул. Ярославська, 5/2В",
       "phone": "(044) 390 03 32",
-      "email": "info@cly.com.ua"
+      "email": "info@cly.com.ua",
+      "epcNet": 4.64,
+      "crNet": 0.73,
+      "stats60": {
+        "uniqs": 16,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 1910,
@@ -304,7 +486,19 @@
       "edrpou": "43979069",
       "address": "04070, м. Київ, вул. Сковороди Григорія, 1",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 60.82,
+      "crNet": 2.76,
+      "stats60": {
+        "uniqs": 10,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2230,
@@ -323,7 +517,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 11.08,
+      "crNet": 1.05,
+      "stats60": {
+        "uniqs": 159,
+        "approved": 1,
+        "payout": 468.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2236,
@@ -342,7 +548,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 28.21,
+      "crNet": 1.43,
+      "stats60": {
+        "uniqs": 83,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 6,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2239,
@@ -361,7 +579,19 @@
       "edrpou": "41084239",
       "address": "м. Київ, вул. Ген. Алмазова, 13, оф. 524",
       "phone": "0800 211 503",
-      "email": "office@tpozyka.com"
+      "email": "office@tpozyka.com",
+      "epcNet": 65.49,
+      "crNet": 2.61,
+      "stats60": {
+        "uniqs": 29,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2296,
@@ -380,7 +610,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 23.13,
+      "crNet": 2.72,
+      "stats60": {
+        "uniqs": 115,
+        "approved": 1,
+        "payout": 850.0
+      },
+      "stats5": {
+        "uniqs": 9,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2336,
@@ -399,7 +641,19 @@
       "edrpou": "43561909",
       "address": "79018, м. Львів, вул. Смаль-Стоцького, 1, корп. 28",
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 20.96,
+      "crNet": 2.74,
+      "stats60": {
+        "uniqs": 30,
+        "approved": 1,
+        "payout": 710.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2368,
@@ -418,7 +672,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 56.89,
+      "crNet": 3.36,
+      "stats60": {
+        "uniqs": 20,
+        "approved": 2,
+        "payout": 2890.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2413,
@@ -437,7 +703,19 @@
       "edrpou": null,
       "address": "61072, м. Харків, вул. Отакара Яроша, 24Б",
       "phone": "+380 67 561-38-04",
-      "email": "hello@lovilave.com.ua"
+      "email": "hello@lovilave.com.ua",
+      "epcNet": 11.39,
+      "crNet": 1.24,
+      "stats60": {
+        "uniqs": 16,
+        "approved": 1,
+        "payout": 1700.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2448,
@@ -456,7 +734,19 @@
       "edrpou": "43601144",
       "address": "01054, м. Київ, вул. Франка Івана, 40б, оф. 206",
       "phone": "0 800 33-34-34",
-      "email": "info@prostocredit.com.ua"
+      "email": "info@prostocredit.com.ua",
+      "epcNet": 6.7,
+      "crNet": 0.65,
+      "stats60": {
+        "uniqs": 54,
+        "approved": 2,
+        "payout": 1580.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2605,
@@ -475,7 +765,19 @@
       "edrpou": "44022416",
       "address": "03150, м. Київ, вул. Велика Васильківська, 72",
       "phone": "0 800 202 233",
-      "email": "info@starfin.com.ua"
+      "email": "info@starfin.com.ua",
+      "epcNet": 69.59,
+      "crNet": 3.56,
+      "stats60": {
+        "uniqs": 11,
+        "approved": 2,
+        "payout": 3950.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2700,
@@ -494,7 +796,19 @@
       "edrpou": "44620708",
       "address": "01135, м. Київ, вул. Жилянська, 101, оф. 3",
       "phone": "+38 044 337 03 37",
-      "email": "info@pango.com.ua"
+      "email": "info@pango.com.ua",
+      "epcNet": 108.11,
+      "crNet": 4.91,
+      "stats60": {
+        "uniqs": 17,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2707,
@@ -513,7 +827,19 @@
       "edrpou": "40484607",
       "address": "04107, м. Київ, вул. Багговутівська, 17-21",
       "phone": "+380443370033",
-      "email": "info@amigo.com.ua"
+      "email": "info@amigo.com.ua",
+      "epcNet": 3.0,
+      "crNet": 0.37,
+      "stats60": {
+        "uniqs": 71,
+        "approved": 1,
+        "payout": 790.0
+      },
+      "stats5": {
+        "uniqs": 5,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2756,
@@ -532,7 +858,19 @@
       "edrpou": null,
       "address": "03150, м. Київ, вул. Казимира Малевича, 86Е",
       "phone": "0 800 310-422",
-      "email": "info@treba.credit"
+      "email": "info@treba.credit",
+      "epcNet": 22.35,
+      "crNet": 2.21,
+      "stats60": {
+        "uniqs": 23,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 4,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2803,
@@ -551,7 +889,19 @@
       "edrpou": null,
       "address": "01015, м. Київ, вул. Лейпцизька, 15-Б, пов. 4",
       "phone": "0800 351 341",
-      "email": "support@limon-credit.com.ua"
+      "email": "support@limon-credit.com.ua",
+      "epcNet": 10.55,
+      "crNet": 2.54,
+      "stats60": {
+        "uniqs": 7,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2838,
@@ -570,7 +920,19 @@
       "edrpou": null,
       "address": "03150, м. Київ, вул. Казимира Малевича, 86Е",
       "phone": "0800310433",
-      "email": "info@lehko.credit"
+      "email": "info@lehko.credit",
+      "epcNet": 18.96,
+      "crNet": 2.36,
+      "stats60": {
+        "uniqs": 41,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 2878,
@@ -589,7 +951,19 @@
       "edrpou": "44022416",
       "address": "03150, м. Київ, вул. Фізкультури, 30В",
       "phone": "0800 202 262",
-      "email": "info@suncredit.com.ua"
+      "email": "info@suncredit.com.ua",
+      "epcNet": 14.97,
+      "crNet": 2.18,
+      "stats60": {
+        "uniqs": 23,
+        "approved": 1,
+        "payout": 680.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3001,
@@ -608,7 +982,19 @@
       "edrpou": null,
       "address": "01001, м. Київ, вул. Ірининська, 5/24, оф. 97а",
       "phone": "0 800 400004",
-      "email": "info@turbogroshi.com.ua"
+      "email": "info@turbogroshi.com.ua",
+      "epcNet": 17.25,
+      "crNet": 4.71,
+      "stats60": {
+        "uniqs": 177,
+        "approved": 6,
+        "payout": 1890.0
+      },
+      "stats5": {
+        "uniqs": 11,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3384,
@@ -627,7 +1013,19 @@
       "edrpou": "39898755",
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2",
       "phone": "0 800 205 020",
-      "email": "support@rocketmoney.com.ua"
+      "email": "support@rocketmoney.com.ua",
+      "epcNet": 26.31,
+      "crNet": 1.99,
+      "stats60": {
+        "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3577,
@@ -646,7 +1044,19 @@
       "edrpou": null,
       "address": "49041, м. Дніпро, вул. Стартова, 7, оф. 403",
       "phone": "0 800 302 042",
-      "email": "fk.finmarket@gmail.com"
+      "email": "fk.finmarket@gmail.com",
+      "epcNet": 4.57,
+      "crNet": 0.72,
+      "stats60": {
+        "uniqs": 42,
+        "approved": 2,
+        "payout": 1270.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 1,
+        "payout": 635.0
+      }
     },
     {
       "id": 3603,
@@ -665,7 +1075,19 @@
       "edrpou": "39898755",
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2",
       "phone": "0 800 206 020",
-      "email": "support@rocketmoney.com.ua"
+      "email": "support@rocketmoney.com.ua",
+      "epcNet": 23.13,
+      "crNet": 1.58,
+      "stats60": {
+        "uniqs": 49,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 5,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3617,
@@ -684,7 +1106,19 @@
       "edrpou": "41919810",
       "address": "01133, м. Київ, вул. Ген. Алмазова, 13, оф. 301",
       "phone": "0 800 20 35 35",
-      "email": "info@ranok.ua"
+      "email": "info@ranok.ua",
+      "epcNet": 16.85,
+      "crNet": 6.79,
+      "stats60": {
+        "uniqs": 174,
+        "approved": 10,
+        "payout": 2350.0
+      },
+      "stats5": {
+        "uniqs": 7,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3683,
@@ -703,7 +1137,19 @@
       "edrpou": "36413053",
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2, оф. 9-14",
       "phone": "0 800 205 353",
-      "email": "support@finclick.com.ua"
+      "email": "support@finclick.com.ua",
+      "epcNet": 18.4,
+      "crNet": 2.06,
+      "stats60": {
+        "uniqs": 37,
+        "approved": 1,
+        "payout": 1500.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3685,
@@ -722,7 +1168,19 @@
       "edrpou": "41919810",
       "address": "01133, м. Київ, вул. Ген. Алмазова, 13, оф. 301",
       "phone": "0 800 20 35 35",
-      "email": "info@ranok.ua"
+      "email": "info@ranok.ua",
+      "epcNet": 31.19,
+      "crNet": 1.95,
+      "stats60": {
+        "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3737,
@@ -741,7 +1199,19 @@
       "edrpou": "36413053",
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2, оф. 9-14",
       "phone": "0 800 205 353",
-      "email": "support@finclick.com.ua"
+      "email": "support@finclick.com.ua",
+      "epcNet": 33.93,
+      "crNet": 2.8,
+      "stats60": {
+        "uniqs": 34,
+        "approved": 1,
+        "payout": 1445.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3949,
@@ -760,7 +1230,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 3.11,
+      "crNet": 0.48,
+      "stats60": {
+        "uniqs": 8,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3967,
@@ -779,7 +1261,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 19.42,
+      "crNet": 0.7,
+      "stats60": {
+        "uniqs": 494,
+        "approved": 4,
+        "payout": 6320.0
+      },
+      "stats5": {
+        "uniqs": 43,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 3993,
@@ -798,7 +1292,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 24.8,
+      "crNet": 1.85,
+      "stats60": {
+        "uniqs": 228,
+        "approved": 2,
+        "payout": 1050.0
+      },
+      "stats5": {
+        "uniqs": 31,
+        "approved": 0,
+        "payout": 0.0
+      }
     },
     {
       "id": 4031,
@@ -817,7 +1323,19 @@
       "edrpou": null,
       "address": null,
       "phone": null,
-      "email": null
+      "email": null,
+      "epcNet": 19.28,
+      "crNet": 1.93,
+      "stats60": {
+        "uniqs": 30,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 11,
+        "approved": 0,
+        "payout": 0.0
+      }
     }
   ]
 }

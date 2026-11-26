@@ -13,7 +13,7 @@ import json
 import re
 import urllib.request
 import urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 API_KEY = os.environ.get("PDL_API_KEY")
 if not API_KEY:
@@ -26,6 +26,13 @@ API_URL = f"https://pdl-profit.com/partnerapi/offers/data?api_key={API_KEY}&coun
 # ── Реквізити та дані, яких немає в API (юрособа, ЄДРПОУ, адреса) ──
 # Підтягуються з окремого локального файлу requisites.json (не з API)
 REQUISITES_FILE = "requisites.json"
+
+# ── Наша статистика по оферах (для «розумного» топу на вітрині) ──
+# Беремо ковзне вікно STATS_DAYS днів (API дозволяє до 70).
+STATS_DAYS = 60
+# Коротке вікно: новий офер без апрувів за ці дні вилітає з блоку «нових» на вітрині
+RECENT_DAYS = 5
+STATS_URL = "https://pdl-profit.com/partnerapi/statistic"
 
 
 def fetch_offers():
@@ -63,6 +70,85 @@ def fetch_offers():
         page += 1
 
     return all_offers
+
+
+def _num(val):
+    try:
+        return float(str(val).replace(",", ".").replace(" ", ""))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _item_offer_key(item):
+    """Повертає (id, name) оферу з рядка статистики tab=offer.
+    Формат рядка в документації PDL не описаний, тому шукаємо кілька варіантів."""
+    off = item.get("offer")
+    oid, name = None, None
+    if isinstance(off, dict):
+        oid = off.get("id") or off.get("offer_id")
+        name = off.get("name") or off.get("title")
+    elif off is not None:
+        name = str(off)
+    oid = oid or item.get("offer_id") or item.get("id")
+    name = name or item.get("offer_name") or item.get("name") or item.get("title")
+    if name and not oid:
+        m = re.search(r"\((\d+)\)", str(name))
+        if m:
+            oid = m.group(1)
+    try:
+        oid = int(oid) if oid is not None else None
+    except (TypeError, ValueError):
+        oid = None
+    return oid, clean_name(str(name)) if name else None
+
+
+def fetch_own_stats(days=STATS_DAYS):
+    """Наша статистика по оферах за останні days днів:
+    {id або назва: {"uniqs", "approved", "payout"}}. Якщо API недоступний —
+    повертає {} і сайт сортує як раніше (помилка тут не зупиняє оновлення оферів)."""
+    to_d = datetime.now(timezone.utc).date()
+    from_d = to_d - timedelta(days=days)
+    stats, page, pages = {}, 1, 1
+    try:
+        while page <= pages and page <= 20:
+            url = (f"{STATS_URL}?api_key={API_KEY}&tab=offer&from={from_d}&to={to_d}"
+                   f"&country=UA&pp=100&page={page}")
+            req = urllib.request.Request(url, headers={"User-Agent": "TrebaCash-Bot/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            if payload.get("status") != "success":
+                print(f"⚠️ Statistic API: {payload.get('message')}")
+                return {}
+            data = payload.get("data") or {}
+            items = data.get("items") if isinstance(data, dict) else data
+            items = items or []
+            if page == 1 and items:
+                print(f"   Statistic API: поля рядка {sorted(items[0].keys())}")
+            for it in items:
+                oid, name = _item_offer_key(it)
+                if oid is None and not name:
+                    continue
+                row = {
+                    "uniqs": int(_num(it.get("uniqs"))),
+                    "approved": int(_num(it.get("approved"))),
+                    "payout": round(_num(it.get("payout")), 2),
+                }
+                for key in (oid, name):
+                    if key is None:
+                        continue
+                    prev = stats.get(key)
+                    if prev:
+                        for f in row:
+                            prev[f] += row[f]
+                    else:
+                        stats[key] = dict(row)
+            pages = int(_num(payload.get("pages") or (data.get("pages") if isinstance(data, dict) else 1) or 1))
+            page += 1
+    except Exception as e:  # мережа, JSON, формат — не валимо весь крок
+        print(f"⚠️ Не вдалося отримати статистику по оферах: {e}")
+        return {}
+    print(f"📊 Статистика по оферах за {days} днів: {len([k for k in stats if isinstance(k, int)])} оферів з ID")
+    return stats
 
 
 def load_requisites():
@@ -154,6 +240,9 @@ def transform_offer(offer, requisites):
         "address": req.get("address"),
         "phone": req.get("phone"),
         "email": req.get("email"),
+        # Мережеві показники PDL (усі вебмайстри) — апріорна оцінка для нових оферів
+        "epcNet": to_float(offer.get("epc_general"), None),
+        "crNet": to_float(offer.get("cr_general"), None),
     }
 
 
@@ -167,9 +256,23 @@ def main():
 
     transformed = [transform_offer(o, requisites) for o in raw_offers]
 
+    own = fetch_own_stats(STATS_DAYS)
+    recent = fetch_own_stats(RECENT_DAYS) if own else {}
+    matched = 0
+    for o in transformed:
+        st = own.get(o.get("id")) or own.get(o.get("name"))
+        if st:
+            o["stats60"] = st
+            matched += 1
+        if recent:
+            o["stats5"] = recent.get(o.get("id")) or recent.get(o.get("name")) or {"uniqs": 0, "approved": 0, "payout": 0.0}
+    print(f"🔗 Статистику зіставлено з {matched} оферами")
+
     output = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "count": len(transformed),
+        "statsDays": STATS_DAYS if own else None,
+        "recentDays": RECENT_DAYS if recent else None,
         "offers": transformed,
     }
 

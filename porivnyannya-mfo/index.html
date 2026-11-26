@@ -1849,6 +1849,59 @@ promoCheckbox?.addEventListener('change', () => {
 })();
 
 /* ====== SORTING LOGIC ====== */
+/* ====== «РОЗУМНИЙ» ТОП для «Новіші спочатку» ======
+   Рейтинг оферу = згладжений EPC:
+     (наша виплата + K × мережевий EPC) / (наші уніки + K)
+   Наші уніки/виплати за 60 днів (stats60) і мережевий EPC (epcNet) щодня
+   підтягує fetch_offers.py з PDL API у mfo-live-data.json.
+   Порядок: 1 — перевірений офер, 2 — найкращий новий, 3 — перевірений,
+   далі решта нових (за рейтингом), потім усі інші (за рейтингом).
+   Перевірений = не новий, ≥ 30 уніків і ≥ 1 апрув за 60 днів; позиції 1 і 3
+   щодня ротуються серед 4 найкращих перевірених.
+   Новий = ранг у MFO_SENIORITY ≥ SMART_NEW_RANK; новий, у якого за останні
+   5 днів (stats5) ≥ SMART_NEW_FAIL_UNIQS уніків і 0 апрувів, вилітає з блоку нових і
+   стає звичайним офером (сортується за рейтингом). */
+const SMART_K = 25;
+const SMART_MIN_PROVEN_UNIQS = 30;
+const SMART_NEW_RANK = 38;
+const SMART_ROTATE_TOP = 4;
+const SMART_NEW_FAIL_UNIQS = 30; // новий вилітає, якщо за 5 днів ≥ 30 уніків і 0 апрувів
+function smartTopSort(arr, seniorityVal) {
+  const hasStats = arr.some(m => m && m.stats60 && Number(m.stats60.uniqs) > 0);
+  if (!hasStats) return null;
+  const nets = arr.map(m => Number(m.epcNet)).filter(x => Number.isFinite(x) && x > 0).sort((a, b) => a - b);
+  const median = nets.length ? nets[Math.floor(nets.length / 2)] : 25;
+  const prior = (m) => {
+    const n = Number(m.epcNet);
+    if (Number.isFinite(n) && n > 0) return n;
+    const t = (typeof MFO_EPC === 'object' && MFO_EPC) ? Number(MFO_EPC[m.name]) : NaN;
+    return Number.isFinite(t) && t > 0 ? t : median;
+  };
+  const info = arr.map(m => {
+    const st = m.stats60 || {};
+    const u = Number(st.uniqs) || 0, a = Number(st.approved) || 0, p = Number(st.payout) || 0;
+    const r5 = m.stats5 || null;
+    const failedRecently = !!r5 && (Number(r5.uniqs) || 0) >= SMART_NEW_FAIL_UNIQS && (Number(r5.approved) || 0) === 0;
+    const isNew = seniorityVal(m) >= SMART_NEW_RANK && !failedRecently;
+    return { m, u, a, isNew, score: (p + SMART_K * prior(m)) / (u + SMART_K) };
+  });
+  const byScore = (x, y) => y.score - x.score;
+  const proven = info.filter(x => !x.isNew && x.u >= SMART_MIN_PROVEN_UNIQS && x.a > 0).sort(byScore);
+  const fresh = info.filter(x => x.isNew).sort(byScore);
+  if (!proven.length) return null;
+  const day = Math.floor(Date.now() / 864e5);
+  const pool = proven.slice(0, Math.min(SMART_ROTATE_TOP, proven.length));
+  const first = pool[day % pool.length];
+  const third = pool.length > 1 ? pool[(day + 1) % pool.length] : null;
+  const top = [first, fresh[0], third].filter(Boolean);
+  const used = new Set(top);
+  const rest = [
+    ...fresh.filter(x => !used.has(x)),
+    ...info.filter(x => !x.isNew && !used.has(x)).sort(byScore),
+  ];
+  return [...top, ...rest].map(x => x.m);
+}
+
 function sortData(data) {
   const arr = [...data];
   const seniorityVal = (m) => {
@@ -1870,7 +1923,18 @@ function sortData(data) {
   switch (state.sort) {
     case 'sum-desc': return arr.sort((a, b) => b.sum - a.sum);
     case 'rate-asc': return arr.sort((a, b) => rateVal(a) - rateVal(b));
-    case 'date-new': return arr.sort((a, b) => seniorityVal(b) - seniorityVal(a)); // найновіші (найбільший ранг) — спочатку
+    case 'date-new': {
+      // «Розумний» топ; якщо PDL не віддав статистику — рейтинг за CR
+      // (мережевий crNet з живого фіду, інакше таблиця MFO_CR).
+      const smart = smartTopSort(arr, seniorityVal);
+      if (smart) return smart;
+      const crFallback = (m) => {
+        const n = Number(m.crNet);
+        if (Number.isFinite(n) && n > 0) return n;
+        return crVal(m);
+      };
+      return arr.sort((a, b) => crFallback(b) - crFallback(a));
+    }
     case 'date-old': return arr.sort((a, b) => seniorityVal(a) - seniorityVal(b)); // найстаріші (ранг 1) — спочатку
     case 'cr-desc': return arr.sort((a, b) => crVal(b) - crVal(a));
     case 'epc-desc': return arr.sort((a, b) => epcVal(b) - epcVal(a));
