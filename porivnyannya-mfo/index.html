@@ -2133,15 +2133,21 @@ grid.addEventListener('click', (e) => {
 
 
 /* ====== НИЖНЯ ПАНЕЛЬ «ТОП-3 ПРОПОЗИЦІЇ СЬОГОДНІ» ======
-   Фіксований набір оферів. Дані (лого, сума, строк, посилання) беруться з MFO_DATA,
-   тож оновлюються разом з фідом. Панель з'являється після прокрутки першого екрана,
+   Три офери з найвищим загальним CR по мережі PDL (crNet = cr_general з фіду,
+   оновлюється щодня; якщо його немає — таблиця MFO_CR). Дані (лого, сума,
+   строк, посилання) беруться з MFO_DATA, тож оновлюються разом з фідом. Панель з'являється після прокрутки першого екрана,
    ховається біля футера, при відкритому меню / попапі топ-3 і після закриття (на сесію). */
 function renderDock() {
-  const DOCK_MFO = ['Minibank', 'FreshCash', 'Finstep.Space'];
   const DOCK_LABELS = ['👑 #1 Лідер', '#2 Онлайн', '#3 Онлайн'];
   const box = document.getElementById('t3d-grid');
   if (!box) return;
-  const items = DOCK_MFO.map(n => MFO_DATA.find(m => m.name === n)).filter(Boolean);
+  const dockCr = (m) => {
+    const n = Number(m.crNet);
+    if (Number.isFinite(n) && n > 0) return n;
+    const t = (typeof MFO_CR === 'object' && MFO_CR) ? Number(MFO_CR[m.name]) : NaN;
+    return Number.isFinite(t) ? t : -Infinity;
+  };
+  const items = [...MFO_DATA].sort((a, b) => dockCr(b) - dockCr(a)).slice(0, 3);
   if (!items.length) { box.innerHTML = ''; return; }
   box.innerHTML = items.map((m, i) => {
     const logo = m.logo && m.logo.startsWith('http') ? m.logo : '/mfo-logos/' + m.logo;
