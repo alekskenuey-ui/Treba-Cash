@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-11-26T14:10:16.758427+00:00",
+  "generatedAt": "2026-11-26T14:15:06.810568+00:00",
   "count": 43,
   "statsDays": 60,
+  "recentDays": 5,
   "offers": [
     {
       "id": 1147,
@@ -25,6 +26,11 @@
       "crNet": 2.27,
       "stats60": {
         "uniqs": 30,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 4,
         "approved": 0,
         "payout": 0.0
       }
@@ -53,6 +59,11 @@
         "uniqs": 6,
         "approved": 1,
         "payout": 2380.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -77,6 +88,11 @@
       "crNet": 4.45,
       "stats60": {
         "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
         "approved": 0,
         "payout": 0.0
       }
@@ -105,6 +121,11 @@
         "uniqs": 12,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -129,6 +150,11 @@
       "crNet": 3.32,
       "stats60": {
         "uniqs": 14,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -157,6 +183,11 @@
         "uniqs": 12,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -181,6 +212,11 @@
       "crNet": 3.42,
       "stats60": {
         "uniqs": 49,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
         "approved": 0,
         "payout": 0.0
       }
@@ -209,6 +245,11 @@
         "uniqs": 37,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -233,6 +274,11 @@
       "crNet": 3.01,
       "stats60": {
         "uniqs": 112,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 17,
         "approved": 0,
         "payout": 0.0
       }
@@ -261,6 +307,11 @@
         "uniqs": 43,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 5,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -285,6 +336,11 @@
       "crNet": 2.63,
       "stats60": {
         "uniqs": 17,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -313,6 +369,11 @@
         "uniqs": 30,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -339,6 +400,11 @@
         "uniqs": 64,
         "approved": 2,
         "payout": 2000.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -365,6 +431,11 @@
         "uniqs": 10,
         "approved": 1,
         "payout": 1020.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -389,6 +460,11 @@
       "crNet": 0.73,
       "stats60": {
         "uniqs": 16,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -417,6 +493,11 @@
         "uniqs": 10,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -443,6 +524,11 @@
         "uniqs": 159,
         "approved": 1,
         "payout": 468.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -467,6 +553,11 @@
       "crNet": 1.43,
       "stats60": {
         "uniqs": 83,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 6,
         "approved": 0,
         "payout": 0.0
       }
@@ -495,6 +586,11 @@
         "uniqs": 29,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -521,6 +617,11 @@
         "uniqs": 115,
         "approved": 1,
         "payout": 850.0
+      },
+      "stats5": {
+        "uniqs": 9,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -547,6 +648,11 @@
         "uniqs": 30,
         "approved": 1,
         "payout": 710.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -573,6 +679,11 @@
         "uniqs": 20,
         "approved": 2,
         "payout": 2890.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -599,6 +710,11 @@
         "uniqs": 16,
         "approved": 1,
         "payout": 1700.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -625,6 +741,11 @@
         "uniqs": 54,
         "approved": 2,
         "payout": 1580.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -651,6 +772,11 @@
         "uniqs": 11,
         "approved": 2,
         "payout": 3950.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -675,6 +801,11 @@
       "crNet": 4.91,
       "stats60": {
         "uniqs": 17,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -703,6 +834,11 @@
         "uniqs": 71,
         "approved": 1,
         "payout": 790.0
+      },
+      "stats5": {
+        "uniqs": 5,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -727,6 +863,11 @@
       "crNet": 2.21,
       "stats60": {
         "uniqs": 23,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 4,
         "approved": 0,
         "payout": 0.0
       }
@@ -755,6 +896,11 @@
         "uniqs": 7,
         "approved": 0,
         "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 0,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -779,6 +925,11 @@
       "crNet": 2.36,
       "stats60": {
         "uniqs": 41,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 3,
         "approved": 0,
         "payout": 0.0
       }
@@ -807,6 +958,11 @@
         "uniqs": 23,
         "approved": 1,
         "payout": 680.0
+      },
+      "stats5": {
+        "uniqs": 2,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -833,6 +989,11 @@
         "uniqs": 177,
         "approved": 6,
         "payout": 1890.0
+      },
+      "stats5": {
+        "uniqs": 11,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -857,6 +1018,11 @@
       "crNet": 1.99,
       "stats60": {
         "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 2,
         "approved": 0,
         "payout": 0.0
       }
@@ -885,6 +1051,11 @@
         "uniqs": 42,
         "approved": 2,
         "payout": 1270.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 1,
+        "payout": 635.0
       }
     },
     {
@@ -909,6 +1080,11 @@
       "crNet": 1.58,
       "stats60": {
         "uniqs": 49,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 5,
         "approved": 0,
         "payout": 0.0
       }
@@ -937,6 +1113,11 @@
         "uniqs": 174,
         "approved": 10,
         "payout": 2350.0
+      },
+      "stats5": {
+        "uniqs": 7,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -963,6 +1144,11 @@
         "uniqs": 37,
         "approved": 1,
         "payout": 1500.0
+      },
+      "stats5": {
+        "uniqs": 3,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -987,6 +1173,11 @@
       "crNet": 1.95,
       "stats60": {
         "uniqs": 25,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
         "approved": 0,
         "payout": 0.0
       }
@@ -1015,6 +1206,11 @@
         "uniqs": 34,
         "approved": 1,
         "payout": 1445.0
+      },
+      "stats5": {
+        "uniqs": 1,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -1039,6 +1235,11 @@
       "crNet": 0.48,
       "stats60": {
         "uniqs": 8,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 1,
         "approved": 0,
         "payout": 0.0
       }
@@ -1067,6 +1268,11 @@
         "uniqs": 494,
         "approved": 4,
         "payout": 6320.0
+      },
+      "stats5": {
+        "uniqs": 43,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -1093,6 +1299,11 @@
         "uniqs": 228,
         "approved": 2,
         "payout": 1050.0
+      },
+      "stats5": {
+        "uniqs": 31,
+        "approved": 0,
+        "payout": 0.0
       }
     },
     {
@@ -1117,6 +1328,11 @@
       "crNet": 1.93,
       "stats60": {
         "uniqs": 30,
+        "approved": 0,
+        "payout": 0.0
+      },
+      "stats5": {
+        "uniqs": 11,
         "approved": 0,
         "payout": 0.0
       }
