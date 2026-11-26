@@ -1859,12 +1859,13 @@ promoCheckbox?.addEventListener('change', () => {
    Перевірений = не новий, ≥ 30 уніків і ≥ 1 апрув за 60 днів; позиції 1 і 3
    щодня ротуються серед 4 найкращих перевірених.
    Новий = ранг у MFO_SENIORITY ≥ SMART_NEW_RANK; новий, у якого за останні
-   5 днів (stats5) були кліки, але 0 апрувів, вилітає з блоку нових і
+   5 днів (stats5) ≥ SMART_NEW_FAIL_UNIQS уніків і 0 апрувів, вилітає з блоку нових і
    стає звичайним офером (сортується за рейтингом). */
 const SMART_K = 25;
 const SMART_MIN_PROVEN_UNIQS = 30;
 const SMART_NEW_RANK = 38;
 const SMART_ROTATE_TOP = 4;
+const SMART_NEW_FAIL_UNIQS = 30; // новий вилітає, якщо за 5 днів ≥ 30 уніків і 0 апрувів
 function smartTopSort(arr, seniorityVal) {
   const hasStats = arr.some(m => m && m.stats60 && Number(m.stats60.uniqs) > 0);
   if (!hasStats) return null;
@@ -1880,7 +1881,7 @@ function smartTopSort(arr, seniorityVal) {
     const st = m.stats60 || {};
     const u = Number(st.uniqs) || 0, a = Number(st.approved) || 0, p = Number(st.payout) || 0;
     const r5 = m.stats5 || null;
-    const failedRecently = !!r5 && (Number(r5.uniqs) || 0) > 0 && (Number(r5.approved) || 0) === 0;
+    const failedRecently = !!r5 && (Number(r5.uniqs) || 0) >= SMART_NEW_FAIL_UNIQS && (Number(r5.approved) || 0) === 0;
     const isNew = seniorityVal(m) >= SMART_NEW_RANK && !failedRecently;
     return { m, u, a, isNew, score: (p + SMART_K * prior(m)) / (u + SMART_K) };
   });
