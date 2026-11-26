@@ -1922,7 +1922,18 @@ function sortData(data) {
   switch (state.sort) {
     case 'sum-desc': return arr.sort((a, b) => b.sum - a.sum);
     case 'rate-asc': return arr.sort((a, b) => rateVal(a) - rateVal(b));
-    case 'date-new': return smartTopSort(arr, seniorityVal) || arr.sort((a, b) => seniorityVal(b) - seniorityVal(a)); // «розумний» топ; без статистики — як раніше
+    case 'date-new': {
+      // «Розумний» топ; якщо PDL не віддав статистику — рейтинг за CR
+      // (мережевий crNet з живого фіду, інакше таблиця MFO_CR).
+      const smart = smartTopSort(arr, seniorityVal);
+      if (smart) return smart;
+      const crFallback = (m) => {
+        const n = Number(m.crNet);
+        if (Number.isFinite(n) && n > 0) return n;
+        return crVal(m);
+      };
+      return arr.sort((a, b) => crFallback(b) - crFallback(a));
+    }
     case 'date-old': return arr.sort((a, b) => seniorityVal(a) - seniorityVal(b)); // найстаріші (ранг 1) — спочатку
     case 'cr-desc': return arr.sort((a, b) => crVal(b) - crVal(a));
     case 'epc-desc': return arr.sort((a, b) => epcVal(b) - epcVal(a));
