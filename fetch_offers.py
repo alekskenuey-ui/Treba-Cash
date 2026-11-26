@@ -30,6 +30,8 @@ REQUISITES_FILE = "requisites.json"
 # ── Наша статистика по оферах (для «розумного» топу на вітрині) ──
 # Беремо ковзне вікно STATS_DAYS днів (API дозволяє до 70).
 STATS_DAYS = 60
+# Коротке вікно: новий офер без апрувів за ці дні вилітає з блоку «нових» на вітрині
+RECENT_DAYS = 5
 STATS_URL = "https://pdl-profit.com/partnerapi/statistic"
 
 
@@ -100,12 +102,12 @@ def _item_offer_key(item):
     return oid, clean_name(str(name)) if name else None
 
 
-def fetch_own_stats():
-    """Наша статистика по оферах за останні STATS_DAYS днів:
+def fetch_own_stats(days=STATS_DAYS):
+    """Наша статистика по оферах за останні days днів:
     {id або назва: {"uniqs", "approved", "payout"}}. Якщо API недоступний —
     повертає {} і сайт сортує як раніше (помилка тут не зупиняє оновлення оферів)."""
     to_d = datetime.now(timezone.utc).date()
-    from_d = to_d - timedelta(days=STATS_DAYS)
+    from_d = to_d - timedelta(days=days)
     stats, page, pages = {}, 1, 1
     try:
         while page <= pages and page <= 20:
@@ -145,7 +147,7 @@ def fetch_own_stats():
     except Exception as e:  # мережа, JSON, формат — не валимо весь крок
         print(f"⚠️ Не вдалося отримати статистику по оферах: {e}")
         return {}
-    print(f"📊 Статистика по оферах за {STATS_DAYS} днів: {len([k for k in stats if isinstance(k, int)])} оферів з ID")
+    print(f"📊 Статистика по оферах за {days} днів: {len([k for k in stats if isinstance(k, int)])} оферів з ID")
     return stats
 
 
@@ -254,19 +256,23 @@ def main():
 
     transformed = [transform_offer(o, requisites) for o in raw_offers]
 
-    own = fetch_own_stats()
+    own = fetch_own_stats(STATS_DAYS)
+    recent = fetch_own_stats(RECENT_DAYS) if own else {}
     matched = 0
     for o in transformed:
         st = own.get(o.get("id")) or own.get(o.get("name"))
         if st:
             o["stats60"] = st
             matched += 1
+        if recent:
+            o["stats5"] = recent.get(o.get("id")) or recent.get(o.get("name")) or {"uniqs": 0, "approved": 0, "payout": 0.0}
     print(f"🔗 Статистику зіставлено з {matched} оферами")
 
     output = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "count": len(transformed),
         "statsDays": STATS_DAYS if own else None,
+        "recentDays": RECENT_DAYS if recent else None,
         "offers": transformed,
     }
 
