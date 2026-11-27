@@ -933,8 +933,14 @@ div.top3-row-logo{background:var(--bg,#f4f9f6);}
 
     // ТОП-3 — з-поміж найновіших брендів на майданчику (MFO_SENIORITY, вище = новіші)
     // випадково обираємо 3, щоб набір не був однаковим у кожного відвідувача
-    const seniorSorted = [...pool].sort((a, b) => seniorityVal(b) - seniorityVal(a));
-    const topThree = pickRandom(seniorSorted, 3);
+    const seniorSortedRaw = [...pool].sort((a, b) => seniorityVal(b) - seniorityVal(a));
+    // Офери з мережевим EPC < 1 ₴ — у кінець (див. demoteLowEpc на вітрині)
+    // Пул кандидатів (16) ширший за весь список, тож просто опустити мало — прибираємо їх
+    // із вибору ТОП-3, якщо без них лишається ≥ 3 офери.
+    const seniorSorted = (typeof window.demoteLowEpc === 'function') ? window.demoteLowEpc(seniorSortedRaw) : seniorSortedRaw;
+    const lowEpc = (m) => { const v = Number(m.epc); return m.epc != null && Number.isFinite(v) && v < 1; };
+    const okForTop = seniorSorted.filter(m => !lowEpc(m));
+    const topThree = pickRandom(okForTop.length >= 3 ? okForTop : seniorSorted, 3);
     const usedNames = new Set(topThree.map(m => m.name));
 
     // Рекомендації клієнтів — з-поміж топ TREBACASH (той самий рейтинг EPC, що й
@@ -1457,6 +1463,20 @@ promoCheckbox?.addEventListener('change', () => {
 })();
 
 /* ====== SORTING LOGIC ====== */
+// Офери з мережевим EPC PDL < 1 ₴ (фактично без апрувів у мережі) опускаємо в кінець
+// у сортуваннях «Новые/Старые сначала» і в ТОП-3 попапу. Рішення власника 27.11.2026:
+// CashPerCredit — 41 унік / 0 апрувів у нас і EPC 0 у мережі, але через новий id стояв 3-м.
+// Порядок решти не змінюється. Сортування за сумою/ставкою (вибір користувача) не чіпаємо.
+const LOW_EPC_THRESHOLD = 1;
+function isLowEpc(m) {
+  const live = Number(m && m.epc);
+  return m && m.epc !== null && m.epc !== undefined && Number.isFinite(live) && live < LOW_EPC_THRESHOLD;
+}
+function demoteLowEpc(arr) {
+  return arr.filter(m => !isLowEpc(m)).concat(arr.filter(isLowEpc));
+}
+window.demoteLowEpc = demoteLowEpc;
+
 function sortData(data) {
   const arr = [...data];
   const seniorityVal = (m) => {
@@ -1490,8 +1510,8 @@ function sortData(data) {
   switch (state.sort) {
     case 'sum-desc': return arr.sort((a, b) => b.sum - a.sum);
     case 'rate-asc': return arr.sort((a, b) => rateVal(a) - rateVal(b));
-    case 'date-new': return arr.sort((a, b) => seniorityVal(b) - seniorityVal(a)); // найновіші (найбільший ранг) — спочатку
-    case 'date-old': return arr.sort((a, b) => seniorityVal(a) - seniorityVal(b)); // найстаріші (ранг 1) — спочатку
+    case 'date-new': return demoteLowEpc(arr.sort((a, b) => seniorityVal(b) - seniorityVal(a))); // найновіші (найбільший ранг) — спочатку
+    case 'date-old': return demoteLowEpc(arr.sort((a, b) => seniorityVal(a) - seniorityVal(b))); // найстаріші (ранг 1) — спочатку
     case 'cr-desc': return arr.sort((a, b) => crVal(b) - crVal(a));
     case 'epc-desc': return arr.sort((a, b) => epcVal(b) - epcVal(a));
     default: return arr;
