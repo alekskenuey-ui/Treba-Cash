@@ -1236,10 +1236,9 @@ window.tcAdFilter = function (list) {
       </div>`;
     };
 
-    // ТОП-3 — з-поміж найновіших брендів на майданчику (MFO_SENIORITY, вище = новіші)
-    // випадково обираємо 3, щоб набір не був однаковим у кожного відвідувача
-    const seniorSorted = [...pool].sort((a, b) => seniorityVal(b) - seniorityVal(a));
-    const topThree = pickRandom(seniorSorted, 3);
+    // ТОП-3 — три офери з найвищим загальним CR мережі PDL серед тих,
+    // що підходять під запит (сума/строк); однаковий для всіх відвідувачів
+    const topThree = window.topByCr(pool, 3);
     const usedNames = new Set(topThree.map(m => m.name));
 
     // Рекомендації клієнтів — з-поміж топ TREBACASH (той самий рейтинг EPC, що й
@@ -1621,6 +1620,18 @@ const MFO_CR = {
   "Prostocredit": 0.51,
   "Amigo": 0.47,
 };
+/* Рейтинг за загальним CR мережі PDL: crNet (cr_general з фіду, щодня),
+   якщо його немає — таблиця MFO_CR. Спільний для всіх блоків «ТОП-3». */
+window.crRankVal = function (m) {
+  const n = Number(m && m.crNet);
+  if (Number.isFinite(n) && n > 0) return n;
+  const t = Number(MFO_CR[m && m.name]);
+  return Number.isFinite(t) ? t : -Infinity;
+};
+window.topByCr = function (arr, n) {
+  return [...(arr || [])].sort((a, b) => window.crRankVal(b) - window.crRankVal(a)).slice(0, n);
+};
+
 const MFO_EPC = {
   "Bizpozyka": 75.96,
   "ТвояПозика": 66.15,
@@ -2141,13 +2152,7 @@ function renderDock() {
   const DOCK_LABELS = ['👑 #1 Лідер', '#2 Онлайн', '#3 Онлайн'];
   const box = document.getElementById('t3d-grid');
   if (!box) return;
-  const dockCr = (m) => {
-    const n = Number(m.crNet);
-    if (Number.isFinite(n) && n > 0) return n;
-    const t = (typeof MFO_CR === 'object' && MFO_CR) ? Number(MFO_CR[m.name]) : NaN;
-    return Number.isFinite(t) ? t : -Infinity;
-  };
-  const items = [...MFO_DATA].sort((a, b) => dockCr(b) - dockCr(a)).slice(0, 3);
+  const items = window.topByCr(MFO_DATA, 3);
   if (!items.length) { box.innerHTML = ''; return; }
   box.innerHTML = items.map((m, i) => {
     const logo = m.logo && m.logo.startsWith('http') ? m.logo : '/mfo-logos/' + m.logo;
@@ -2398,18 +2403,10 @@ if (requisitesGrid) {
     if (!list) return;
     if (pool9.length < 3) return; // дані ще не підвантажились — просто не показуємо блок цього разу
 
-    let picked;
-    const stored = sessionStorage.getItem('tgTop3Picks');
-    if (stored) {
-      try {
-        const names = JSON.parse(stored);
-        picked = names.map(n => pool9.find(o => o.name === n)).filter(Boolean);
-      } catch (e) { picked = null; }
-    }
-    if (!picked || picked.length !== 3) {
-      picked = pickRandom3(pool9, lastTop3Names);
-      sessionStorage.setItem('tgTop3Picks', JSON.stringify(picked.map(p => p.name)));
-    }
+    // ТОП-3 — три офери з найвищим загальним CR мережі PDL (як і нижня панель)
+    const allOffers = (typeof MFO_DATA !== 'undefined' && Array.isArray(MFO_DATA)) ? MFO_DATA : pool9;
+    const picked = window.topByCr(allOffers, 3);
+    if (picked.length < 3) return;
     lastTop3Names = picked.map(p => p.name);
 
     list.innerHTML = picked.map((o, idx) => `
