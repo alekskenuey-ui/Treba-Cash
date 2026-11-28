@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T07:08:43.028361+00:00",
+  "generatedAt": "2026-11-28T07:01:49.550289+00:00",
   "count": 43,
   "statsDays": 60,
   "recentDays": 5,
@@ -22,15 +22,15 @@
       "address": "м. Київ, вул. Дніпровська наб., 25, п. 318",
       "phone": null,
       "email": null,
-      "epcNet": 37.32,
-      "crNet": 2.27,
+      "epcNet": 40.31,
+      "crNet": 2.39,
       "stats60": {
-        "uniqs": 29,
+        "uniqs": 30,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 4,
+        "uniqs": 5,
         "approved": 0,
         "payout": 0.0
       }
@@ -53,8 +53,8 @@
       "address": "м. Київ, вул. Багговутівська, 17-21",
       "phone": null,
       "email": null,
-      "epcNet": 27.1,
-      "crNet": 1.88,
+      "epcNet": 25.74,
+      "crNet": 1.67,
       "stats60": {
         "uniqs": 6,
         "approved": 1,
@@ -84,15 +84,15 @@
       "address": "01010, м. Київ, пл. Арсенальна, 1-Б",
       "phone": null,
       "email": null,
-      "epcNet": 55.46,
-      "crNet": 4.45,
+      "epcNet": 72.32,
+      "crNet": 6.0,
       "stats60": {
-        "uniqs": 25,
+        "uniqs": 32,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 1,
+        "uniqs": 9,
         "approved": 0,
         "payout": 0.0
       }
@@ -115,8 +115,8 @@
       "address": "03062, м. Київ, пр-т Перемоги, 90-А",
       "phone": null,
       "email": null,
-      "epcNet": 30.29,
-      "crNet": 3.11,
+      "epcNet": 30.63,
+      "crNet": 3.02,
       "stats60": {
         "uniqs": 12,
         "approved": 0,
@@ -146,8 +146,8 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 43.2,
-      "crNet": 3.32,
+      "epcNet": 33.86,
+      "crNet": 2.66,
       "stats60": {
         "uniqs": 14,
         "approved": 0,
@@ -177,8 +177,8 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 21.0,
-      "crNet": 1.46,
+      "epcNet": 19.39,
+      "crNet": 1.35,
       "stats60": {
         "uniqs": 12,
         "approved": 0,
@@ -208,10 +208,10 @@
       "address": "01133, м. Київ, бул. Лесі Українки, 26, оф. 407",
       "phone": null,
       "email": null,
-      "epcNet": 54.44,
-      "crNet": 3.42,
+      "epcNet": 55.87,
+      "crNet": 3.43,
       "stats60": {
-        "uniqs": 45,
+        "uniqs": 42,
         "approved": 0,
         "payout": 0.0
       },
@@ -239,8 +239,8 @@
       "address": "49057, м. Дніпро, пр. Б. Хмельницького, 180, оф. 211",
       "phone": null,
       "email": null,
-      "epcNet": 42.76,
-      "crNet": 2.12,
+      "epcNet": 39.27,
+      "crNet": 1.94,
       "stats60": {
         "uniqs": 36,
         "approved": 0,
@@ -270,15 +270,15 @@
       "address": "04107, м. Київ, пр. Перемоги, 90-А",
       "phone": null,
       "email": null,
-      "epcNet": 61.79,
-      "crNet": 3.01,
+      "epcNet": 63.5,
+      "crNet": 3.06,
       "stats60": {
-        "uniqs": 113,
+        "uniqs": 112,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 13,
+        "uniqs": 14,
         "approved": 0,
         "payout": 0.0
       }
@@ -301,8 +301,8 @@
       "address": "01032, м. Київ, вул. Саксаганського, 133-А",
       "phone": null,
       "email": null,
-      "epcNet": 49.34,
-      "crNet": 3.22,
+      "epcNet": 46.39,
+      "crNet": 3.05,
       "stats60": {
         "uniqs": 43,
         "approved": 0,
@@ -332,8 +332,8 @@
       "address": "м. Київ, вул. Багговутівська, 17-21",
       "phone": null,
       "email": null,
-      "epcNet": 26.58,
-      "crNet": 2.63,
+      "epcNet": 34.07,
+      "crNet": 3.26,
       "stats60": {
         "uniqs": 16,
         "approved": 0,
@@ -363,8 +363,8 @@
       "address": "02002, м. Київ, вул. Митрополита Андрея Шептицького, 4А",
       "phone": null,
       "email": null,
-      "epcNet": 16.93,
-      "crNet": 1.99,
+      "epcNet": 14.99,
+      "crNet": 1.78,
       "stats60": {
         "uniqs": 29,
         "approved": 0,
@@ -394,10 +394,10 @@
       "address": "м. Київ, вул. Жилянська, 101, оф. 601",
       "phone": "0 800 30 30 32",
       "email": "office@cashpoint.ua",
-      "epcNet": 13.29,
-      "crNet": 1.33,
+      "epcNet": 11.15,
+      "crNet": 1.12,
       "stats60": {
-        "uniqs": 63,
+        "uniqs": 61,
         "approved": 2,
         "payout": 2000.0
       },
@@ -425,8 +425,8 @@
       "address": "04071, м. Київ, вул. Ярославська, 5/2В",
       "phone": "(044) 498 68 98",
       "email": "info@aviracredit.com.ua",
-      "epcNet": 18.02,
-      "crNet": 2.51,
+      "epcNet": 18.3,
+      "crNet": 2.36,
       "stats60": {
         "uniqs": 10,
         "approved": 1,
@@ -456,8 +456,8 @@
       "address": "04071, м. Київ, вул. Ярославська, 5/2В",
       "phone": "(044) 390 03 32",
       "email": "info@cly.com.ua",
-      "epcNet": 4.64,
-      "crNet": 0.73,
+      "epcNet": 4.24,
+      "crNet": 0.58,
       "stats60": {
         "uniqs": 16,
         "approved": 0,
@@ -487,8 +487,8 @@
       "address": "04070, м. Київ, вул. Сковороди Григорія, 1",
       "phone": null,
       "email": null,
-      "epcNet": 60.82,
-      "crNet": 2.76,
+      "epcNet": 61.88,
+      "crNet": 2.79,
       "stats60": {
         "uniqs": 9,
         "approved": 0,
@@ -518,10 +518,10 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 11.08,
-      "crNet": 1.05,
+      "epcNet": 17.19,
+      "crNet": 2.26,
       "stats60": {
-        "uniqs": 148,
+        "uniqs": 139,
         "approved": 1,
         "payout": 468.0
       },
@@ -549,15 +549,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 28.21,
-      "crNet": 1.43,
+      "epcNet": 0.0,
+      "crNet": 0.0,
       "stats60": {
-        "uniqs": 82,
+        "uniqs": 80,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 6,
+        "uniqs": 5,
         "approved": 0,
         "payout": 0.0
       }
@@ -580,10 +580,10 @@
       "address": "м. Київ, вул. Ген. Алмазова, 13, оф. 524",
       "phone": "0800 211 503",
       "email": "office@tpozyka.com",
-      "epcNet": 65.49,
-      "crNet": 2.61,
+      "epcNet": 63.06,
+      "crNet": 2.52,
       "stats60": {
-        "uniqs": 25,
+        "uniqs": 24,
         "approved": 0,
         "payout": 0.0
       },
@@ -611,15 +611,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 23.13,
-      "crNet": 2.72,
+      "epcNet": 24.29,
+      "crNet": 2.86,
       "stats60": {
         "uniqs": 112,
         "approved": 1,
         "payout": 850.0
       },
       "stats5": {
-        "uniqs": 8,
+        "uniqs": 5,
         "approved": 0,
         "payout": 0.0
       }
@@ -642,15 +642,15 @@
       "address": "79018, м. Львів, вул. Смаль-Стоцького, 1, корп. 28",
       "phone": null,
       "email": null,
-      "epcNet": 20.96,
-      "crNet": 2.74,
+      "epcNet": 21.75,
+      "crNet": 2.83,
       "stats60": {
         "uniqs": 29,
         "approved": 1,
         "payout": 710.0
       },
       "stats5": {
-        "uniqs": 2,
+        "uniqs": 1,
         "approved": 0,
         "payout": 0.0
       }
@@ -673,15 +673,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 56.89,
-      "crNet": 3.36,
+      "epcNet": 56.96,
+      "crNet": 3.37,
       "stats60": {
         "uniqs": 18,
         "approved": 2,
         "payout": 2890.0
       },
       "stats5": {
-        "uniqs": 1,
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -704,8 +704,8 @@
       "address": "61072, м. Харків, вул. Отакара Яроша, 24Б",
       "phone": "+380 67 561-38-04",
       "email": "hello@lovilave.com.ua",
-      "epcNet": 11.39,
-      "crNet": 1.24,
+      "epcNet": 9.35,
+      "crNet": 1.07,
       "stats60": {
         "uniqs": 16,
         "approved": 1,
@@ -735,10 +735,10 @@
       "address": "01054, м. Київ, вул. Франка Івана, 40б, оф. 206",
       "phone": "0 800 33-34-34",
       "email": "info@prostocredit.com.ua",
-      "epcNet": 6.7,
-      "crNet": 0.65,
+      "epcNet": 5.97,
+      "crNet": 0.58,
       "stats60": {
-        "uniqs": 54,
+        "uniqs": 52,
         "approved": 2,
         "payout": 1580.0
       },
@@ -766,8 +766,8 @@
       "address": "03150, м. Київ, вул. Велика Васильківська, 72",
       "phone": "0 800 202 233",
       "email": "info@starfin.com.ua",
-      "epcNet": 69.59,
-      "crNet": 3.56,
+      "epcNet": 66.76,
+      "crNet": 3.41,
       "stats60": {
         "uniqs": 9,
         "approved": 2,
@@ -797,8 +797,8 @@
       "address": "01135, м. Київ, вул. Жилянська, 101, оф. 3",
       "phone": "+38 044 337 03 37",
       "email": "info@pango.com.ua",
-      "epcNet": 108.11,
-      "crNet": 4.91,
+      "epcNet": 132.96,
+      "crNet": 5.91,
       "stats60": {
         "uniqs": 17,
         "approved": 0,
@@ -828,8 +828,8 @@
       "address": "04107, м. Київ, вул. Багговутівська, 17-21",
       "phone": "+380443370033",
       "email": "info@amigo.com.ua",
-      "epcNet": 3.0,
-      "crNet": 0.37,
+      "epcNet": 3.2,
+      "crNet": 0.39,
       "stats60": {
         "uniqs": 71,
         "approved": 1,
@@ -859,8 +859,8 @@
       "address": "03150, м. Київ, вул. Казимира Малевича, 86Е",
       "phone": "0 800 310-422",
       "email": "info@treba.credit",
-      "epcNet": 22.35,
-      "crNet": 2.21,
+      "epcNet": 22.68,
+      "crNet": 2.19,
       "stats60": {
         "uniqs": 22,
         "approved": 0,
@@ -890,8 +890,8 @@
       "address": "01015, м. Київ, вул. Лейпцизька, 15-Б, пов. 4",
       "phone": "0800 351 341",
       "email": "support@limon-credit.com.ua",
-      "epcNet": 10.55,
-      "crNet": 2.54,
+      "epcNet": 11.08,
+      "crNet": 2.64,
       "stats60": {
         "uniqs": 6,
         "approved": 0,
@@ -921,15 +921,15 @@
       "address": "03150, м. Київ, вул. Казимира Малевича, 86Е",
       "phone": "0800310433",
       "email": "info@lehko.credit",
-      "epcNet": 18.96,
-      "crNet": 2.36,
+      "epcNet": 17.62,
+      "crNet": 2.15,
       "stats60": {
         "uniqs": 39,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 3,
+        "uniqs": 2,
         "approved": 0,
         "payout": 0.0
       }
@@ -952,8 +952,8 @@
       "address": "03150, м. Київ, вул. Фізкультури, 30В",
       "phone": "0800 202 262",
       "email": "info@suncredit.com.ua",
-      "epcNet": 14.97,
-      "crNet": 2.18,
+      "epcNet": 12.78,
+      "crNet": 1.87,
       "stats60": {
         "uniqs": 23,
         "approved": 1,
@@ -983,15 +983,15 @@
       "address": "01001, м. Київ, вул. Ірининська, 5/24, оф. 97а",
       "phone": "0 800 400004",
       "email": "info@turbogroshi.com.ua",
-      "epcNet": 17.25,
-      "crNet": 4.71,
+      "epcNet": 17.71,
+      "crNet": 4.68,
       "stats60": {
-        "uniqs": 168,
+        "uniqs": 158,
         "approved": 5,
         "payout": 1575.0
       },
       "stats5": {
-        "uniqs": 11,
+        "uniqs": 8,
         "approved": 0,
         "payout": 0.0
       }
@@ -1014,10 +1014,10 @@
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2",
       "phone": "0 800 205 020",
       "email": "support@rocketmoney.com.ua",
-      "epcNet": 26.31,
-      "crNet": 1.99,
+      "epcNet": 31.08,
+      "crNet": 2.45,
       "stats60": {
-        "uniqs": 23,
+        "uniqs": 22,
         "approved": 0,
         "payout": 0.0
       },
@@ -1045,15 +1045,15 @@
       "address": "49041, м. Дніпро, вул. Стартова, 7, оф. 403",
       "phone": "0 800 302 042",
       "email": "fk.finmarket@gmail.com",
-      "epcNet": 4.57,
-      "crNet": 0.72,
+      "epcNet": 3.6,
+      "crNet": 0.57,
       "stats60": {
-        "uniqs": 40,
+        "uniqs": 41,
         "approved": 2,
         "payout": 1270.0
       },
       "stats5": {
-        "uniqs": 2,
+        "uniqs": 3,
         "approved": 0,
         "payout": 0.0
       }
@@ -1076,15 +1076,15 @@
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2",
       "phone": "0 800 206 020",
       "email": "support@rocketmoney.com.ua",
-      "epcNet": 23.13,
-      "crNet": 1.58,
+      "epcNet": 18.65,
+      "crNet": 1.23,
       "stats60": {
-        "uniqs": 47,
+        "uniqs": 43,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 3,
+        "uniqs": 2,
         "approved": 0,
         "payout": 0.0
       }
@@ -1107,15 +1107,15 @@
       "address": "01133, м. Київ, вул. Ген. Алмазова, 13, оф. 301",
       "phone": "0 800 20 35 35",
       "email": "info@ranok.ua",
-      "epcNet": 16.85,
-      "crNet": 6.79,
+      "epcNet": 17.04,
+      "crNet": 6.9,
       "stats60": {
-        "uniqs": 169,
+        "uniqs": 165,
         "approved": 10,
         "payout": 2350.0
       },
       "stats5": {
-        "uniqs": 7,
+        "uniqs": 11,
         "approved": 0,
         "payout": 0.0
       }
@@ -1138,10 +1138,10 @@
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2, оф. 9-14",
       "phone": "0 800 205 353",
       "email": "support@finclick.com.ua",
-      "epcNet": 18.4,
-      "crNet": 2.06,
+      "epcNet": 10.71,
+      "crNet": 1.04,
       "stats60": {
-        "uniqs": 37,
+        "uniqs": 33,
         "approved": 1,
         "payout": 1500.0
       },
@@ -1169,10 +1169,10 @@
       "address": "01133, м. Київ, вул. Ген. Алмазова, 13, оф. 301",
       "phone": "0 800 20 35 35",
       "email": "info@ranok.ua",
-      "epcNet": 31.19,
-      "crNet": 1.95,
+      "epcNet": 31.33,
+      "crNet": 1.96,
       "stats60": {
-        "uniqs": 24,
+        "uniqs": 22,
         "approved": 0,
         "payout": 0.0
       },
@@ -1200,15 +1200,15 @@
       "address": "04071, м. Київ, вул. Верхній Вал, 4-В, під'їзд 1, пов. 2, оф. 9-14",
       "phone": "0 800 205 353",
       "email": "support@finclick.com.ua",
-      "epcNet": 33.93,
-      "crNet": 2.8,
+      "epcNet": 34.59,
+      "crNet": 2.74,
       "stats60": {
-        "uniqs": 34,
+        "uniqs": 31,
         "approved": 1,
         "payout": 1445.0
       },
       "stats5": {
-        "uniqs": 1,
+        "uniqs": 0,
         "approved": 0,
         "payout": 0.0
       }
@@ -1231,10 +1231,10 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 3.11,
-      "crNet": 0.48,
+      "epcNet": 2.2,
+      "crNet": 0.35,
       "stats60": {
-        "uniqs": 7,
+        "uniqs": 6,
         "approved": 0,
         "payout": 0.0
       },
@@ -1262,15 +1262,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 19.42,
-      "crNet": 0.7,
+      "epcNet": 13.93,
+      "crNet": 0.5,
       "stats60": {
-        "uniqs": 497,
+        "uniqs": 499,
         "approved": 4,
         "payout": 6320.0
       },
       "stats5": {
-        "uniqs": 36,
+        "uniqs": 28,
         "approved": 0,
         "payout": 0.0
       }
@@ -1293,15 +1293,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 24.8,
-      "crNet": 1.85,
+      "epcNet": 26.33,
+      "crNet": 1.97,
       "stats60": {
-        "uniqs": 230,
+        "uniqs": 231,
         "approved": 2,
         "payout": 1050.0
       },
       "stats5": {
-        "uniqs": 29,
+        "uniqs": 15,
         "approved": 0,
         "payout": 0.0
       }
@@ -1324,15 +1324,15 @@
       "address": null,
       "phone": null,
       "email": null,
-      "epcNet": 19.28,
-      "crNet": 1.93,
+      "epcNet": 18.57,
+      "crNet": 1.86,
       "stats60": {
-        "uniqs": 33,
+        "uniqs": 34,
         "approved": 0,
         "payout": 0.0
       },
       "stats5": {
-        "uniqs": 13,
+        "uniqs": 12,
         "approved": 0,
         "payout": 0.0
       }
